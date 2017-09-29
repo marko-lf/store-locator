@@ -18,6 +18,13 @@
 		EA137AB91F7AA1B1006E853A /* Store+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA137AB51F7AA1B1006E853A /* Store+CoreDataClass.swift */; };
 		EA137ABA1F7AA1B1006E853A /* Store+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA137AB61F7AA1B1006E853A /* Store+CoreDataProperties.swift */; };
 		EA137ABC1F7AA871006E853A /* Store.txt in Resources */ = {isa = PBXBuildFile; fileRef = EA137ABB1F7AA871006E853A /* Store.txt */; };
+		EAA0AF5E1F7BE303008D9B16 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = EAA0AF5D1F7BE303008D9B16 /* Podfile */; };
+		EAA0AF601F7BE540008D9B16 /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA0AF5F1F7BE540008D9B16 /* CollectionViewController.swift */; };
+		EAA0AF641F7BEB1B008D9B16 /* Prodavnica.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA0AF631F7BEB1B008D9B16 /* Prodavnica.swift */; };
+		EAA0AF661F7BF819008D9B16 /* StoreCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA0AF651F7BF819008D9B16 /* StoreCollectionViewCell.swift */; };
+		EAA0AF681F7D191A008D9B16 /* StartViewControllerBetterOne.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA0AF671F7D191A008D9B16 /* StartViewControllerBetterOne.swift */; };
+		EAA0AF6B1F7D2DEF008D9B16 /* Image+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA0AF691F7D2DEF008D9B16 /* Image+CoreDataClass.swift */; };
+		EAA0AF6C1F7D2DEF008D9B16 /* Image+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA0AF6A1F7D2DEF008D9B16 /* Image+CoreDataProperties.swift */; };
 		EAB1E1051F7BB8D700E8C64F /* StoreInfo.txt in Resources */ = {isa = PBXBuildFile; fileRef = EAB1E1041F7BB8D700E8C64F /* StoreInfo.txt */; };
 /* End PBXBuildFile section */
 
@@ -35,6 +42,13 @@
 		EA137AB51F7AA1B1006E853A /* Store+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Store+CoreDataClass.swift"; sourceTree = "<group>"; };
 		EA137AB61F7AA1B1006E853A /* Store+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Store+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		EA137ABB1F7AA871006E853A /* Store.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = Store.txt; sourceTree = "<group>"; };
+		EAA0AF5D1F7BE303008D9B16 /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
+		EAA0AF5F1F7BE540008D9B16 /* CollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
+		EAA0AF631F7BEB1B008D9B16 /* Prodavnica.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Prodavnica.swift; sourceTree = "<group>"; };
+		EAA0AF651F7BF819008D9B16 /* StoreCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreCollectionViewCell.swift; sourceTree = "<group>"; };
+		EAA0AF671F7D191A008D9B16 /* StartViewControllerBetterOne.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewControllerBetterOne.swift; sourceTree = "<group>"; };
+		EAA0AF691F7D2DEF008D9B16 /* Image+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+CoreDataClass.swift"; sourceTree = "<group>"; };
+		EAA0AF6A1F7D2DEF008D9B16 /* Image+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		EAB1E1041F7BB8D700E8C64F /* StoreInfo.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = StoreInfo.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -75,6 +89,8 @@
 				EA137A8B1F7A8BCF006E853A /* Main.storyboard */,
 				EA137A8E1F7A8BCF006E853A /* Assignment_One.xcdatamodeld */,
 				EA137A961F7A8BCF006E853A /* Info.plist */,
+				EAA0AF631F7BEB1B008D9B16 /* Prodavnica.swift */,
+				EAA0AF651F7BF819008D9B16 /* StoreCollectionViewCell.swift */,
 			);
 			path = "Assignment One";
 			sourceTree = "<group>";
@@ -85,6 +101,7 @@
 				EA137A871F7A8BCF006E853A /* AppDelegate.swift */,
 				EA137A911F7A8BCF006E853A /* Assets.xcassets */,
 				EA137A931F7A8BCF006E853A /* LaunchScreen.storyboard */,
+				EAA0AF5D1F7BE303008D9B16 /* Podfile */,
 			);
 			path = "supporting files";
 			sourceTree = "<group>";
@@ -93,6 +110,8 @@
 			isa = PBXGroup;
 			children = (
 				EA137A9E1F7A8C83006E853A /* StartViewController.swift */,
+				EAA0AF5F1F7BE540008D9B16 /* CollectionViewController.swift */,
+				EAA0AF671F7D191A008D9B16 /* StartViewControllerBetterOne.swift */,
 			);
 			path = controllers;
 			sourceTree = "<group>";
@@ -104,6 +123,8 @@
 				EA137AB41F7AA1B1006E853A /* StoreInfo+CoreDataProperties.swift */,
 				EA137AB51F7AA1B1006E853A /* Store+CoreDataClass.swift */,
 				EA137AB61F7AA1B1006E853A /* Store+CoreDataProperties.swift */,
+				EAA0AF691F7D2DEF008D9B16 /* Image+CoreDataClass.swift */,
+				EAA0AF6A1F7D2DEF008D9B16 /* Image+CoreDataProperties.swift */,
 			);
 			path = NSManagedObjects;
 			sourceTree = "<group>";
@@ -176,6 +197,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EAA0AF5E1F7BE303008D9B16 /* Podfile in Resources */,
 				EA137ABC1F7AA871006E853A /* Store.txt in Resources */,
 				EA137A951F7A8BCF006E853A /* LaunchScreen.storyboard in Resources */,
 				EAB1E1051F7BB8D700E8C64F /* StoreInfo.txt in Resources */,
@@ -193,8 +215,14 @@
 			files = (
 				EA137AB81F7AA1B1006E853A /* StoreInfo+CoreDataProperties.swift in Sources */,
 				EA137AB91F7AA1B1006E853A /* Store+CoreDataClass.swift in Sources */,
+				EAA0AF661F7BF819008D9B16 /* StoreCollectionViewCell.swift in Sources */,
+				EAA0AF6B1F7D2DEF008D9B16 /* Image+CoreDataClass.swift in Sources */,
 				EA137A901F7A8BCF006E853A /* Assignment_One.xcdatamodeld in Sources */,
+				EAA0AF6C1F7D2DEF008D9B16 /* Image+CoreDataProperties.swift in Sources */,
+				EAA0AF681F7D191A008D9B16 /* StartViewControllerBetterOne.swift in Sources */,
+				EAA0AF641F7BEB1B008D9B16 /* Prodavnica.swift in Sources */,
 				EA137AB71F7AA1B1006E853A /* StoreInfo+CoreDataClass.swift in Sources */,
+				EAA0AF601F7BE540008D9B16 /* CollectionViewController.swift in Sources */,
 				EA137ABA1F7AA1B1006E853A /* Store+CoreDataProperties.swift in Sources */,
 				EA137A881F7A8BCF006E853A /* AppDelegate.swift in Sources */,
 				EA137A9F1F7A8C83006E853A /* StartViewController.swift in Sources */,

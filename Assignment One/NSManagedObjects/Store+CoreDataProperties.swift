@@ -19,8 +19,6 @@ extension Store {
 
     @NSManaged public var storeLatitude: Double
     @NSManaged public var storeLongitude: Double
-    @NSManaged public var storeImageSize: Int32
-    @NSManaged public var storeImageUrl: String?
     @NSManaged public var storeName: String?
     @NSManaged public var storeID: Int16
 

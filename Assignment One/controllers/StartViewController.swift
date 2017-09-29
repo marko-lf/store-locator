@@ -12,6 +12,7 @@ import CoreData
 class StartViewController: UIViewController {
     
     
+    @IBOutlet weak var fidgetSpinner: UIActivityIndicatorView!
     var mockDataEnabled = true
    
 
@@ -21,14 +22,21 @@ class StartViewController: UIViewController {
         
         if mockDataEnabled
         {
-        parseJsonFileAndUpdateDatabaseFromLocalFile()
-        printDatabaseContents()
+            fidgetSpinner.isHidden = false;
+            fidgetSpinner.startAnimating()
+            
+            //fake the delay
+           Timer.scheduledTimer(timeInterval: RNG(), target: self, selector: #selector(StartViewController.mockDataFetch), userInfo: nil, repeats: false)
+            
            
+            
+            
+          
         }
         
         else
         {
-          return //TBD
+          printDatabaseContents()
         }
         
     }
@@ -53,7 +61,92 @@ class StartViewController: UIViewController {
     
     // MARK: - functions
     
-    func parseJsonFileAndUpdateDatabaseFromLocalFile() {
+    
+    @objc func mockDataFetch() {
+    
+        parseJsonStore()
+        parseJsonStoreInfo()
+        fidgetSpinner.stopAnimating()
+        fidgetSpinner.isHidden = true;
+        performSegue(withIdentifier: "segIdent", sender: nil)
+       
+    }
+    
+    func RNG() -> Double {
+        
+        return min( ((Double(arc4random()) / Double(UINT32_MAX))*1.2)+0.03 , 1.2)
+        
+    }
+    
+    
+
+    
+    
+    func parseJsonStoreInfo() {
+        var insertIntoCoreDataNeeded:Int = 0 // This is an indicator that tells us that the current store in the scope needs to be inserted into the database.
+        
+        let path = Bundle.main.path(forResource: "StoreInfo", ofType: "txt")
+        let url = URL(fileURLWithPath: path!)
+        
+        do {
+            
+            let data = try Data(contentsOf: url)
+            let json = try JSONSerialization.jsonObject(with: data, options:.mutableContainers)
+            
+            guard let array = json as? [AnyObject]  else { return }
+            
+            //--------------------Fetch the data through JSON, prepare for potential database write
+            
+            for store in array {
+                guard let storeDict = store as? [String:Any]            else {return}
+                
+                guard let storeId = storeDict["storeID"] as? String else {return}
+                guard let storeAddress =  storeDict["storeAddress"] as? String  else {return}
+                guard let storePhone = storeDict["storePhone"] as? String else {return}
+                guard let storeHoursDict = storeDict["storeHours"] as? [String:Any] else {return}
+                      let storeHours = storeHoursDict.description 
+                
+                
+            //--------------------Is this Store already in the database?
+                
+            let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext  //Fetching the current context
+                
+                
+            let fetchRequest:NSFetchRequest<Store> = Store.fetchRequest()
+            fetchRequest.predicate = NSPredicate(format: "storeID == %@", storeId)
+            let fetchedResults = try context.fetch(fetchRequest)
+            if  fetchedResults.count == 0   {  insertIntoCoreDataNeeded = 1 }
+                
+           //--------------------write to database
+            if (insertIntoCoreDataNeeded == 1)
+              {
+                insertIntoCoreDataNeeded = 0
+                //insert into StoreInfo
+                   let newStoreInfo = NSEntityDescription.insertNewObject(forEntityName: "Store", into: context) as NSManagedObject
+                    newStoreInfo.setValue(Int(storeId), forKey: "storeID")
+                    newStoreInfo.setValue(storeAddress, forKey: "storeAddress")
+                    newStoreInfo.setValue(storePhone, forKey: "storePhone")
+                    newStoreInfo.setValue(storeHours, forKey: "storeHours")
+            
+                    try context.save()
+                   //print("object saved.")
+              }
+            else {
+               // print("object is cached.")
+            }
+        }
+        
+        }
+    catch {
+    print(error)
+    }
+    
+}
+
+    
+    
+    
+    func parseJsonStore() {
         
         var insertIntoCoreDataNeeded:Int = 0 // This is an indicator that tells us that the current store in the scope needs to be inserted into the database.
         
@@ -69,15 +162,15 @@ class StartViewController: UIViewController {
            
                 //--------------------Fetch the data through JSON, prepare for potential database write
             
-            for store in array {
-                guard let storeDict = store as? [String:Any]            else {return}
+            for storeInfo in array {
+                guard let storeInfoDict = storeInfo as? [String:Any]            else {return}
                 
-                guard let storeId = storeDict["storeID"] as? String else {return}
-                guard let storeName =  storeDict["storeName"] as? String  else {return}
-                guard let storeImage = storeDict["storeImageUrl"] as? String else {return}
-                guard let storeImageSize = storeDict["storeImageSize"] as? String else {return}
-                guard let storeLongitude = storeDict["storeLongitude"] as? String else {return}
-                guard let storeLatitude = storeDict["storeLatitude"] as? String else {return}
+                guard let storeId = storeInfoDict["storeID"] as? String else {return}
+                guard let storeName =  storeInfoDict["storeName"] as? String  else {return}
+                guard let storeImage = storeInfoDict["storeImageUrl"] as? String else {return}
+                guard let storeImageSize = storeInfoDict["storeImageSize"] as? String else {return}
+                guard let storeLongitude = storeInfoDict["storeLongitude"] as? String else {return}
+                guard let storeLatitude = storeInfoDict["storeLatitude"] as? String else {return}
                 
                 
                 
@@ -92,10 +185,11 @@ class StartViewController: UIViewController {
                 if  fetchedResults.count == 0   {  insertIntoCoreDataNeeded = 1 }
                 
                 //does the image need recaching?
-                if insertIntoCoreDataNeeded == 0
+                if insertIntoCoreDataNeeded == 0 || insertIntoCoreDataNeeded == 1
                 {
                 let fetchRequest:NSFetchRequest<Image> = Image.fetchRequest()
                     fetchRequest.predicate = NSPredicate(format: "storeID == %@ and imageSize== %@", storeId,storeImageSize)
+                    let fetchedResults = try context.fetch(fetchRequest)
                     if  fetchedResults.count == 0
                     {
                         let newImage = NSEntityDescription.insertNewObject(forEntityName: "Image", into: context) as NSManagedObject
@@ -110,7 +204,7 @@ class StartViewController: UIViewController {
                 
                 
                 }
-                //--------------------Fetch the data through JSON, write to database
+                //--------------------write to database
                 
                 if (insertIntoCoreDataNeeded == 1)
                 {
@@ -140,11 +234,11 @@ class StartViewController: UIViewController {
                 
                 //save the context
                 try context.save()
-                print("object saved.")
+                //print("object saved.")
                 }
                     
                 else {
-                print("object is cached.")
+                //print("object is cached.")
                 }
                 
                 
@@ -165,14 +259,14 @@ class StartViewController: UIViewController {
             
             let fetchedResults = try context.fetch(fetchRequest)
             for fetched in fetchedResults{
-            print(fetched.storeName!)
+             print(fetched.storeName!)
             }
             print("---------------------------------------")
             let fetchRequest2:NSFetchRequest<Image> = Image.fetchRequest()
             
             let fetchedResults2 = try context.fetch(fetchRequest2)
             for fetched in fetchedResults2{
-                print(fetched.imageFile)
+                print(fetched.imageSize)
             }
         }
         catch { print(error) }
