@@ -18,6 +18,8 @@
 		EA137AB91F7AA1B1006E853A /* Store+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA137AB51F7AA1B1006E853A /* Store+CoreDataClass.swift */; };
 		EA137ABA1F7AA1B1006E853A /* Store+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA137AB61F7AA1B1006E853A /* Store+CoreDataProperties.swift */; };
 		EA137ABC1F7AA871006E853A /* Store.txt in Resources */ = {isa = PBXBuildFile; fileRef = EA137ABB1F7AA871006E853A /* Store.txt */; };
+		EA6951A51F8241A20025A264 /* StoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA6951A41F8241A20025A264 /* StoreViewController.swift */; };
+		EA6951A71F8251860025A264 /* File in Resources */ = {isa = PBXBuildFile; fileRef = EA6951A61F8251860025A264 /* File */; };
 		EAA0AF5E1F7BE303008D9B16 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = EAA0AF5D1F7BE303008D9B16 /* Podfile */; };
 		EAA0AF601F7BE540008D9B16 /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA0AF5F1F7BE540008D9B16 /* CollectionViewController.swift */; };
 		EAA0AF641F7BEB1B008D9B16 /* Prodavnica.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA0AF631F7BEB1B008D9B16 /* Prodavnica.swift */; };
@@ -42,6 +44,8 @@
 		EA137AB51F7AA1B1006E853A /* Store+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Store+CoreDataClass.swift"; sourceTree = "<group>"; };
 		EA137AB61F7AA1B1006E853A /* Store+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Store+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		EA137ABB1F7AA871006E853A /* Store.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = Store.txt; sourceTree = "<group>"; };
+		EA6951A41F8241A20025A264 /* StoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreViewController.swift; sourceTree = "<group>"; };
+		EA6951A61F8251860025A264 /* File */ = {isa = PBXFileReference; lastKnownFileType = text; path = File; sourceTree = "<group>"; };
 		EAA0AF5D1F7BE303008D9B16 /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
 		EAA0AF5F1F7BE540008D9B16 /* CollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
 		EAA0AF631F7BEB1B008D9B16 /* Prodavnica.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Prodavnica.swift; sourceTree = "<group>"; };
@@ -102,6 +106,7 @@
 				EA137A911F7A8BCF006E853A /* Assets.xcassets */,
 				EA137A931F7A8BCF006E853A /* LaunchScreen.storyboard */,
 				EAA0AF5D1F7BE303008D9B16 /* Podfile */,
+				EA6951A61F8251860025A264 /* File */,
 			);
 			path = "supporting files";
 			sourceTree = "<group>";
@@ -112,6 +117,7 @@
 				EA137A9E1F7A8C83006E853A /* StartViewController.swift */,
 				EAA0AF5F1F7BE540008D9B16 /* CollectionViewController.swift */,
 				EAA0AF671F7D191A008D9B16 /* StartViewControllerBetterOne.swift */,
+				EA6951A41F8241A20025A264 /* StoreViewController.swift */,
 			);
 			path = controllers;
 			sourceTree = "<group>";
@@ -199,6 +205,7 @@
 			files = (
 				EAA0AF5E1F7BE303008D9B16 /* Podfile in Resources */,
 				EA137ABC1F7AA871006E853A /* Store.txt in Resources */,
+				EA6951A71F8251860025A264 /* File in Resources */,
 				EA137A951F7A8BCF006E853A /* LaunchScreen.storyboard in Resources */,
 				EAB1E1051F7BB8D700E8C64F /* StoreInfo.txt in Resources */,
 				EA137A921F7A8BCF006E853A /* Assets.xcassets in Resources */,
@@ -219,6 +226,7 @@
 				EAA0AF6B1F7D2DEF008D9B16 /* Image+CoreDataClass.swift in Sources */,
 				EA137A901F7A8BCF006E853A /* Assignment_One.xcdatamodeld in Sources */,
 				EAA0AF6C1F7D2DEF008D9B16 /* Image+CoreDataProperties.swift in Sources */,
+				EA6951A51F8241A20025A264 /* StoreViewController.swift in Sources */,
 				EAA0AF681F7D191A008D9B16 /* StartViewControllerBetterOne.swift in Sources */,
 				EAA0AF641F7BEB1B008D9B16 /* Prodavnica.swift in Sources */,
 				EA137AB71F7AA1B1006E853A /* StoreInfo+CoreDataClass.swift in Sources */,

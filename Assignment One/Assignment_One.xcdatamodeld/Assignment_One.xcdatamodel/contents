@@ -14,7 +14,7 @@
     <entity name="StoreInfo" representedClassName="StoreInfo" syncable="YES">
         <attribute name="storeAddress" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="storeHours" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="storeID" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="storeID" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="storePhone" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>

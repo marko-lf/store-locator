@@ -13,4 +13,5 @@ class StoreCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var storeName: UILabel!
     @IBOutlet weak var storeDistance: UILabel!
     
+    @IBOutlet weak var segueButton: UIButton!
 }

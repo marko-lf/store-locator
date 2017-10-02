@@ -17,8 +17,9 @@ extension StoreInfo {
         return NSFetchRequest<StoreInfo>(entityName: "StoreInfo")
     }
 
-    @NSManaged public var image: String?
-    @NSManaged public var imageSize: Int32
-    @NSManaged public var name: String?
+    @NSManaged public var storeID: Int16
+    @NSManaged public var storeAddress: String?
+    @NSManaged public var storePhone: String?
+    @NSManaged public var storeHours: String?
 
 }

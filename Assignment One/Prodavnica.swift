@@ -11,11 +11,11 @@ import Foundation
 
 public struct Prodavnica {
     
-    var storeID:Int 
-    var storeName:String
+    var storeID:Int = 0
+    var storeName:String = ""
     //var storeImage:Image
-    var distanceFromStore: Double
-    
-    
-    
+    var distanceFromStore: Double = 0
 }
+
+
+

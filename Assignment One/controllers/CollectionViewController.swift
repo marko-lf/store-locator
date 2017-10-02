@@ -16,9 +16,16 @@ private let reuseIdentifier = "Cell"
 
 class CollectionViewController: UICollectionViewController,  CLLocationManagerDelegate {
     
+   let manager = CLLocationManager()
+   var userLoc = CLLocation(latitude: 0, longitude: 0)
+   //var selectedStoreID :Int?
     
-    var locationManager: CLLocationManager!
-  
+   //vars for passing off to storeinfo
+    var distance = ""
+    var storeLoc : CLLocationCoordinate2D?
+
+    
+
     
    var numOfStores:Int {
     
@@ -54,7 +61,7 @@ class CollectionViewController: UICollectionViewController,  CLLocationManagerDe
             let fetchRequest:NSFetchRequest<Image> = Image.fetchRequest()
             do {
                 let fetchedResults = try  context.fetch(fetchRequest)
-                print(fetchedResults.count)
+                //print(fetchedResults.count)
                 return fetchedResults
               
             }
@@ -78,7 +85,9 @@ class CollectionViewController: UICollectionViewController,  CLLocationManagerDe
         }
     }
     
-  
+    //---------------- MARK: LOCATION RELATED STUFF
+    
+
  
 
     
@@ -86,16 +95,9 @@ class CollectionViewController: UICollectionViewController,  CLLocationManagerDe
 
     override func viewDidLoad() {
         super.viewDidLoad()
-       
-       
-       
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Register cell classes
         
-
-        // Do any additional setup after loading the view.
+       
+     
     }
 
     override func didReceiveMemoryWarning() {
@@ -115,7 +117,35 @@ class CollectionViewController: UICollectionViewController,  CLLocationManagerDe
    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! StoreCollectionViewCell
         cell.storeName.text = stores[indexPath.row].storeName
+    
+        //distance calc
+        let storeLatitude = stores[indexPath.row].storeLatitude
+        let storeLongitude = stores[indexPath.row].storeLongitude
+        let storeLocation = CLLocation(latitude: storeLongitude, longitude: storeLatitude)
+            storeLoc = CLLocationCoordinate2D(latitude: storeLongitude, longitude: storeLatitude )
+        let distanceInMeters = storeLocation.distance(from: userLoc)
+         cell.segueButton.tag = Int(stores[indexPath.row].storeID)
+        //
+    
+
+        if(distanceInMeters <= 500)
+        {
+          cell.storeDistance.text = String(Int(round(distanceInMeters))) + "m away"
+          distance = String(Int(round(distanceInMeters))) + "m away"
+        }
+        else
+        {
+         cell.storeDistance.text = String(Int(round(distanceInMeters/1000))) + "km away"
+         distance = String(Int(round(distanceInMeters/1000))) + "km away"
+        }
+        //
+    
+        //Prodavnica model update
+    
+   
+    
     for image in storeImages {
+        
         
         if image.storeID == stores[indexPath.row].storeID
         {
@@ -131,6 +161,24 @@ class CollectionViewController: UICollectionViewController,  CLLocationManagerDe
     
         return cell
     }
+    
+  
+    
+    @IBAction func performSegway(_ sender: Any) {
+        
+        
+    }
+    
+   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "toStoreDetails") {
+            let storeVC = segue.destination as? StoreViewController
+            storeVC?.storeID = (sender as? UIButton)?.tag
+            storeVC?.distanceString = distance
+            storeVC?.storeLoc = storeLoc
+        }
+    }
+    
+ 
     
     
     

@@ -1,0 +1,123 @@
+
+//
+//  ViewController.swift
+//  Mappio
+//
+//  Created by Ilija Stevanovic on 9/25/17.
+//  Copyright © 2017 Lotusflare. All rights reserved.
+//
+
+import UIKit
+import MapKit
+import CoreLocation
+
+class ViewController: UIViewController, CLLocationManagerDelegate,UISearchBarDelegate {
+
+@IBOutlet weak var mapView: MKMapView!
+
+@IBAction func searchButton(_ sender: Any) {
+let searchController = UISearchController(searchResultsController: nil)
+searchController.searchBar.delegate = self
+present(searchController, animated: true, completion: nil)
+}
+
+func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+UIApplication.shared.beginIgnoringInteractionEvents()
+
+//Activity Indicator
+let activityIndicator = UIActivityIndicatorView()
+activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
+activityIndicator.center = self.view.center
+activityIndicator.hidesWhenStopped = true
+activityIndicator.startAnimating()
+
+self.view.addSubview(activityIndicator)
+//Hide search bar
+searchBar.resignFirstResponder()
+dismiss(animated: true, completion: nil)
+
+//create the search request
+let searchRequest = MKLocalSearchRequest()
+searchRequest.naturalLanguageQuery = searchBar.text
+
+let activeSearch = MKLocalSearch(request: searchRequest)
+
+activeSearch.start { (response, request) in
+
+activityIndicator.stopAnimating()
+UIApplication.shared.endIgnoringInteractionEvents()
+
+if response == nil
+{
+print ("error")
+}
+else
+{
+//Remove annotations
+let annotations = self.mapView.annotations
+self.mapView.removeAnnotations(annotations)
+
+let latitude = response?.boundingRegion.center.latitude
+let longitude = response?.boundingRegion.center.longitude
+
+let searchLocation = CLLocationCoordinate2DMake(latitude!,longitude!)
+
+let pin = PinAnnotation(title: searchBar.text!,subtitle:"podnaslov", coordinate: searchLocation)
+self.mapView.addAnnotation(pin)
+
+let coordinate: CLLocationCoordinate2D=CLLocationCoordinate2DMake(latitude!, longitude!)
+let span = MKCoordinateSpanMake(0.1, 0.1)
+let region = MKCoordinateRegionMake(coordinate, span)
+
+self.mapView.setRegion(region, animated: true)
+
+
+}
+
+}
+
+}
+
+let location = CLLocationCoordinate2DMake(44.8167336, 20.480384900000004)
+
+let manager = CLLocationManager()
+
+func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+let location = locations[0]
+
+let span: MKCoordinateSpan = MKCoordinateSpanMake(0.01, 0.01)
+let myLocation = CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude)
+let region:MKCoordinateRegion = MKCoordinateRegionMake(myLocation, span)
+mapView.setRegion(region, animated: true)
+
+print(location.speed)
+print(location.altitude)
+
+self.mapView.showsUserLocation = true
+
+
+
+}
+
+override func viewDidLoad() {
+super.viewDidLoad()
+
+manager.delegate = self
+manager.desiredAccuracy = kCLLocationAccuracyBest
+manager.requestWhenInUseAuthorization()
+manager.startUpdatingLocation()
+
+
+mapView.setRegion(MKCoordinateRegionMakeWithDistance(location, 1500, 1500), animated: true)
+// let pin = PinAnnotation(title: "Naslov", subtitle: "Podnaslov", coordinate: location)
+// mapView.addAnnotation(pin)
+}
+
+override func didReceiveMemoryWarning() {
+super.didReceiveMemoryWarning()
+// Dispose of any resources that can be recreated.
+}
+
+
+}
+
