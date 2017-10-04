@@ -15,6 +15,8 @@ class StartViewController: UIViewController {
     @IBOutlet weak var fidgetSpinner: UIActivityIndicatorView!
     var mockDataEnabled = true
    
+    
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -19,9 +19,12 @@ class StoreViewController: UIViewController {
     @IBOutlet weak var distance: UILabel!
     @IBOutlet weak var address: UILabel!
     @IBOutlet weak var noDataMessage: UILabel!
+    @IBOutlet weak var nophoneNumber: UILabel!
     
     public var distanceString:String?
     public var storeLoc:CLLocationCoordinate2D?
+    public var phoneNumber: String?
+    public var storeHours:String?
     
     
     var stores:[Store] {
@@ -62,13 +65,17 @@ class StoreViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         UpdateUI()
-        // Do any additional setup after loading the view.
+        let singleTapRecognizer = UITapGestureRecognizer(target:self, action: #selector(onMapClicked))
+        singleTapRecognizer.delegate = self
+        map.addGestureRecognizer(singleTapRecognizer)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+
     
    
     func UpdateUI() {
@@ -101,27 +108,62 @@ class StoreViewController: UIViewController {
                 address.isHidden = false
                 workingHours.isHidden = false
                 
+                nophoneNumber.isHidden = true
                 storeInfoFound = true
                 noDataMessage.isHidden = true
                 address.text = storeinfo.storeAddress
-                workingHours.text = storeinfo.storeHours
+                workingHours.text = storeHours
                 
             }
             if (storeInfoFound == false)
             {
               address.isHidden = true
               workingHours.isHidden = true
-                noDataMessage.isHidden = false
+              noDataMessage.isHidden = false
+              nophoneNumber.isHidden = true
             }
         }
-        
+    }
     
-       
+    
+    @objc func onMapClicked() {
+        print("tu sam")
+    }
+    
+    @IBAction func phoneButtonClicked(_ sender: Any) {
+        if (phoneNumber != nil)
+        {
+        phoneNumber = phoneNumber?.replacingOccurrences(of: "(", with: "", options: NSString.CompareOptions.literal, range:nil)
+        phoneNumber = phoneNumber?.replacingOccurrences(of: ")", with: "", options: NSString.CompareOptions.literal, range:nil)
+        phoneNumber = phoneNumber?.replacingOccurrences(of: " ", with: "", options: NSString.CompareOptions.literal, range:nil)
+        callNumber(phoneNumber: phoneNumber!)
+        }
+        else
+        {
+            nophoneNumber.isHidden = false
+        }
+    }
+    
+    private func callNumber(phoneNumber:String) {
         
+              let phoneUrlString = "tel://\(phoneNumber)"
+              let phoneCallURL = URL(string:phoneUrlString)
+            
+            let application:UIApplication = UIApplication.shared
+            //if (application.canOpenURL(phoneCallURL)) {
+                application.open(phoneCallURL!, options: [:], completionHandler: nil)
+            //}
         
     }
     
-
+    
+    @IBAction func zoomOnMap(_ sender: UIButton) {
+        
+        let margins = view.layoutMarginsGuide
+         map.leadingAnchor.constraint(equalTo: margins.leadingAnchor).isActive = true
+         map.trailingAnchor.constraint(equalTo: margins.trailingAnchor).isActive = true
+    }
+    
     /*
     // MARK: - Navigation
 
@@ -132,4 +174,11 @@ class StoreViewController: UIViewController {
     }
     */
 
+}
+
+extension StoreViewController: UIGestureRecognizerDelegate {
+    
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+        return touch.view!.frame.equalTo(map.frame)
+    }
 }

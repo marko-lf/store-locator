@@ -27,6 +27,7 @@ class StartViewControllerBetterOne: UIViewController {
             //fake the delay
             Timer.scheduledTimer(timeInterval: RNG(), target: self, selector: #selector(StartViewControllerBetterOne.parseMockData), userInfo: nil, repeats: false)
            // fidgetSpinner.stopAnimating()
+          
         }
         else
         {

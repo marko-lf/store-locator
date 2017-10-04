@@ -14,15 +14,19 @@ import CoreLocation
 private let reuseIdentifier = "Cell"
 
 
-class CollectionViewController: UICollectionViewController,  CLLocationManagerDelegate {
+class CollectionViewController: UICollectionViewController,  CLLocationManagerDelegate, UINavigationBarDelegate {
     
    let manager = CLLocationManager()
    var userLoc = CLLocation(latitude: 0, longitude: 0)
    //var selectedStoreID :Int?
+    @IBOutlet weak var navBar: UINavigationItem!
     
    //vars for passing off to storeinfo
     var distance = ""
     var storeLoc : CLLocationCoordinate2D?
+    var phoneNumber: String?
+    var storeID: Int?
+    var storeHours:String?
 
     
 
@@ -55,10 +59,10 @@ class CollectionViewController: UICollectionViewController,  CLLocationManagerDe
         }
     }
     
-    var storeImages:[Image] {
+    var storeInfo:[StoreInfo] {
         get {
             let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext  //Fetching the current context
-            let fetchRequest:NSFetchRequest<Image> = Image.fetchRequest()
+            let fetchRequest:NSFetchRequest<StoreInfo> = StoreInfo.fetchRequest()
             do {
                 let fetchedResults = try  context.fetch(fetchRequest)
                 //print(fetchedResults.count)
@@ -95,7 +99,8 @@ class CollectionViewController: UICollectionViewController,  CLLocationManagerDe
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+       
+        UINavigationBar.appearance().backgroundColor = UIColor.black
        
      
     }
@@ -117,7 +122,7 @@ class CollectionViewController: UICollectionViewController,  CLLocationManagerDe
    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! StoreCollectionViewCell
         cell.storeName.text = stores[indexPath.row].storeName
-    
+         storeID = Int(stores[indexPath.row].storeID)
         //distance calc
         let storeLatitude = stores[indexPath.row].storeLatitude
         let storeLongitude = stores[indexPath.row].storeLongitude
@@ -125,6 +130,7 @@ class CollectionViewController: UICollectionViewController,  CLLocationManagerDe
             storeLoc = CLLocationCoordinate2D(latitude: storeLongitude, longitude: storeLatitude )
         let distanceInMeters = storeLocation.distance(from: userLoc)
          cell.segueButton.tag = Int(stores[indexPath.row].storeID)
+    
         //
     
 
@@ -144,7 +150,7 @@ class CollectionViewController: UICollectionViewController,  CLLocationManagerDe
     
    
     
-    for image in storeImages {
+    for image in images {
         
         
         if image.storeID == stores[indexPath.row].storeID
@@ -175,6 +181,25 @@ class CollectionViewController: UICollectionViewController,  CLLocationManagerDe
             storeVC?.storeID = (sender as? UIButton)?.tag
             storeVC?.distanceString = distance
             storeVC?.storeLoc = storeLoc
+            //storeVC?.workingHours
+            
+            for storeForDisplayInfo in storeInfo {
+                if storeForDisplayInfo.storeID == Int16((sender as? UIButton)!.tag)
+                {
+                    phoneNumber = storeForDisplayInfo.storePhone
+                    storeVC?.phoneNumber = phoneNumber
+                    storeHours = storeForDisplayInfo.storeHours
+                    storeHours = storeHours?.replacingOccurrences(of: "[", with: "", options: NSString.CompareOptions.literal, range:nil)
+                     storeHours = storeHours?.replacingOccurrences(of: "]", with: "", options: NSString.CompareOptions.literal, range:nil)
+                    storeHours = storeHours?.replacingOccurrences(of: "\"", with: "", options: NSString.CompareOptions.literal, range:nil)
+                   
+                      storeHours = storeHours?.replacingOccurrences(of: " ", with: "", options: NSString.CompareOptions.literal, range:nil)
+                     storeHours = storeHours?.replacingOccurrences(of: ",", with: "\n", options: NSString.CompareOptions.literal, range:nil)
+                    storeVC?.storeHours = storeHours
+                    
+                }
+            }
+            
         }
     }
     
