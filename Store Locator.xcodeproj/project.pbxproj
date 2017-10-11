@@ -135,8 +135,8 @@
 		EA2E93FB1F8663F10057A745 /* controllers */ = {
 			isa = PBXGroup;
 			children = (
-				EA2E940F1F8665A30057A745 /* CollectionViewController.swift */,
 				EAE90A151F87B2ED008FF64B /* StoreViewController.swift */,
+				EA2E940F1F8665A30057A745 /* CollectionViewController.swift */,
 			);
 			path = controllers;
 			sourceTree = "<group>";

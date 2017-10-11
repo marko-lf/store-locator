@@ -16,6 +16,7 @@ class StoreCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var distanceActivityIndicator: UIActivityIndicatorView!
     
     override func prepareForReuse() {
-        self.storeName?.text = ""
+       super.prepareForReuse()
+        storeName.text=""
     }
 }

@@ -100,7 +100,8 @@ class CollectionViewController: UICollectionViewController, storeModelDelegate, 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
     {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! StoreCollectionViewCell
-        
+            cell.storeName.text=""
+       
         if (storeModule.stores.count != 0)
         {
         cell.storeName.text = storeModule.stores[indexPath.row].storeName
@@ -120,8 +121,10 @@ class CollectionViewController: UICollectionViewController, storeModelDelegate, 
            cell.distanceActivityIndicator.isHidden = false
            cell.distanceActivityIndicator.startAnimating()
         }
+        
         return cell
-    }
+        }
+    
     //------------------------------------------------------------------------------------------------
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
     {

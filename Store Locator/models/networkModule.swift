@@ -18,7 +18,7 @@ public class NetworkModel
    
      func fetchJsonStoreData(usingMockData:Bool)
         {
-              if usingMockData == false
+              if usingMockData == true
             {
                let pathToStore = Bundle.main.path(forResource: "Store", ofType: "txt")
                let urlToStore = URL(fileURLWithPath: pathToStore!)
