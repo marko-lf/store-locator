@@ -3,7 +3,7 @@
 "storeID": "9",
 "storeName": "Infinite Loop",
 "storeImageUrl": "https://images.apple.com/retail/infiniteloop/images/hero_large_2x.jpg",
-"storeImageSize": "367584",
+"storeImageSize": 367584,
 "storeLongitude": "37.331423",
 "storeLatitude": "-122.030503",
 "storeAddress": "One Infinite LoopCupertino, CA 95014",

@@ -82,7 +82,7 @@ class StoreViewController: UIViewController {
     self.navigationController!.navigationBar.isHidden = false
     self.mapView.frame.size.height = UIScreen.main.bounds.height/3
         
-    self.distanceLabel.text = (model?.distanceDict[Int16(storeID!)])! + " away"
+  //  self.distanceLabel.text = (locationModule?.distanceDict[Int16(storeID!)])! + " away"
    // backFromMap.isHidden = true
     self.view.bringSubview(toFront: zoomOnMapButton)
     for store in (model?.stores)!
@@ -101,7 +101,9 @@ class StoreViewController: UIViewController {
                 let region = MKCoordinateRegionMake(CLLocationCoordinate2D(latitude: store.storeLongitude, longitude: store.storeLatitude), mapSpan)
                 self.mapView.setRegion(region, animated: true)
             
-                if (store.storeHours == nil && store.storeAddress == nil && store.storePhone == nil)  { model?.storeInfoFetchRequest(Int16(storeID!))}
+                if (store.storeHours == nil && store.storeAddress == nil && store.storePhone == nil)  { //model?.storeInfoFetchRequest(Int16(storeID!))
+                    
+            }
             
                 if store.storeHours == nil
                 {

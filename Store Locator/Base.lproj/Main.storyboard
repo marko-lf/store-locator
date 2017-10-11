@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="QPL-l8-LSl">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="P4k-IX-HFD">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -70,6 +70,10 @@
                                                         <segue destination="oKe-SY-LY4" kind="show" identifier="toStoreDetails" id="aYV-kV-uAJ"/>
                                                     </connections>
                                                 </button>
+                                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="aaz-oi-t8D">
+                                                    <rect key="frame" x="83" y="102" width="20" height="20"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </activityIndicatorView>
                                             </subviews>
                                             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         </view>
@@ -86,6 +90,7 @@
                                     <constraint firstAttribute="bottom" secondItem="pHq-KL-17f" secondAttribute="bottom" id="n7P-9M-opU"/>
                                 </constraints>
                                 <connections>
+                                    <outlet property="distanceActivityIndicator" destination="aaz-oi-t8D" id="MZt-S8-mNz"/>
                                     <outlet property="segueButton" destination="dJ4-XL-wQd" id="9cy-b9-YE5"/>
                                     <outlet property="storeDistance" destination="7i2-4m-7VM" id="NNh-9W-j9i"/>
                                     <outlet property="storeImage" destination="pHq-KL-17f" id="IGM-l4-cEG"/>
@@ -210,38 +215,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KIm-rx-W3A" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="460" y="-879.31034482758628"/>
-        </scene>
-        <!--Init View Controller-->
-        <scene sceneID="6uf-bF-XXX">
-            <objects>
-                <viewController id="QPL-l8-LSl" customClass="InitViewController" customModule="Store_Locator" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="fUC-wR-AS0">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Initializing..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kke-Yc-BCd">
-                                <rect key="frame" x="117" y="207" width="140" height="66"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                <color key="textColor" red="0.95904562410000005" green="1" blue="0.94966787600000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="ywX-MU-pzD">
-                                <rect key="frame" x="169" y="315" width="37" height="37"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </activityIndicatorView>
-                        </subviews>
-                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <viewLayoutGuide key="safeArea" id="Beo-gc-JG9"/>
-                    </view>
-                    <connections>
-                        <outlet property="activityIndicator" destination="ywX-MU-pzD" id="WRw-lM-bfQ"/>
-                        <segue destination="P4k-IX-HFD" kind="show" identifier="startSegway" id="fnN-uj-9Qc"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="8FB-AN-nRK" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-2668" y="-879"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="QLK-Rr-cZW">

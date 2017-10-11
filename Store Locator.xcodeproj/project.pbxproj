@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		56C406B41C2678695BB293F7 /* Pods_Store_Locator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 735A78CF8275E4E7611C598E /* Pods_Store_Locator.framework */; };
+		EA1CE6891F8BD46400B03C7B /* networkModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA1CE6881F8BD46400B03C7B /* networkModule.swift */; };
 		EA2E93E61F8663B20057A745 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2E93E51F8663B20057A745 /* AppDelegate.swift */; };
 		EA2E93EB1F8663B20057A745 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA2E93E91F8663B20057A745 /* Main.storyboard */; };
 		EA2E93EE1F8663B20057A745 /* Store_Locator.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = EA2E93EC1F8663B20057A745 /* Store_Locator.xcdatamodeld */; };
@@ -18,8 +20,8 @@
 		EA2E94101F8665A30057A745 /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2E940F1F8665A30057A745 /* CollectionViewController.swift */; };
 		EA2E94161F8666770057A745 /* Store.txt in Resources */ = {isa = PBXBuildFile; fileRef = EA2E94141F8666770057A745 /* Store.txt */; };
 		EA2E94171F8666770057A745 /* StoreInfo.txt in Resources */ = {isa = PBXBuildFile; fileRef = EA2E94151F8666770057A745 /* StoreInfo.txt */; };
-		EA2E941A1F867F330057A745 /* storeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2E94191F867F330057A745 /* storeModel.swift */; };
-		EA32BA3B1F879B91008BC3A0 /* InitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA32BA3A1F879B91008BC3A0 /* InitViewController.swift */; };
+		EA2E941A1F867F330057A745 /* storeModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2E94191F867F330057A745 /* storeModule.swift */; };
+		EA822E901F8D0AFE00D8BB16 /* locationModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA822E8F1F8D0AFE00D8BB16 /* locationModule.swift */; };
 		EAE90A161F87B2ED008FF64B /* StoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAE90A151F87B2ED008FF64B /* StoreViewController.swift */; };
 		EAE90A1A1F87B7D0008FF64B /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = EAE90A181F87B7D0008FF64B /* back.png */; };
 		EAE90A1F1F87C7B0008FF64B /* Store+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAE90A1B1F87C7B0008FF64B /* Store+CoreDataClass.swift */; };
@@ -29,6 +31,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4F730E56012AD6251C1AEE1E /* Pods-Store Locator.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Store Locator.release.xcconfig"; path = "Pods/Target Support Files/Pods-Store Locator/Pods-Store Locator.release.xcconfig"; sourceTree = "<group>"; };
+		735A78CF8275E4E7611C598E /* Pods_Store_Locator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Store_Locator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		84B1918D4D20841516F9CACE /* Pods-Store Locator.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Store Locator.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Store Locator/Pods-Store Locator.debug.xcconfig"; sourceTree = "<group>"; };
+		EA1CE6881F8BD46400B03C7B /* networkModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = networkModule.swift; sourceTree = "<group>"; };
 		EA2E93E21F8663B20057A745 /* Store Locator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Store Locator.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA2E93E51F8663B20057A745 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EA2E93EA1F8663B20057A745 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -42,8 +48,8 @@
 		EA2E940F1F8665A30057A745 /* CollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
 		EA2E94141F8666770057A745 /* Store.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Store.txt; sourceTree = "<group>"; };
 		EA2E94151F8666770057A745 /* StoreInfo.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = StoreInfo.txt; sourceTree = "<group>"; };
-		EA2E94191F867F330057A745 /* storeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = storeModel.swift; sourceTree = "<group>"; };
-		EA32BA3A1F879B91008BC3A0 /* InitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitViewController.swift; sourceTree = "<group>"; };
+		EA2E94191F867F330057A745 /* storeModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = storeModule.swift; sourceTree = "<group>"; };
+		EA822E8F1F8D0AFE00D8BB16 /* locationModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = locationModule.swift; sourceTree = "<group>"; };
 		EAE90A151F87B2ED008FF64B /* StoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreViewController.swift; sourceTree = "<group>"; };
 		EAE90A181F87B7D0008FF64B /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back.png; sourceTree = "<group>"; };
 		EAE90A1B1F87C7B0008FF64B /* Store+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Store+CoreDataClass.swift"; path = "Store Locator/NSObject files/Store+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -57,12 +63,22 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				56C406B41C2678695BB293F7 /* Pods_Store_Locator.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B1A407ABD4B0EB5E6065F01A /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				84B1918D4D20841516F9CACE /* Pods-Store Locator.debug.xcconfig */,
+				4F730E56012AD6251C1AEE1E /* Pods-Store Locator.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		EA2E93D91F8663B20057A745 = {
 			isa = PBXGroup;
 			children = (
@@ -72,6 +88,8 @@
 				EAE90A1E1F87C7B0008FF64B /* Image+CoreDataProperties.swift */,
 				EA2E93E41F8663B20057A745 /* Store Locator */,
 				EA2E93E31F8663B20057A745 /* Products */,
+				B1A407ABD4B0EB5E6065F01A /* Pods */,
+				F6F5AE22FC68EC293A63D130 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -115,7 +133,6 @@
 		EA2E93FB1F8663F10057A745 /* controllers */ = {
 			isa = PBXGroup;
 			children = (
-				EA32BA3A1F879B91008BC3A0 /* InitViewController.swift */,
 				EA2E940F1F8665A30057A745 /* CollectionViewController.swift */,
 				EAE90A151F87B2ED008FF64B /* StoreViewController.swift */,
 			);
@@ -141,9 +158,19 @@
 		EA2E94181F867F040057A745 /* models */ = {
 			isa = PBXGroup;
 			children = (
-				EA2E94191F867F330057A745 /* storeModel.swift */,
+				EA822E8F1F8D0AFE00D8BB16 /* locationModule.swift */,
+				EA1CE6881F8BD46400B03C7B /* networkModule.swift */,
+				EA2E94191F867F330057A745 /* storeModule.swift */,
 			);
 			path = models;
+			sourceTree = "<group>";
+		};
+		F6F5AE22FC68EC293A63D130 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				735A78CF8275E4E7611C598E /* Pods_Store_Locator.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -153,9 +180,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = EA2E93F71F8663B20057A745 /* Build configuration list for PBXNativeTarget "Store Locator" */;
 			buildPhases = (
+				88DA7D5E9D2E403A82867822 /* [CP] Check Pods Manifest.lock */,
 				EA2E93DE1F8663B20057A745 /* Sources */,
 				EA2E93DF1F8663B20057A745 /* Frameworks */,
 				EA2E93E01F8663B20057A745 /* Resources */,
+				A3499193F7D653AD2DDD2BF3 /* [CP] Embed Pods Frameworks */,
+				D138A0FCB745EC49042E0B00 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -217,6 +247,60 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		88DA7D5E9D2E403A82867822 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Store Locator-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A3499193F7D653AD2DDD2BF3 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Store Locator/Pods-Store Locator-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Store Locator/Pods-Store Locator-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D138A0FCB745EC49042E0B00 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Store Locator/Pods-Store Locator-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		EA2E93DE1F8663B20057A745 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -224,16 +308,17 @@
 			files = (
 				EA2E93E61F8663B20057A745 /* AppDelegate.swift in Sources */,
 				EA2E940E1F8665360057A745 /* StoreCollectionViewCell.swift in Sources */,
-				EA32BA3B1F879B91008BC3A0 /* InitViewController.swift in Sources */,
 				EAE90A221F87C7B0008FF64B /* Image+CoreDataProperties.swift in Sources */,
 				EAE90A161F87B2ED008FF64B /* StoreViewController.swift in Sources */,
+				EA1CE6891F8BD46400B03C7B /* networkModule.swift in Sources */,
 				EAE90A1F1F87C7B0008FF64B /* Store+CoreDataClass.swift in Sources */,
 				EAE90A211F87C7B0008FF64B /* Image+CoreDataClass.swift in Sources */,
 				EAE90A201F87C7B0008FF64B /* Store+CoreDataProperties.swift in Sources */,
+				EA822E901F8D0AFE00D8BB16 /* locationModule.swift in Sources */,
 				EA2E93EE1F8663B20057A745 /* Store_Locator.xcdatamodeld in Sources */,
 				EA2E940D1F8665360057A745 /* PinAnnotation.swift in Sources */,
 				EA2E94101F8665A30057A745 /* CollectionViewController.swift in Sources */,
-				EA2E941A1F867F330057A745 /* storeModel.swift in Sources */,
+				EA2E941A1F867F330057A745 /* storeModule.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -368,6 +453,7 @@
 		};
 		EA2E93F81F8663B20057A745 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 84B1918D4D20841516F9CACE /* Pods-Store Locator.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -384,6 +470,7 @@
 		};
 		EA2E93F91F8663B20057A745 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4F730E56012AD6251C1AEE1E /* Pods-Store Locator.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

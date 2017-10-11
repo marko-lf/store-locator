@@ -10,15 +10,33 @@ import UIKit
 import CoreData
 import CoreLocation
 
+
+protocol storeModelDelegate {
+    func reloadDataTable()
+    func disableUserInteraction()
+    func enableUserInteraction()
+}
+
+protocol locationModelDelegate
+{
+    func reloadDataTable()
+   
+}
+
+
 private let reuseIdentifier = "Cell"
 
-class CollectionViewController: UICollectionViewController
+class CollectionViewController: UICollectionViewController, storeModelDelegate, locationModelDelegate
 {
-    
-    public var coreDataEnabled = true
-    public var model : storeModel!
-    
+
+    public var netModule =  networkModel()
+    public var storeModule = storeModel()
+    public var locationModule = locationModel()
     @IBOutlet var colView: UICollectionView!
+  
+    
+   
+  
     
     //--------------------------------------------------------------------------------------------------
     lazy var refreshControl: UIRefreshControl =
@@ -34,25 +52,30 @@ class CollectionViewController: UICollectionViewController
     
     @objc func handleRefresh(_ refreshControl: UIRefreshControl)
     {
-        self.view.isUserInteractionEnabled = false
-        let ds = colView.dataSource!
-        colView.dataSource = nil
-        model.storeAPI()
-        print("ok")
+       
+        storeModule.deleteAllData()
+        netModule.fetchJsonStoreData(usingMockData: storeModule.mockDataMode)
+        locationModule.initLoc = 0  //refresh will be provided using the delegate called from locationModel
+        
         refreshControl.endRefreshing()
-        colView.dataSource = ds
-        colView.reloadData()
-        self.view.isUserInteractionEnabled = true
     }
     //-------------------------------------------------------------------------------------------------
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        
-        model.storeAPI()
+       
+        storeModule.storeModelDelegate = self
+        locationModule.locModuleDelegate = self
+        locationModule.locationManager.delegate = self.locationModule
+        locationModule.locationManager.requestWhenInUseAuthorization()
+        locationModule.locationManager.startUpdatingLocation()
+        locationModule.locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+        locationModule.storeModel = self.storeModule
+        netModule.storeModel = self.storeModule
+        netModule.fetchJsonStoreData(usingMockData: storeModule.mockDataMode)
         self.colView.addSubview(self.refreshControl)
-        
     }
+     //------------------------------------------------------------------------------------------------
     @IBAction func segueToStoreInfoView(_ sender: UIButton)
     {
         performSegue(withIdentifier: "toStoreInfo", sender: self)
@@ -71,18 +94,32 @@ class CollectionViewController: UICollectionViewController
     //------------------------------------------------------------------------------------------------
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
     {
-        return model.stores.count
+        return storeModule.stores.count
     }
     //------------------------------------------------------------------------------------------------
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
     {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! StoreCollectionViewCell
-      
-        cell.storeName.text = model.stores[indexPath.row].storeName
-        cell.storeImage.image = UIImage(data: model.images![(model.stores[indexPath.row].storeID)]! as Data)
-        cell.segueButton.tag = Int(model.stores[indexPath.row].storeID)
-        cell.storeDistance.text = model.distanceDict[(model.stores[indexPath.row].storeID)]
         
+        if (storeModule.stores.count != 0)
+        {
+        cell.storeName.text = storeModule.stores[indexPath.row].storeName
+        cell.storeImage.image = UIImage(data: storeModule.images![(storeModule.stores[indexPath.row].storeID)]! as Data)
+        cell.segueButton.tag = Int(storeModule.stores[indexPath.row].storeID)
+        
+            if (locationModule.location != nil)
+            {
+            cell.storeDistance.isHidden = false
+            cell.storeDistance.text = locationModule.distanceDict[(storeModule.stores[indexPath.row].storeID)]
+            cell.distanceActivityIndicator.isHidden = true
+            }
+        }
+        else
+        {
+           cell.storeDistance.isHidden = true
+           cell.distanceActivityIndicator.isHidden = false
+           cell.distanceActivityIndicator.startAnimating()
+        }
         return cell
     }
     //------------------------------------------------------------------------------------------------
@@ -92,8 +129,27 @@ class CollectionViewController: UICollectionViewController
         {
             let storeVC = segue.destination as? StoreViewController
                 storeVC?.storeID = (sender as? UIButton)?.tag
-                storeVC?.model = self.model
+                // storeVC?.storeModule = self.storeModule
         }
     }
    //------------------------------------------------------------------------------------------------
+    func reloadDataTable()
+    {
+        colView.reloadData()
+        print("refresh was called")
+        
+    }
+   //------------------------------------------------------------------------------------------------
+    func enableUserInteraction()
+    {
+        self.view.isUserInteractionEnabled = true
+    }
+    //------------------------------------------------------------------------------------------------
+    func disableUserInteraction()
+    {
+        self.view.isUserInteractionEnabled = false
+    }
+    //------------------------------------------------------------------------------------------------
+  
+
 }
