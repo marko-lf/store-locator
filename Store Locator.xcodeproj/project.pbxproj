@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		56C406B41C2678695BB293F7 /* Pods_Store_Locator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 735A78CF8275E4E7611C598E /* Pods_Store_Locator.framework */; };
-		EA1CE6891F8BD46400B03C7B /* networkModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA1CE6881F8BD46400B03C7B /* networkModule.swift */; };
+		EA1CE6891F8BD46400B03C7B /* NetworkModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA1CE6881F8BD46400B03C7B /* NetworkModule.swift */; };
 		EA2E93E61F8663B20057A745 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2E93E51F8663B20057A745 /* AppDelegate.swift */; };
 		EA2E93EB1F8663B20057A745 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA2E93E91F8663B20057A745 /* Main.storyboard */; };
 		EA2E93EE1F8663B20057A745 /* Store_Locator.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = EA2E93EC1F8663B20057A745 /* Store_Locator.xcdatamodeld */; };
@@ -20,8 +20,9 @@
 		EA2E94101F8665A30057A745 /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2E940F1F8665A30057A745 /* CollectionViewController.swift */; };
 		EA2E94161F8666770057A745 /* Store.txt in Resources */ = {isa = PBXBuildFile; fileRef = EA2E94141F8666770057A745 /* Store.txt */; };
 		EA2E94171F8666770057A745 /* StoreInfo.txt in Resources */ = {isa = PBXBuildFile; fileRef = EA2E94151F8666770057A745 /* StoreInfo.txt */; };
-		EA2E941A1F867F330057A745 /* storeModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2E94191F867F330057A745 /* storeModule.swift */; };
-		EA822E901F8D0AFE00D8BB16 /* locationModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA822E8F1F8D0AFE00D8BB16 /* locationModule.swift */; };
+		EA2E941A1F867F330057A745 /* StoreModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2E94191F867F330057A745 /* StoreModule.swift */; };
+		EA822E901F8D0AFE00D8BB16 /* LocationModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA822E8F1F8D0AFE00D8BB16 /* LocationModule.swift */; };
+		EAC229DF1F8E5BC700895AAB /* MiscellaneousFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAC229DE1F8E5BC700895AAB /* MiscellaneousFunctions.swift */; };
 		EAE90A161F87B2ED008FF64B /* StoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAE90A151F87B2ED008FF64B /* StoreViewController.swift */; };
 		EAE90A1A1F87B7D0008FF64B /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = EAE90A181F87B7D0008FF64B /* back.png */; };
 		EAE90A1F1F87C7B0008FF64B /* Store+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAE90A1B1F87C7B0008FF64B /* Store+CoreDataClass.swift */; };
@@ -34,7 +35,7 @@
 		4F730E56012AD6251C1AEE1E /* Pods-Store Locator.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Store Locator.release.xcconfig"; path = "Pods/Target Support Files/Pods-Store Locator/Pods-Store Locator.release.xcconfig"; sourceTree = "<group>"; };
 		735A78CF8275E4E7611C598E /* Pods_Store_Locator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Store_Locator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		84B1918D4D20841516F9CACE /* Pods-Store Locator.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Store Locator.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Store Locator/Pods-Store Locator.debug.xcconfig"; sourceTree = "<group>"; };
-		EA1CE6881F8BD46400B03C7B /* networkModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = networkModule.swift; sourceTree = "<group>"; };
+		EA1CE6881F8BD46400B03C7B /* NetworkModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkModule.swift; sourceTree = "<group>"; };
 		EA2E93E21F8663B20057A745 /* Store Locator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Store Locator.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA2E93E51F8663B20057A745 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EA2E93EA1F8663B20057A745 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -48,8 +49,9 @@
 		EA2E940F1F8665A30057A745 /* CollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
 		EA2E94141F8666770057A745 /* Store.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Store.txt; sourceTree = "<group>"; };
 		EA2E94151F8666770057A745 /* StoreInfo.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = StoreInfo.txt; sourceTree = "<group>"; };
-		EA2E94191F867F330057A745 /* storeModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = storeModule.swift; sourceTree = "<group>"; };
-		EA822E8F1F8D0AFE00D8BB16 /* locationModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = locationModule.swift; sourceTree = "<group>"; };
+		EA2E94191F867F330057A745 /* StoreModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreModule.swift; sourceTree = "<group>"; };
+		EA822E8F1F8D0AFE00D8BB16 /* LocationModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationModule.swift; sourceTree = "<group>"; };
+		EAC229DE1F8E5BC700895AAB /* MiscellaneousFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiscellaneousFunctions.swift; sourceTree = "<group>"; };
 		EAE90A151F87B2ED008FF64B /* StoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreViewController.swift; sourceTree = "<group>"; };
 		EAE90A181F87B7D0008FF64B /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back.png; sourceTree = "<group>"; };
 		EAE90A1B1F87C7B0008FF64B /* Store+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Store+CoreDataClass.swift"; path = "Store Locator/NSObject files/Store+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -158,9 +160,10 @@
 		EA2E94181F867F040057A745 /* models */ = {
 			isa = PBXGroup;
 			children = (
-				EA822E8F1F8D0AFE00D8BB16 /* locationModule.swift */,
-				EA1CE6881F8BD46400B03C7B /* networkModule.swift */,
-				EA2E94191F867F330057A745 /* storeModule.swift */,
+				EA822E8F1F8D0AFE00D8BB16 /* LocationModule.swift */,
+				EA1CE6881F8BD46400B03C7B /* NetworkModule.swift */,
+				EA2E94191F867F330057A745 /* StoreModule.swift */,
+				EAC229DE1F8E5BC700895AAB /* MiscellaneousFunctions.swift */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -310,15 +313,16 @@
 				EA2E940E1F8665360057A745 /* StoreCollectionViewCell.swift in Sources */,
 				EAE90A221F87C7B0008FF64B /* Image+CoreDataProperties.swift in Sources */,
 				EAE90A161F87B2ED008FF64B /* StoreViewController.swift in Sources */,
-				EA1CE6891F8BD46400B03C7B /* networkModule.swift in Sources */,
+				EA1CE6891F8BD46400B03C7B /* NetworkModule.swift in Sources */,
 				EAE90A1F1F87C7B0008FF64B /* Store+CoreDataClass.swift in Sources */,
+				EAC229DF1F8E5BC700895AAB /* MiscellaneousFunctions.swift in Sources */,
 				EAE90A211F87C7B0008FF64B /* Image+CoreDataClass.swift in Sources */,
 				EAE90A201F87C7B0008FF64B /* Store+CoreDataProperties.swift in Sources */,
-				EA822E901F8D0AFE00D8BB16 /* locationModule.swift in Sources */,
+				EA822E901F8D0AFE00D8BB16 /* LocationModule.swift in Sources */,
 				EA2E93EE1F8663B20057A745 /* Store_Locator.xcdatamodeld in Sources */,
 				EA2E940D1F8665360057A745 /* PinAnnotation.swift in Sources */,
 				EA2E94101F8665A30057A745 /* CollectionViewController.swift in Sources */,
-				EA2E941A1F867F330057A745 /* storeModule.swift in Sources */,
+				EA2E941A1F867F330057A745 /* StoreModule.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

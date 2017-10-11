@@ -12,15 +12,14 @@ import CoreLocation
 
 
 protocol storeModelDelegate {
-    func reloadDataTable()
+    func reloadData()
     func disableUserInteraction()
     func enableUserInteraction()
 }
 
 protocol locationModelDelegate
 {
-    func reloadDataTable()
-   
+    func reloadData()
 }
 
 
@@ -28,10 +27,11 @@ private let reuseIdentifier = "Cell"
 
 class CollectionViewController: UICollectionViewController, storeModelDelegate, locationModelDelegate
 {
+   
 
-    public var netModule =  networkModel()
-    public var storeModule = storeModel()
-    public var locationModule = locationModel()
+    public var netModule =  NetworkModel()
+    public var storeModule = StoreModel()
+    public var locationModule = LocationModel()
     @IBOutlet var colView: UICollectionView!
   
     
@@ -78,8 +78,8 @@ class CollectionViewController: UICollectionViewController, storeModelDelegate, 
      //------------------------------------------------------------------------------------------------
     @IBAction func segueToStoreInfoView(_ sender: UIButton)
     {
+        print(sender.tag)
         performSegue(withIdentifier: "toStoreInfo", sender: self)
-      
     }
     //-------------------------------------------------------------------------------------------------
     override func didReceiveMemoryWarning()
@@ -129,11 +129,13 @@ class CollectionViewController: UICollectionViewController, storeModelDelegate, 
         {
             let storeVC = segue.destination as? StoreViewController
                 storeVC?.storeID = (sender as? UIButton)?.tag
-                // storeVC?.storeModule = self.storeModule
+            netModule.fetchJsonStoreInfoData(usingMockData: storeModule.mockDataMode, idOfTheStore:  ((sender as? UIButton)?.tag)! )
+                storeVC?.storeModule = self.storeModule
+                storeVC?.locationModule = self.locationModule
         }
     }
    //------------------------------------------------------------------------------------------------
-    func reloadDataTable()
+    func reloadData()
     {
         colView.reloadData()
         print("refresh was called")

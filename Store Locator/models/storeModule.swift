@@ -13,11 +13,14 @@ import UIKit
 import Alamofire
 
 
-public class storeModel
+
+public class StoreModel
 {
   
     public var mockDataMode:Bool = false  // false -> real data; true -> mock data;
     var storeModelDelegate : storeModelDelegate?
+    var storeInfoModelDelegate : storeInfoModelDelegate?
+    var misc = Misc()
 
     //------------------------------------------------------------------------------------------------
     var stores:[Store]    // contains: all the information about the store cached in core data
@@ -63,11 +66,72 @@ public class storeModel
         }
     }
   //------------------------------------------------------------------------------------------------
-      //store info fetch goes here
-
+    func storeInfoParseRequest(_ jsonFile:Data, forStoreByID:Int)
+    {
+        var workHrs:String="", storeAddress:String="", storePhone:String=""
+        let json = try? JSONSerialization.jsonObject(with: jsonFile, options: [])
+        do
+        {
+            if (mockDataMode == false)
+            {
+            guard let arrayStoreInfo = json as? [String:Any]  else { return }
+           
+            let storeHours = arrayStoreInfo["storeHours"]! as? [String:String]
+             workHrs=""
+            for hours in storeHours!
+            {
+                workHrs.append(hours.key + "-" + hours.value)
+                workHrs.append("\n")
+            }
+                workHrs = String(workHrs.dropLast())
+                storeAddress = (arrayStoreInfo["storeAddress"]! as? String)!
+                storePhone = (arrayStoreInfo["storePhone"]! as? String)!
+            }
+                
+            else
+            {
+                 guard let arrayStoreInfo = json as? [AnyObject]  else { return }
+                
+                for storeInfo in arrayStoreInfo
+                {
+                    guard let storeInfoDict = storeInfo as? [String:Any] else {return}
+                    guard let storeInfoID = storeInfoDict["storeID"] as? String else {return}
+                    if Int(storeInfoID) == forStoreByID
+                    {
+                        guard let storeInfoHours = storeInfoDict["storeHours"] as? [String:String] else {return}
+                        storePhone = (storeInfoDict["storePhone"]! as? String)!
+                        storeAddress = (storeInfoDict["storeAddress"]! as? String)!
+                        
+                        
+                            for hours in storeInfoHours
+                            {
+                                workHrs.append(hours.key + "-" + hours.value)
+                                workHrs.append("\n")
+                            }
+                            workHrs = String(workHrs.dropLast())
+                        
+                        }
+                    }
+                }
+            let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext  //Fetching the current context
+            let fetchRequest:NSFetchRequest<Store> = Store.fetchRequest()
+            fetchRequest.predicate = NSPredicate(format: "storeID == %@", String(forStoreByID))
+            let fetchedResults = try context.fetch(fetchRequest)
+            if (fetchedResults.count == 1)
+            {
+               fetchedResults[0].setValue(workHrs,  forKey: "storeHours")
+               fetchedResults[0].setValue(storeAddress,  forKey: "storeAddress")
+               fetchedResults[0].setValue(storePhone, forKey: "storePhone")
+               try context.save()
+            }
+            storeInfoModelDelegate?.reloadData()
+        }
+        catch{print(error)}
+        
+    }
   //------------------------------------------------------------------------------------------------
 
-    func updateCoreDataWithJSON(_ jsonFile:Data)
+    func storeCoreDataInit(_ jsonFile:Data)
         {
             do
             {
@@ -117,15 +181,12 @@ public class storeModel
                
              }
                 
-                storeModelDelegate?.reloadDataTable()
+                storeModelDelegate?.reloadData()
                 storeModelDelegate?.enableUserInteraction()
             }
             
             catch { print(error) }
         }
-          
-    
-    
     //------------------------------------------------------------------------------------------------
     public func printDatabaseContents() //Prints the contents of the core data in the console -> for testing purposes
     {
@@ -153,28 +214,7 @@ public class storeModel
         catch { print(error) }
         
     }
-    //------------------------------------------------------------------------------------------------
-    func RNG() -> Double  //Generates a random number between 0.03 and 1.2
-    {
-        return min( ((Double(arc4random()) / Double(UINT32_MAX))*1.2)+0.03 , 1.2)
-    }
-    //------------------------------------------------------------------------------------------------
-    func callTheStore(_ phoneNumber:String)
-    {
-      var formatedNumber:String = phoneNumber
-      formatedNumber = formatedNumber.replacingOccurrences(of: "(", with: "")
-      formatedNumber =   formatedNumber.replacingOccurrences(of: ")", with: "")
-      formatedNumber =  formatedNumber.replacingOccurrences(of: " ", with: "")
-      formatedNumber =   formatedNumber.replacingOccurrences(of: "-", with: "")
-        if let phoneCallURL = URL(string: "tel://\(formatedNumber)")
-        {
-            let application:UIApplication = UIApplication.shared
-            if (application.canOpenURL(phoneCallURL))
-            {
-                application.open(phoneCallURL, options: [:], completionHandler: nil)
-            }
-        }
-    }
+    
     //------------------------------------------------------------------------------------------------
     func deleteAllData() //Drops all the contents from the core data
     {

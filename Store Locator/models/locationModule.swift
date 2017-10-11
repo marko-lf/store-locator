@@ -11,10 +11,10 @@ import CoreLocation
 
 
 //Data structure used for location managament and distance calculations
-public class locationModel: CLLocationManager, CLLocationManagerDelegate
+public class LocationModel: CLLocationManager, CLLocationManagerDelegate
 {
     
-    public var storeModel:storeModel? //reference to the current store model instance
+    public var storeModel:StoreModel? //reference to the current store model instance
     public var initLoc:Int = 0        // prevents reloading of data when location changes when becomes 1
     var locationManager = CLLocationManager()
     var locModuleDelegate: locationModelDelegate?

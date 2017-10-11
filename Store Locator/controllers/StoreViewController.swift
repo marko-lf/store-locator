@@ -9,13 +9,31 @@
 import UIKit
 import MapKit
 
-class StoreViewController: UIViewController {
+protocol storeInfoModelDelegate {
+    func reloadData()
+}
+
+class StoreViewController: UIViewController,storeInfoModelDelegate {
+    func reloadData() {
+       updateUI()
+    }
     
-    public var model:storeModel?
+    func disableUserInteraction() {
+        
+    }
+    
+    func enableUserInteraction() {
+        
+    }
+    
+    
+    public var storeModule:StoreModel?
+    public var locationModule:LocationModel?
     public var storeID:Int?
     var storePhone:String?
     var  storeAddressIfNotProvided:String?
     var storeLoc:CLLocationCoordinate2D?
+    
     
     @IBOutlet weak var storeNameLabel: UILabel!
     @IBOutlet weak var storeAddressLabel: UILabel!
@@ -32,8 +50,9 @@ class StoreViewController: UIViewController {
     //------------------------------------------------------------------------------------------------
     override func viewDidLoad()
     {
+        storeModule?.storeInfoModelDelegate = self
         super.viewDidLoad()
-         updateUI()
+        updateUI()
         // Do any additional setup after loading the view.
     }
     //------------------------------------------------------------------------------------------------
@@ -51,7 +70,7 @@ class StoreViewController: UIViewController {
         }
         else
         {
-          model?.callTheStore(storePhone!)
+          storeModule?.misc.callTheStore(storePhone!)
         }
     }
     //------------------------------------------------------------------------------------------------
@@ -79,18 +98,16 @@ class StoreViewController: UIViewController {
     //------------------------------------------------------------------------------------------------
     func updateUI()
     {
-    self.navigationController!.navigationBar.isHidden = false
+    self.navigationController?.navigationBar.isHidden = false
     self.mapView.frame.size.height = UIScreen.main.bounds.height/3
-        
-  //  self.distanceLabel.text = (locationModule?.distanceDict[Int16(storeID!)])! + " away"
-   // backFromMap.isHidden = true
     self.view.bringSubview(toFront: zoomOnMapButton)
-    for store in (model?.stores)!
+    for store in (storeModule?.stores)!
          {
            if store.storeID == Int16(storeID!)
            {
-                storeNameLabel.text = store.storeName
             
+                storeNameLabel.text = store.storeName
+                distanceLabel.text = locationModule?.distanceDict[Int16(storeID!)]
             let storeAnnotation = MKPointAnnotation()
                 storeAnnotation.title = store.storeName
                 storeAnnotation.coordinate =  CLLocationCoordinate2D(latitude: store.storeLongitude, longitude: store.storeLatitude)
@@ -101,11 +118,7 @@ class StoreViewController: UIViewController {
                 let region = MKCoordinateRegionMake(CLLocationCoordinate2D(latitude: store.storeLongitude, longitude: store.storeLatitude), mapSpan)
                 self.mapView.setRegion(region, animated: true)
             
-                if (store.storeHours == nil && store.storeAddress == nil && store.storePhone == nil)  { //model?.storeInfoFetchRequest(Int16(storeID!))
-                    
-            }
-            
-                if store.storeHours == nil
+                if store.storeHours == nil || store.storeHours == ""
                 {
                     storeHoursLabel.text = "No working hours info available"
                 }
@@ -114,7 +127,7 @@ class StoreViewController: UIViewController {
                     storeHoursLabel.text = store.storeHours
                 }
             
-                if store.storeAddress == nil
+                if store.storeAddress == nil || store.storeAddress == ""
                 {
                     storeAddressLabel.text = "No address available"
                 }
@@ -123,7 +136,7 @@ class StoreViewController: UIViewController {
                     storeAddressLabel.text = store.storeAddress
                 }
             
-                if store.storePhone == nil
+                if store.storePhone == nil || store.storePhone == ""
                 {
                    storePhone = nil
                    self.phoneButton.isHidden = true
@@ -136,7 +149,8 @@ class StoreViewController: UIViewController {
             
      
             }
-         }
+      }
+       // if (storeFound == false) { self.phoneButton.isHidden = true }
    }
    //------------------------------------------------------------------------------------------------
 }
