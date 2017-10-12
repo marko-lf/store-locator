@@ -17,7 +17,7 @@ import Alamofire
 public class StoreModel
 {
   
-    public var mockDataMode:Bool = false  // false -> real data; true -> mock data;
+    public var mockDataMode:Bool = true  // false -> real data; true -> mock data;
     var storeModelDelegate : storeModelDelegate?
     var storeInfoModelDelegate : storeInfoModelDelegate?
     var misc = Misc()
@@ -36,7 +36,8 @@ public class StoreModel
             }
             catch
             {
-                print(error)
+                storeModelDelegate?.showError(withMessage: "Could not fetch information about the store")
+                storeInfoModelDelegate?.showError(withMessage: "Could not fetch information about the store")
                 return []
             }
         }
@@ -60,7 +61,8 @@ public class StoreModel
             }
             catch
             {
-                print(error)
+                storeModelDelegate?.showError(withMessage: "Could not fetch the store image")
+                storeInfoModelDelegate?.showError(withMessage: "Could not fetch the store image")
                 return [:]
             }
         }
@@ -126,12 +128,16 @@ public class StoreModel
             }
             storeInfoModelDelegate?.reloadData()
         }
-        catch{print(error)}
+        catch
+        {
+            storeModelDelegate?.showError(withMessage: String(describing: error))
+            storeInfoModelDelegate?.showError(withMessage: String(describing: error))
+        }
         
     }
   //------------------------------------------------------------------------------------------------
 
-    func storeCoreDataInit(_ jsonFile:Data)
+    @objc public func storeCoreDataInit(_ jsonFile:Data)
         {
             do
             {
@@ -185,7 +191,11 @@ public class StoreModel
                 storeModelDelegate?.enableUserInteraction()
             }
             
-            catch { print(error) }
+            catch
+            {
+                storeModelDelegate?.showError(withMessage: String(describing: error))
+                storeInfoModelDelegate?.showError(withMessage: String(describing: error))
+            }
         }
     //------------------------------------------------------------------------------------------------
     public func printDatabaseContents() //Prints the contents of the core data in the console -> for testing purposes
@@ -211,7 +221,11 @@ public class StoreModel
             print("---------------------------------------")
             
         }
-        catch { print(error) }
+        catch
+        {
+            storeModelDelegate?.showError(withMessage: String(describing: error))
+            storeInfoModelDelegate?.showError(withMessage: String(describing: error))
+        }
         
     }
     
@@ -229,7 +243,11 @@ public class StoreModel
          try context.execute(DelAllReqVar2)
          printDatabaseContents()
         }
-        catch { print(error) }
+        catch
+        {
+            storeModelDelegate?.showError(withMessage: String(describing: error))
+            storeInfoModelDelegate?.showError(withMessage: String(describing: error))
+        }
     }
     
 }

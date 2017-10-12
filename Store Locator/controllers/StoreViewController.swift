@@ -11,11 +11,18 @@ import MapKit
 
 protocol storeInfoModelDelegate {
     func reloadData()
+    func showError(withMessage:String)
 }
 
 class StoreViewController: UIViewController,storeInfoModelDelegate {
     func reloadData() {
        updateUI()
+    }
+    
+    func showError(withMessage:String) {
+        let alert = UIAlertController(title: "Error!", message: withMessage, preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
     }
     
     func disableUserInteraction() {

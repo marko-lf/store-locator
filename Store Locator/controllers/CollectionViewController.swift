@@ -15,6 +15,7 @@ protocol storeModelDelegate {
     func reloadData()
     func disableUserInteraction()
     func enableUserInteraction()
+    func showError(withMessage:String)
 }
 
 protocol locationModelDelegate
@@ -22,10 +23,14 @@ protocol locationModelDelegate
     func reloadData()
 }
 
+protocol networkModelDelegate {
+     func showError(withMessage:String)
+}
+
 
 private let reuseIdentifier = "Cell"
 
-class CollectionViewController: UICollectionViewController, storeModelDelegate, locationModelDelegate, NVActivityIndicatorViewable
+class CollectionViewController: UICollectionViewController, storeModelDelegate, locationModelDelegate, networkModelDelegate, NVActivityIndicatorViewable
 {
    
 
@@ -47,6 +52,8 @@ class CollectionViewController: UICollectionViewController, storeModelDelegate, 
         refreshControl.addTarget(self, action:
             #selector(CollectionViewController.handleRefresh(_:)),
                                  for: UIControlEvents.valueChanged)
+        miscFuncionalities.displayTheIndicator(forView: self.colView)
+       // miscFuncionalities.hideTheIndicator()
         refreshControl.tintColor = UIColor.black
         refreshControl.layer.zPosition = 1;
         return refreshControl
@@ -55,7 +62,7 @@ class CollectionViewController: UICollectionViewController, storeModelDelegate, 
     @objc func handleRefresh(_ refreshControl: UIRefreshControl)
     {
     
-        miscFuncionalities.displayTheIndicator(forView: self.view)
+        miscFuncionalities.showTheIndicator()
         /////
         storeModule.deleteAllData()
         netModule.fetchJsonStoreData(usingMockData: storeModule.mockDataMode)
@@ -63,17 +70,19 @@ class CollectionViewController: UICollectionViewController, storeModelDelegate, 
         /////
        
         refreshControl.endRefreshing()
-       
+        miscFuncionalities.hideTheIndicator()
         
     }
     //-------------------------------------------------------------------------------------------------
     override func viewDidLoad()
     {
         
-        
         super.viewDidLoad()
+        
+        
         storeModule.storeModelDelegate = self
         locationModule.locModuleDelegate = self
+        netModule.networkModelDelegate = self
         locationModule.locationManager.delegate = self.locationModule
         locationModule.locationManager.requestWhenInUseAuthorization()
         locationModule.locationManager.startUpdatingLocation()
@@ -82,6 +91,7 @@ class CollectionViewController: UICollectionViewController, storeModelDelegate, 
         netModule.storeModel = self.storeModule
         netModule.fetchJsonStoreData(usingMockData: storeModule.mockDataMode)
         self.colView.addSubview(self.refreshControl)
+        miscFuncionalities.hideTheIndicator()
       
     }
      //------------------------------------------------------------------------------------------------
@@ -150,7 +160,7 @@ class CollectionViewController: UICollectionViewController, storeModelDelegate, 
     func reloadData()
     {
         colView.reloadData()
-        miscFuncionalities.hideTheIndicator()
+        //miscFuncionalities.hideTheIndicator()
         print("refresh was called")
         
     }
@@ -158,6 +168,7 @@ class CollectionViewController: UICollectionViewController, storeModelDelegate, 
     func enableUserInteraction()
     {
         self.view.isUserInteractionEnabled = true
+        
     }
     //------------------------------------------------------------------------------------------------
     func disableUserInteraction()
@@ -165,6 +176,10 @@ class CollectionViewController: UICollectionViewController, storeModelDelegate, 
         self.view.isUserInteractionEnabled = false
     }
     //------------------------------------------------------------------------------------------------
-  
+    func showError(withMessage:String) {
+        let alert = UIAlertController(title: "Error!", message: withMessage, preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
 
 }

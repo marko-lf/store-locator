@@ -12,9 +12,9 @@ import Alamofire
 
 public class NetworkModel
 {
-    
+           var networkModelDelegate:networkModelDelegate?
     public var storeModel:StoreModel?              //reference to the current store model instance
-
+    public var miscFunctions = Misc()
    
      func fetchJsonStoreData(usingMockData:Bool)
         {
@@ -25,9 +25,13 @@ public class NetworkModel
                 do
                 {
                  let dataForReturn = try Data(contentsOf: urlToStore)
+                 usleep(UInt32(miscFunctions.RNG()*1000000)) //mocking the delay for mockdata
                  self.storeModel!.storeCoreDataInit(dataForReturn)
+                 
                 }
-                catch {print(error)}
+                catch {
+                    networkModelDelegate?.showError(withMessage: "Could not fetch store data")
+                }
             }
             else
             {
@@ -56,7 +60,7 @@ public class NetworkModel
                 let dataForReturn = try Data(contentsOf: urlToStore)
                 self.storeModel!.storeInfoParseRequest(dataForReturn, forStoreByID: idOfTheStore)
             }
-            catch {print(error)}
+            catch { networkModelDelegate?.showError(withMessage: "Could not fetch store info data")}
         }
         else
         {

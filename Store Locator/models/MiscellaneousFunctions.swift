@@ -37,21 +37,29 @@ func callTheStore(_ phoneNumber:String)
     }
 }
 //------------------------------------------------------------------------------------------------
+
+    func PopUpTheErrorWindow(WithMessage:String) -> UIAlertController
+{
+    let alert = UIAlertController(title: "Error", message: WithMessage, preferredStyle: UIAlertControllerStyle.alert)
+    alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+    return alert
+}
+    
+    
 mutating func displayTheIndicator(forView: UIView)
 {
+    self.displayIndicatorActive?.isHidden = false
     let x = forView.frame.width / 2 - 50
     let y = forView.frame.height / 2 - 30
     let frame = CGRect(x: x, y: y, width: 100, height: 100)
     let activityIndicatorView = NVActivityIndicatorView(frame: frame,
                                                         type: NVActivityIndicatorType(rawValue: 5))
-    let animationTypeLabel = UILabel(frame: frame)
+    displayIndicatorActive = activityIndicatorView
     
-  
     activityIndicatorView.padding = 0
     
-    
     forView.addSubview(activityIndicatorView)
-    forView.addSubview(animationTypeLabel)
+    forView.bringSubview(toFront: self.displayIndicatorActive!)
     activityIndicatorView.startAnimating()
     self.displayIndicatorActive = activityIndicatorView
 }
@@ -59,8 +67,13 @@ mutating func displayTheIndicator(forView: UIView)
 mutating func hideTheIndicator()
 {
     self.displayIndicatorActive?.isHidden = true
+   
 }
 
+mutating func showTheIndicator()
+{
+    self.displayIndicatorActive?.isHidden = false
+}
 
 
 }
