@@ -14,28 +14,23 @@ protocol storeInfoModelDelegate {
     func showError(withMessage:String)
 }
 
-class StoreViewController: UIViewController,storeInfoModelDelegate {
-    func reloadData() {
+class StoreViewController: UIViewController,storeInfoModelDelegate,networkModelDelegate {
+    
+    func reloadData()
+    {
        updateUI()
     }
     
-    func showError(withMessage:String) {
+    func showError(withMessage:String) 
+    {
         let alert = UIAlertController(title: "Error!", message: withMessage, preferredStyle: UIAlertControllerStyle.alert)
         alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
     
-    func disableUserInteraction() {
-        
-    }
-    
-    func enableUserInteraction() {
-        
-    }
-    
-    
     public var storeModule:StoreModel?
     public var locationModule:LocationModel?
+    public var netModule:NetworkModel?
     public var storeID:Int?
     var storePhone:String?
     var  storeAddressIfNotProvided:String?
@@ -58,6 +53,7 @@ class StoreViewController: UIViewController,storeInfoModelDelegate {
     override func viewDidLoad()
     {
         storeModule?.storeInfoModelDelegate = self
+        netModule?.networkModelDelegate = self
         super.viewDidLoad()
         updateUI()
         // Do any additional setup after loading the view.
@@ -153,11 +149,8 @@ class StoreViewController: UIViewController,storeInfoModelDelegate {
                   storePhone = store.storePhone
                   self.phoneButton.isHidden = false
                 }
-            
-     
             }
       }
-       // if (storeFound == false) { self.phoneButton.isHidden = true }
    }
    //------------------------------------------------------------------------------------------------
 }

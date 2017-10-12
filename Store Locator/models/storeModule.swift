@@ -1,3 +1,4 @@
+
 //
 //  Stores.swift
 //  Store Locator
@@ -17,8 +18,9 @@ import Alamofire
 public class StoreModel
 {
   
-    public var mockDataMode:Bool = true  // false -> real data; true -> mock data;
-    var storeModelDelegate : storeModelDelegate?
+    public var mockDataMode:Bool = false  // false -> real data; true -> mock data;
+    
+    var storeModelDelegate:storeModelDelegate?
     var storeInfoModelDelegate : storeInfoModelDelegate?
     var misc = Misc()
 
@@ -241,7 +243,7 @@ public class StoreModel
         {
          try context.execute(DelAllReqVar)
          try context.execute(DelAllReqVar2)
-         printDatabaseContents()
+        
         }
         catch
         {

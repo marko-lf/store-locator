@@ -40,6 +40,8 @@ class CollectionViewController: UICollectionViewController, storeModelDelegate, 
     public var miscFuncionalities = Misc()
     @IBOutlet var colView: UICollectionView!
     
+        
+    var fidgetSpinner:NVActivityIndicatorView?
     
    
   
@@ -49,11 +51,11 @@ class CollectionViewController: UICollectionViewController, storeModelDelegate, 
     {
         
         let refreshControl = UIRefreshControl()
+       
         refreshControl.addTarget(self, action:
             #selector(CollectionViewController.handleRefresh(_:)),
                                  for: UIControlEvents.valueChanged)
-        miscFuncionalities.displayTheIndicator(forView: self.colView)
-       // miscFuncionalities.hideTheIndicator()
+       
         refreshControl.tintColor = UIColor.black
         refreshControl.layer.zPosition = 1;
         return refreshControl
@@ -61,43 +63,47 @@ class CollectionViewController: UICollectionViewController, storeModelDelegate, 
     
     @objc func handleRefresh(_ refreshControl: UIRefreshControl)
     {
-    
-        miscFuncionalities.showTheIndicator()
-        /////
+        
+        self.fidgetSpinner?.startAnimating()
+        refreshControl.beginRefreshing()
+ 
         storeModule.deleteAllData()
         netModule.fetchJsonStoreData(usingMockData: storeModule.mockDataMode)
         locationModule.initLoc = 0  //refresh will be provided using the delegate called from locationModel
-        /////
-       
         refreshControl.endRefreshing()
-        miscFuncionalities.hideTheIndicator()
         
     }
     //-------------------------------------------------------------------------------------------------
     override func viewDidLoad()
     {
-        
         super.viewDidLoad()
         
+        
+        let fidgetSpinnerHolder = CGRect(x: colView.center.x - 25, y: colView.center.y, width: CGFloat(50), height: CGFloat(50))
+        fidgetSpinner = NVActivityIndicatorView(frame: fidgetSpinnerHolder, type:NVActivityIndicatorType.ballClipRotatePulse, color: UIColor.white,  padding: CGFloat(0))
+       
+       
+        self.view.addSubview(fidgetSpinner!)
+       
         
         storeModule.storeModelDelegate = self
         locationModule.locModuleDelegate = self
         netModule.networkModelDelegate = self
+        
         locationModule.locationManager.delegate = self.locationModule
         locationModule.locationManager.requestWhenInUseAuthorization()
         locationModule.locationManager.startUpdatingLocation()
         locationModule.locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+        
         locationModule.storeModel = self.storeModule
         netModule.storeModel = self.storeModule
         netModule.fetchJsonStoreData(usingMockData: storeModule.mockDataMode)
         self.colView.addSubview(self.refreshControl)
-        miscFuncionalities.hideTheIndicator()
-      
+        
     }
      //------------------------------------------------------------------------------------------------
     @IBAction func segueToStoreInfoView(_ sender: UIButton)
     {
-        print(sender.tag)
         performSegue(withIdentifier: "toStoreInfo", sender: self)
     }
     //-------------------------------------------------------------------------------------------------
@@ -154,26 +160,27 @@ class CollectionViewController: UICollectionViewController, storeModelDelegate, 
             netModule.fetchJsonStoreInfoData(usingMockData: storeModule.mockDataMode, idOfTheStore:  ((sender as? UIButton)?.tag)! )
                 storeVC?.storeModule = self.storeModule
                 storeVC?.locationModule = self.locationModule
+                storeVC?.netModule = self.netModule
         }
     }
    //------------------------------------------------------------------------------------------------
     func reloadData()
     {
         colView.reloadData()
-        //miscFuncionalities.hideTheIndicator()
-        print("refresh was called")
-        
     }
    //------------------------------------------------------------------------------------------------
     func enableUserInteraction()
     {
+      
         self.view.isUserInteractionEnabled = true
-        
+        fidgetSpinner?.stopAnimating()
     }
     //------------------------------------------------------------------------------------------------
     func disableUserInteraction()
     {
+        
         self.view.isUserInteractionEnabled = false
+        
     }
     //------------------------------------------------------------------------------------------------
     func showError(withMessage:String) {

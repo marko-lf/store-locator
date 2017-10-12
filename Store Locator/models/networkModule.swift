@@ -12,8 +12,9 @@ import Alamofire
 
 public class NetworkModel
 {
-           var networkModelDelegate:networkModelDelegate?
-    public var storeModel:StoreModel?              //reference to the current store model instance
+    var networkModelDelegate:networkModelDelegate?
+    
+    public var storeModel:StoreModel?
     public var miscFunctions = Misc()
    
      func fetchJsonStoreData(usingMockData:Bool)
@@ -27,9 +28,9 @@ public class NetworkModel
                  let dataForReturn = try Data(contentsOf: urlToStore)
                  usleep(UInt32(miscFunctions.RNG()*1000000)) //mocking the delay for mockdata
                  self.storeModel!.storeCoreDataInit(dataForReturn)
-                 
                 }
-                catch {
+                catch
+                {
                     networkModelDelegate?.showError(withMessage: "Could not fetch store data")
                 }
             }
@@ -49,7 +50,7 @@ public class NetworkModel
             }
         }
   //------------------------------------------------------------------------------------------------
-    func fetchJsonStoreInfoData(usingMockData:Bool, idOfTheStore:Int )
+    func fetchJsonStoreInfoData(usingMockData:Bool, idOfTheStore:Int)
     {
         if usingMockData == true
         {
@@ -67,9 +68,8 @@ public class NetworkModel
         
            let urlToApi:String = "https://acko.lotusflare.com/storeInfo?storeID=" + String(idOfTheStore)
             
-           
-           
-            Alamofire.request(urlToApi).responseJSON //storeInfo API courtesy of Acko
+           Alamofire.request(urlToApi).responseJSON //storeInfo API courtesy of Acko
+            
                 {
                     response in
                     
@@ -77,7 +77,7 @@ public class NetworkModel
                     {
                         self.storeModel!.storeInfoParseRequest(response.data!, forStoreByID: idOfTheStore)
                     }
-            }
+                }
             
         }
     }

@@ -56,10 +56,10 @@
 		EAC229E31F8E722900895AAB /* NVActivityIndicatorView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = NVActivityIndicatorView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EAE90A151F87B2ED008FF64B /* StoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreViewController.swift; sourceTree = "<group>"; };
 		EAE90A181F87B7D0008FF64B /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back.png; sourceTree = "<group>"; };
-		EAE90A1B1F87C7B0008FF64B /* Store+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Store+CoreDataClass.swift"; path = "Store Locator/NSObject files/Store+CoreDataClass.swift"; sourceTree = "<group>"; };
-		EAE90A1C1F87C7B0008FF64B /* Store+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Store+CoreDataProperties.swift"; path = "Store Locator/NSObject files/Store+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		EAE90A1D1F87C7B0008FF64B /* Image+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Image+CoreDataClass.swift"; path = "Store Locator/NSObject files/Image+CoreDataClass.swift"; sourceTree = "<group>"; };
-		EAE90A1E1F87C7B0008FF64B /* Image+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Image+CoreDataProperties.swift"; path = "Store Locator/NSObject files/Image+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		EAE90A1B1F87C7B0008FF64B /* Store+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Store+CoreDataClass.swift"; sourceTree = "<group>"; };
+		EAE90A1C1F87C7B0008FF64B /* Store+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Store+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		EAE90A1D1F87C7B0008FF64B /* Image+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+CoreDataClass.swift"; sourceTree = "<group>"; };
+		EAE90A1E1F87C7B0008FF64B /* Image+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+CoreDataProperties.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,10 +87,6 @@
 		EA2E93D91F8663B20057A745 = {
 			isa = PBXGroup;
 			children = (
-				EAE90A1B1F87C7B0008FF64B /* Store+CoreDataClass.swift */,
-				EAE90A1C1F87C7B0008FF64B /* Store+CoreDataProperties.swift */,
-				EAE90A1D1F87C7B0008FF64B /* Image+CoreDataClass.swift */,
-				EAE90A1E1F87C7B0008FF64B /* Image+CoreDataProperties.swift */,
 				EA2E93E41F8663B20057A745 /* Store Locator */,
 				EA2E93E31F8663B20057A745 /* Products */,
 				B1A407ABD4B0EB5E6065F01A /* Pods */,
@@ -147,6 +143,10 @@
 		EA2E93FC1F8664050057A745 /* NSObject files */ = {
 			isa = PBXGroup;
 			children = (
+				EAE90A1B1F87C7B0008FF64B /* Store+CoreDataClass.swift */,
+				EAE90A1C1F87C7B0008FF64B /* Store+CoreDataProperties.swift */,
+				EAE90A1D1F87C7B0008FF64B /* Image+CoreDataClass.swift */,
+				EAE90A1E1F87C7B0008FF64B /* Image+CoreDataProperties.swift */,
 			);
 			path = "NSObject files";
 			sourceTree = "<group>";

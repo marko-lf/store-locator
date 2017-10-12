@@ -19,7 +19,6 @@ public class LocationModel: CLLocationManager, CLLocationManagerDelegate
     var locationManager = CLLocationManager()
     var locModuleDelegate: locationModelDelegate?
     
-    
     var distanceDict:[Int16:String]  //key ->> store ID; value ->> Distance between the user and the store;
     {
         get
@@ -45,19 +44,10 @@ public class LocationModel: CLLocationManager, CLLocationManagerDelegate
             return distDict
         }
     }
-    
-    
     //------------------------------------------------------------------------------------------------
-    
+
     public func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation])
     {
-//        if (initLoc == 0)
-//        {
-//       // locModuleDelegate?.reloadDataTable() //when locationManager initializes, reload the view with updated information
-//        initLoc = initLoc + 1                //dont update the table anymore
-//        }
-    }                                        //Possible improvement: A timer that allows the refereshing of data in cells in a certain interval of time?
-
-
-
+    }
+    
 }
