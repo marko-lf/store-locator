@@ -8,9 +8,12 @@
 
 import Foundation
 import UIKit
-
+import NVActivityIndicatorView
 
 public struct Misc {
+    
+    weak var displayIndicatorActive:NVActivityIndicatorView?
+    
 //------------------------------------------------------------------------------------------------
 func RNG() -> Double  //Generates a random number between 0.03 and 1.2
 {
@@ -33,4 +36,35 @@ func callTheStore(_ phoneNumber:String)
         }
     }
 }
+//------------------------------------------------------------------------------------------------
+mutating func displayTheIndicator(forView: UIView)
+{
+    let x = forView.frame.width / 2 - 50
+    let y = forView.frame.height / 2 - 30
+    let frame = CGRect(x: x, y: y, width: 100, height: 100)
+    let activityIndicatorView = NVActivityIndicatorView(frame: frame,
+                                                        type: NVActivityIndicatorType(rawValue: 5))
+    let animationTypeLabel = UILabel(frame: frame)
+    
+  
+    activityIndicatorView.padding = 0
+    
+    
+    forView.addSubview(activityIndicatorView)
+    forView.addSubview(animationTypeLabel)
+    activityIndicatorView.startAnimating()
+    self.displayIndicatorActive = activityIndicatorView
 }
+    
+mutating func hideTheIndicator()
+{
+    self.displayIndicatorActive?.isHidden = true
+}
+
+
+
+}
+
+    
+    
+

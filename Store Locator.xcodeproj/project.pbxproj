@@ -23,6 +23,7 @@
 		EA2E941A1F867F330057A745 /* StoreModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2E94191F867F330057A745 /* StoreModule.swift */; };
 		EA822E901F8D0AFE00D8BB16 /* LocationModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA822E8F1F8D0AFE00D8BB16 /* LocationModule.swift */; };
 		EAC229DF1F8E5BC700895AAB /* MiscellaneousFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAC229DE1F8E5BC700895AAB /* MiscellaneousFunctions.swift */; };
+		EAC229E21F8E722900895AAB /* NVActivityIndicatorView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAC229E31F8E722900895AAB /* NVActivityIndicatorView.framework */; };
 		EAE90A161F87B2ED008FF64B /* StoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAE90A151F87B2ED008FF64B /* StoreViewController.swift */; };
 		EAE90A1A1F87B7D0008FF64B /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = EAE90A181F87B7D0008FF64B /* back.png */; };
 		EAE90A1F1F87C7B0008FF64B /* Store+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAE90A1B1F87C7B0008FF64B /* Store+CoreDataClass.swift */; };
@@ -52,6 +53,7 @@
 		EA2E94191F867F330057A745 /* StoreModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreModule.swift; sourceTree = "<group>"; };
 		EA822E8F1F8D0AFE00D8BB16 /* LocationModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationModule.swift; sourceTree = "<group>"; };
 		EAC229DE1F8E5BC700895AAB /* MiscellaneousFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiscellaneousFunctions.swift; sourceTree = "<group>"; };
+		EAC229E31F8E722900895AAB /* NVActivityIndicatorView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = NVActivityIndicatorView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EAE90A151F87B2ED008FF64B /* StoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreViewController.swift; sourceTree = "<group>"; };
 		EAE90A181F87B7D0008FF64B /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back.png; sourceTree = "<group>"; };
 		EAE90A1B1F87C7B0008FF64B /* Store+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Store+CoreDataClass.swift"; path = "Store Locator/NSObject files/Store+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -65,6 +67,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EAC229E21F8E722900895AAB /* NVActivityIndicatorView.framework in Frameworks */,
 				56C406B41C2678695BB293F7 /* Pods_Store_Locator.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -171,6 +174,7 @@
 		F6F5AE22FC68EC293A63D130 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				EAC229E31F8E722900895AAB /* NVActivityIndicatorView.framework */,
 				735A78CF8275E4E7611C598E /* Pods_Store_Locator.framework */,
 			);
 			name = Frameworks;
@@ -277,10 +281,12 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Store Locator/Pods-Store Locator-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/NVActivityIndicatorView/NVActivityIndicatorView.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NVActivityIndicatorView.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;

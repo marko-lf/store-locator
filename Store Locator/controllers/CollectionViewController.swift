@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 import CoreLocation
-
+import NVActivityIndicatorView
 
 protocol storeModelDelegate {
     func reloadData()
@@ -25,15 +25,16 @@ protocol locationModelDelegate
 
 private let reuseIdentifier = "Cell"
 
-class CollectionViewController: UICollectionViewController, storeModelDelegate, locationModelDelegate
+class CollectionViewController: UICollectionViewController, storeModelDelegate, locationModelDelegate, NVActivityIndicatorViewable
 {
    
 
     public var netModule =  NetworkModel()
     public var storeModule = StoreModel()
     public var locationModule = LocationModel()
+    public var miscFuncionalities = Misc()
     @IBOutlet var colView: UICollectionView!
-  
+    
     
    
   
@@ -41,29 +42,36 @@ class CollectionViewController: UICollectionViewController, storeModelDelegate, 
     //--------------------------------------------------------------------------------------------------
     lazy var refreshControl: UIRefreshControl =
     {
+        
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action:
             #selector(CollectionViewController.handleRefresh(_:)),
                                  for: UIControlEvents.valueChanged)
-        refreshControl.tintColor = UIColor.white
-        refreshControl.layer.zPosition = -1;
+        refreshControl.tintColor = UIColor.black
+        refreshControl.layer.zPosition = 1;
         return refreshControl
     }()
     
     @objc func handleRefresh(_ refreshControl: UIRefreshControl)
     {
-       
+    
+        miscFuncionalities.displayTheIndicator(forView: self.view)
+        /////
         storeModule.deleteAllData()
         netModule.fetchJsonStoreData(usingMockData: storeModule.mockDataMode)
         locationModule.initLoc = 0  //refresh will be provided using the delegate called from locationModel
-        
+        /////
+       
         refreshControl.endRefreshing()
+       
+        
     }
     //-------------------------------------------------------------------------------------------------
     override func viewDidLoad()
     {
+        
+        
         super.viewDidLoad()
-       
         storeModule.storeModelDelegate = self
         locationModule.locModuleDelegate = self
         locationModule.locationManager.delegate = self.locationModule
@@ -74,6 +82,7 @@ class CollectionViewController: UICollectionViewController, storeModelDelegate, 
         netModule.storeModel = self.storeModule
         netModule.fetchJsonStoreData(usingMockData: storeModule.mockDataMode)
         self.colView.addSubview(self.refreshControl)
+      
     }
      //------------------------------------------------------------------------------------------------
     @IBAction func segueToStoreInfoView(_ sender: UIButton)
@@ -141,6 +150,7 @@ class CollectionViewController: UICollectionViewController, storeModelDelegate, 
     func reloadData()
     {
         colView.reloadData()
+        miscFuncionalities.hideTheIndicator()
         print("refresh was called")
         
     }
