@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		56C406B41C2678695BB293F7 /* Pods_Store_Locator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 735A78CF8275E4E7611C598E /* Pods_Store_Locator.framework */; };
+		EA189DAA1F90BF1C00C788A5 /* ReachabillityModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA189DA91F90BF1C00C788A5 /* ReachabillityModule.swift */; };
 		EA1CE6891F8BD46400B03C7B /* NetworkModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA1CE6881F8BD46400B03C7B /* NetworkModule.swift */; };
 		EA2E93E61F8663B20057A745 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2E93E51F8663B20057A745 /* AppDelegate.swift */; };
 		EA2E93EB1F8663B20057A745 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA2E93E91F8663B20057A745 /* Main.storyboard */; };
@@ -36,6 +37,7 @@
 		4F730E56012AD6251C1AEE1E /* Pods-Store Locator.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Store Locator.release.xcconfig"; path = "Pods/Target Support Files/Pods-Store Locator/Pods-Store Locator.release.xcconfig"; sourceTree = "<group>"; };
 		735A78CF8275E4E7611C598E /* Pods_Store_Locator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Store_Locator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		84B1918D4D20841516F9CACE /* Pods-Store Locator.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Store Locator.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Store Locator/Pods-Store Locator.debug.xcconfig"; sourceTree = "<group>"; };
+		EA189DA91F90BF1C00C788A5 /* ReachabillityModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReachabillityModule.swift; sourceTree = "<group>"; };
 		EA1CE6881F8BD46400B03C7B /* NetworkModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkModule.swift; sourceTree = "<group>"; };
 		EA2E93E21F8663B20057A745 /* Store Locator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Store Locator.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA2E93E51F8663B20057A745 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -167,6 +169,7 @@
 				EA1CE6881F8BD46400B03C7B /* NetworkModule.swift */,
 				EA2E94191F867F330057A745 /* StoreModule.swift */,
 				EAC229DE1F8E5BC700895AAB /* MiscellaneousFunctions.swift */,
+				EA189DA91F90BF1C00C788A5 /* ReachabillityModule.swift */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -327,6 +330,7 @@
 				EA822E901F8D0AFE00D8BB16 /* LocationModule.swift in Sources */,
 				EA2E93EE1F8663B20057A745 /* Store_Locator.xcdatamodeld in Sources */,
 				EA2E940D1F8665360057A745 /* PinAnnotation.swift in Sources */,
+				EA189DAA1F90BF1C00C788A5 /* ReachabillityModule.swift in Sources */,
 				EA2E94101F8665A30057A745 /* CollectionViewController.swift in Sources */,
 				EA2E941A1F867F330057A745 /* StoreModule.swift in Sources */,
 			);

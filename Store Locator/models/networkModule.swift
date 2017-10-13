@@ -19,6 +19,7 @@ public class NetworkModel
    
      func fetchJsonStoreData(usingMockData:Bool)
         {
+            
               if usingMockData == true
             {
                let pathToStore = Bundle.main.path(forResource: "Store", ofType: "txt")
@@ -36,14 +37,18 @@ public class NetworkModel
             }
             else
             {
-                
                 Alamofire.request("https://acko.lotusflare.com/storeList").responseJSON //store list API courtesy of Acko
                 {
                     response in
                     
                     if let _ = response.data
                     {
+                       
                         self.storeModel!.storeCoreDataInit(response.data!)
+                    }
+                    else
+                    {
+                       self.networkModelDelegate?.showError(withMessage: "Could not fetch store data")                        
                     }
                 }
                 

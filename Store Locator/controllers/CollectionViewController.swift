@@ -39,7 +39,7 @@ class CollectionViewController: UICollectionViewController, storeModelDelegate, 
     public var locationModule = LocationModel()
     public var miscFuncionalities = Misc()
     @IBOutlet var colView: UICollectionView!
-    
+    public var reachability = Reachability()
         
     var fidgetSpinner:NVActivityIndicatorView?
     
@@ -55,7 +55,7 @@ class CollectionViewController: UICollectionViewController, storeModelDelegate, 
         refreshControl.addTarget(self, action:
             #selector(CollectionViewController.handleRefresh(_:)),
                                  for: UIControlEvents.valueChanged)
-       
+        refreshControl.isHidden = true
         refreshControl.tintColor = UIColor.black
         refreshControl.layer.zPosition = 1;
         return refreshControl
@@ -63,7 +63,12 @@ class CollectionViewController: UICollectionViewController, storeModelDelegate, 
     
     @objc func handleRefresh(_ refreshControl: UIRefreshControl)
     {
-        
+        if (!Reachability.isConnectedToNetwork() && self.storeModule.mockDataMode == false)
+        {
+            miscFuncionalities.noDataAvailable(sender: self)
+            refreshControl.endRefreshing()
+            return
+        }
         self.fidgetSpinner?.startAnimating()
         refreshControl.beginRefreshing()
  
@@ -71,6 +76,7 @@ class CollectionViewController: UICollectionViewController, storeModelDelegate, 
         netModule.fetchJsonStoreData(usingMockData: storeModule.mockDataMode)
         locationModule.initLoc = 0  //refresh will be provided using the delegate called from locationModel
         refreshControl.endRefreshing()
+        
         
     }
     //-------------------------------------------------------------------------------------------------
@@ -99,6 +105,10 @@ class CollectionViewController: UICollectionViewController, storeModelDelegate, 
         netModule.storeModel = self.storeModule
         netModule.fetchJsonStoreData(usingMockData: storeModule.mockDataMode)
         self.colView.addSubview(self.refreshControl)
+        if (!Reachability.isConnectedToNetwork())
+        {
+            miscFuncionalities.noDataAvailable(sender: self)
+        }
         
     }
      //------------------------------------------------------------------------------------------------
@@ -146,7 +156,8 @@ class CollectionViewController: UICollectionViewController, storeModelDelegate, 
            cell.distanceActivityIndicator.isHidden = false
            cell.distanceActivityIndicator.startAnimating()
         }
-        
+        cell.layer.borderWidth = 1
+        cell.layer.borderColor = UIColor.white.cgColor
         return cell
         }
     

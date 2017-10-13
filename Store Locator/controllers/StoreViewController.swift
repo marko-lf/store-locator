@@ -104,53 +104,50 @@ class StoreViewController: UIViewController,storeInfoModelDelegate,networkModelD
     self.navigationController?.navigationBar.isHidden = false
     self.mapView.frame.size.height = UIScreen.main.bounds.height/3
     self.view.bringSubview(toFront: zoomOnMapButton)
-    for store in (storeModule?.stores)!
-         {
-           if store.storeID == Int16(storeID!)
-           {
-            
-                storeNameLabel.text = store.storeName
+    let store = storeModule?.storeForID(storeID!)
+        storeNameLabel.text = store?.storeName
                 distanceLabel.text = locationModule?.distanceDict[Int16(storeID!)]
             let storeAnnotation = MKPointAnnotation()
-                storeAnnotation.title = store.storeName
-                storeAnnotation.coordinate =  CLLocationCoordinate2D(latitude: store.storeLongitude, longitude: store.storeLatitude)
-                storeLoc = CLLocationCoordinate2D(latitude: store.storeLongitude, longitude: store.storeLatitude)
+                storeAnnotation.title = store?.storeName
+        storeAnnotation.coordinate =  CLLocationCoordinate2D(latitude: (store?.storeLongitude)!, longitude: (store?.storeLatitude)!)
+        storeLoc = CLLocationCoordinate2D(latitude: (store?.storeLongitude)!, longitude: (store?.storeLatitude)!)
                 self.mapView.addAnnotation(storeAnnotation)
             
                 let mapSpan:MKCoordinateSpan = MKCoordinateSpanMake(0.1, 0.1)
-                let region = MKCoordinateRegionMake(CLLocationCoordinate2D(latitude: store.storeLongitude, longitude: store.storeLatitude), mapSpan)
+        let region = MKCoordinateRegionMake(CLLocationCoordinate2D(latitude: (store?.storeLongitude)!, longitude: (store?.storeLatitude)!), mapSpan)
                 self.mapView.setRegion(region, animated: true)
             
-                if store.storeHours == nil || store.storeHours == ""
+        if store?.storeHours == nil || store?.storeHours == ""
                 {
                     storeHoursLabel.text = "No working hours info available"
                 }
                 else
                 {
-                    storeHoursLabel.text = store.storeHours
+                    storeHoursLabel.text = store?.storeHours
                 }
             
-                if store.storeAddress == nil || store.storeAddress == ""
+        if store?.storeAddress == nil || store?.storeAddress == ""
                 {
                     storeAddressLabel.text = "No address available"
                 }
                 else
                 {
-                    storeAddressLabel.text = store.storeAddress
+                    storeAddressLabel.text = store?.storeAddress
                 }
             
-                if store.storePhone == nil || store.storePhone == ""
+        if store?.storePhone == nil || store?.storePhone == ""
                 {
                    storePhone = nil
                    self.phoneButton.isHidden = true
                 }
                 else
                 {
-                  storePhone = store.storePhone
+                    storePhone = store?.storePhone
                   self.phoneButton.isHidden = false
                 }
             }
-      }
-   }
+
+
    //------------------------------------------------------------------------------------------------
-}
+
+ }

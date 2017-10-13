@@ -45,7 +45,33 @@ func callTheStore(_ phoneNumber:String)
 }
 //------------------------------------------------------------------------------------------------
     
-
+    func noDataAvailable(sender: UIViewController)
+    {
+        let alert = UIAlertController(title: "Whoops!", message: "No data could be fetched from the server. Check your internet connection and try again", preferredStyle: UIAlertControllerStyle.alert)
+        
+        // add the actions (buttons)
+        alert.addAction(UIAlertAction(title: "Try again", style: UIAlertActionStyle.default, handler: { action in
+            
+           sender.viewDidLoad()
+            
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Continue offline", style: UIAlertActionStyle.default, handler: { action in
+            
+            
+            
+        }))
+            
+        alert.addAction(UIAlertAction(title: "Exit", style: UIAlertActionStyle.destructive, handler: { action in
+            
+            exit(0)
+            
+        }))
+        
+        // show the alert
+        sender.present(alert, animated: true, completion: nil)
+    }
     
+
     
 }

@@ -230,7 +230,18 @@ public class StoreModel
         }
         
     }
-    
+    //------------------------------------------------------------------------------------------------
+    func storeForID(_ storeID:Int) -> Store!
+    {
+        for store in stores
+        {
+            if store.storeID == Int16(storeID)
+            {
+                return store
+            }
+        }
+          return nil
+    }
     //------------------------------------------------------------------------------------------------
     func deleteAllData() //Drops all the contents from the core data
     {
