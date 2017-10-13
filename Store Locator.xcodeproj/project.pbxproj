@@ -1,0 +1,539 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		56C406B41C2678695BB293F7 /* Pods_Store_Locator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 735A78CF8275E4E7611C598E /* Pods_Store_Locator.framework */; };
+		EA189DAA1F90BF1C00C788A5 /* ReachabillityModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA189DA91F90BF1C00C788A5 /* ReachabillityModule.swift */; };
+		EA1CE6891F8BD46400B03C7B /* NetworkModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA1CE6881F8BD46400B03C7B /* NetworkModule.swift */; };
+		EA2E93E61F8663B20057A745 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2E93E51F8663B20057A745 /* AppDelegate.swift */; };
+		EA2E93EB1F8663B20057A745 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA2E93E91F8663B20057A745 /* Main.storyboard */; };
+		EA2E93EE1F8663B20057A745 /* Store_Locator.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = EA2E93EC1F8663B20057A745 /* Store_Locator.xcdatamodeld */; };
+		EA2E93F01F8663B20057A745 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EA2E93EF1F8663B20057A745 /* Assets.xcassets */; };
+		EA2E93F31F8663B20057A745 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA2E93F11F8663B20057A745 /* LaunchScreen.storyboard */; };
+		EA2E940C1F8665360057A745 /* phone.jpg in Resources */ = {isa = PBXBuildFile; fileRef = EA2E94091F8665360057A745 /* phone.jpg */; };
+		EA2E940D1F8665360057A745 /* PinAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2E940A1F8665360057A745 /* PinAnnotation.swift */; };
+		EA2E940E1F8665360057A745 /* StoreCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2E940B1F8665360057A745 /* StoreCollectionViewCell.swift */; };
+		EA2E94101F8665A30057A745 /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2E940F1F8665A30057A745 /* CollectionViewController.swift */; };
+		EA2E94161F8666770057A745 /* Store.txt in Resources */ = {isa = PBXBuildFile; fileRef = EA2E94141F8666770057A745 /* Store.txt */; };
+		EA2E94171F8666770057A745 /* StoreInfo.txt in Resources */ = {isa = PBXBuildFile; fileRef = EA2E94151F8666770057A745 /* StoreInfo.txt */; };
+		EA2E941A1F867F330057A745 /* StoreModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2E94191F867F330057A745 /* StoreModule.swift */; };
+		EA822E901F8D0AFE00D8BB16 /* LocationModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA822E8F1F8D0AFE00D8BB16 /* LocationModule.swift */; };
+		EAC229DF1F8E5BC700895AAB /* MiscellaneousFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAC229DE1F8E5BC700895AAB /* MiscellaneousFunctions.swift */; };
+		EAC229E21F8E722900895AAB /* NVActivityIndicatorView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAC229E31F8E722900895AAB /* NVActivityIndicatorView.framework */; };
+		EAE90A161F87B2ED008FF64B /* StoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAE90A151F87B2ED008FF64B /* StoreViewController.swift */; };
+		EAE90A1A1F87B7D0008FF64B /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = EAE90A181F87B7D0008FF64B /* back.png */; };
+		EAE90A1F1F87C7B0008FF64B /* Store+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAE90A1B1F87C7B0008FF64B /* Store+CoreDataClass.swift */; };
+		EAE90A201F87C7B0008FF64B /* Store+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAE90A1C1F87C7B0008FF64B /* Store+CoreDataProperties.swift */; };
+		EAE90A211F87C7B0008FF64B /* Image+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAE90A1D1F87C7B0008FF64B /* Image+CoreDataClass.swift */; };
+		EAE90A221F87C7B0008FF64B /* Image+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAE90A1E1F87C7B0008FF64B /* Image+CoreDataProperties.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		4F730E56012AD6251C1AEE1E /* Pods-Store Locator.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Store Locator.release.xcconfig"; path = "Pods/Target Support Files/Pods-Store Locator/Pods-Store Locator.release.xcconfig"; sourceTree = "<group>"; };
+		735A78CF8275E4E7611C598E /* Pods_Store_Locator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Store_Locator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		84B1918D4D20841516F9CACE /* Pods-Store Locator.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Store Locator.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Store Locator/Pods-Store Locator.debug.xcconfig"; sourceTree = "<group>"; };
+		EA189DA91F90BF1C00C788A5 /* ReachabillityModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReachabillityModule.swift; sourceTree = "<group>"; };
+		EA1CE6881F8BD46400B03C7B /* NetworkModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkModule.swift; sourceTree = "<group>"; };
+		EA2E93E21F8663B20057A745 /* Store Locator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Store Locator.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		EA2E93E51F8663B20057A745 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		EA2E93EA1F8663B20057A745 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		EA2E93ED1F8663B20057A745 /* Store_Locator.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Store_Locator.xcdatamodel; sourceTree = "<group>"; };
+		EA2E93EF1F8663B20057A745 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		EA2E93F21F8663B20057A745 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		EA2E93F41F8663B20057A745 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EA2E94091F8665360057A745 /* phone.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = phone.jpg; sourceTree = "<group>"; };
+		EA2E940A1F8665360057A745 /* PinAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinAnnotation.swift; sourceTree = "<group>"; };
+		EA2E940B1F8665360057A745 /* StoreCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreCollectionViewCell.swift; sourceTree = "<group>"; };
+		EA2E940F1F8665A30057A745 /* CollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
+		EA2E94141F8666770057A745 /* Store.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Store.txt; sourceTree = "<group>"; };
+		EA2E94151F8666770057A745 /* StoreInfo.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = StoreInfo.txt; sourceTree = "<group>"; };
+		EA2E94191F867F330057A745 /* StoreModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreModule.swift; sourceTree = "<group>"; };
+		EA822E8F1F8D0AFE00D8BB16 /* LocationModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationModule.swift; sourceTree = "<group>"; };
+		EAC229DE1F8E5BC700895AAB /* MiscellaneousFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiscellaneousFunctions.swift; sourceTree = "<group>"; };
+		EAC229E31F8E722900895AAB /* NVActivityIndicatorView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = NVActivityIndicatorView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EAE90A151F87B2ED008FF64B /* StoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreViewController.swift; sourceTree = "<group>"; };
+		EAE90A181F87B7D0008FF64B /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back.png; sourceTree = "<group>"; };
+		EAE90A1B1F87C7B0008FF64B /* Store+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Store+CoreDataClass.swift"; sourceTree = "<group>"; };
+		EAE90A1C1F87C7B0008FF64B /* Store+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Store+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		EAE90A1D1F87C7B0008FF64B /* Image+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+CoreDataClass.swift"; sourceTree = "<group>"; };
+		EAE90A1E1F87C7B0008FF64B /* Image+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+CoreDataProperties.swift"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		EA2E93DF1F8663B20057A745 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EAC229E21F8E722900895AAB /* NVActivityIndicatorView.framework in Frameworks */,
+				56C406B41C2678695BB293F7 /* Pods_Store_Locator.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		B1A407ABD4B0EB5E6065F01A /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				84B1918D4D20841516F9CACE /* Pods-Store Locator.debug.xcconfig */,
+				4F730E56012AD6251C1AEE1E /* Pods-Store Locator.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		EA2E93D91F8663B20057A745 = {
+			isa = PBXGroup;
+			children = (
+				EA2E93E41F8663B20057A745 /* Store Locator */,
+				EA2E93E31F8663B20057A745 /* Products */,
+				B1A407ABD4B0EB5E6065F01A /* Pods */,
+				F6F5AE22FC68EC293A63D130 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		EA2E93E31F8663B20057A745 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				EA2E93E21F8663B20057A745 /* Store Locator.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		EA2E93E41F8663B20057A745 /* Store Locator */ = {
+			isa = PBXGroup;
+			children = (
+				EA2E94181F867F040057A745 /* models */,
+				EA2E94131F86665F0057A745 /* mock data  */,
+				EA2E93FC1F8664050057A745 /* NSObject files */,
+				EA2E93FB1F8663F10057A745 /* controllers */,
+				EA2E93FA1F8663E90057A745 /* supporting files */,
+				EA2E93E91F8663B20057A745 /* Main.storyboard */,
+				EA2E93F41F8663B20057A745 /* Info.plist */,
+			);
+			path = "Store Locator";
+			sourceTree = "<group>";
+		};
+		EA2E93FA1F8663E90057A745 /* supporting files */ = {
+			isa = PBXGroup;
+			children = (
+				EA2E94091F8665360057A745 /* phone.jpg */,
+				EAE90A181F87B7D0008FF64B /* back.png */,
+				EA2E940A1F8665360057A745 /* PinAnnotation.swift */,
+				EA2E940B1F8665360057A745 /* StoreCollectionViewCell.swift */,
+				EA2E93EC1F8663B20057A745 /* Store_Locator.xcdatamodeld */,
+				EA2E93F11F8663B20057A745 /* LaunchScreen.storyboard */,
+				EA2E93EF1F8663B20057A745 /* Assets.xcassets */,
+				EA2E93E51F8663B20057A745 /* AppDelegate.swift */,
+			);
+			path = "supporting files";
+			sourceTree = "<group>";
+		};
+		EA2E93FB1F8663F10057A745 /* controllers */ = {
+			isa = PBXGroup;
+			children = (
+				EAE90A151F87B2ED008FF64B /* StoreViewController.swift */,
+				EA2E940F1F8665A30057A745 /* CollectionViewController.swift */,
+			);
+			path = controllers;
+			sourceTree = "<group>";
+		};
+		EA2E93FC1F8664050057A745 /* NSObject files */ = {
+			isa = PBXGroup;
+			children = (
+				EAE90A1B1F87C7B0008FF64B /* Store+CoreDataClass.swift */,
+				EAE90A1C1F87C7B0008FF64B /* Store+CoreDataProperties.swift */,
+				EAE90A1D1F87C7B0008FF64B /* Image+CoreDataClass.swift */,
+				EAE90A1E1F87C7B0008FF64B /* Image+CoreDataProperties.swift */,
+			);
+			path = "NSObject files";
+			sourceTree = "<group>";
+		};
+		EA2E94131F86665F0057A745 /* mock data  */ = {
+			isa = PBXGroup;
+			children = (
+				EA2E94141F8666770057A745 /* Store.txt */,
+				EA2E94151F8666770057A745 /* StoreInfo.txt */,
+			);
+			path = "mock data ";
+			sourceTree = "<group>";
+		};
+		EA2E94181F867F040057A745 /* models */ = {
+			isa = PBXGroup;
+			children = (
+				EA822E8F1F8D0AFE00D8BB16 /* LocationModule.swift */,
+				EA1CE6881F8BD46400B03C7B /* NetworkModule.swift */,
+				EA2E94191F867F330057A745 /* StoreModule.swift */,
+				EAC229DE1F8E5BC700895AAB /* MiscellaneousFunctions.swift */,
+				EA189DA91F90BF1C00C788A5 /* ReachabillityModule.swift */,
+			);
+			path = models;
+			sourceTree = "<group>";
+		};
+		F6F5AE22FC68EC293A63D130 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				EAC229E31F8E722900895AAB /* NVActivityIndicatorView.framework */,
+				735A78CF8275E4E7611C598E /* Pods_Store_Locator.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		EA2E93E11F8663B20057A745 /* Store Locator */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EA2E93F71F8663B20057A745 /* Build configuration list for PBXNativeTarget "Store Locator" */;
+			buildPhases = (
+				88DA7D5E9D2E403A82867822 /* [CP] Check Pods Manifest.lock */,
+				EA2E93DE1F8663B20057A745 /* Sources */,
+				EA2E93DF1F8663B20057A745 /* Frameworks */,
+				EA2E93E01F8663B20057A745 /* Resources */,
+				A3499193F7D653AD2DDD2BF3 /* [CP] Embed Pods Frameworks */,
+				D138A0FCB745EC49042E0B00 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Store Locator";
+			productName = "Store Locator";
+			productReference = EA2E93E21F8663B20057A745 /* Store Locator.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		EA2E93DA1F8663B20057A745 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0900;
+				LastUpgradeCheck = 0900;
+				ORGANIZATIONNAME = Lotusflare;
+				TargetAttributes = {
+					EA2E93E11F8663B20057A745 = {
+						CreatedOnToolsVersion = 9.0;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = EA2E93DD1F8663B20057A745 /* Build configuration list for PBXProject "Store Locator" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = EA2E93D91F8663B20057A745;
+			productRefGroup = EA2E93E31F8663B20057A745 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				EA2E93E11F8663B20057A745 /* Store Locator */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		EA2E93E01F8663B20057A745 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EA2E93F31F8663B20057A745 /* LaunchScreen.storyboard in Resources */,
+				EA2E94161F8666770057A745 /* Store.txt in Resources */,
+				EA2E93F01F8663B20057A745 /* Assets.xcassets in Resources */,
+				EA2E940C1F8665360057A745 /* phone.jpg in Resources */,
+				EA2E94171F8666770057A745 /* StoreInfo.txt in Resources */,
+				EA2E93EB1F8663B20057A745 /* Main.storyboard in Resources */,
+				EAE90A1A1F87B7D0008FF64B /* back.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		88DA7D5E9D2E403A82867822 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Store Locator-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A3499193F7D653AD2DDD2BF3 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Store Locator/Pods-Store Locator-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/NVActivityIndicatorView/NVActivityIndicatorView.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NVActivityIndicatorView.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Store Locator/Pods-Store Locator-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D138A0FCB745EC49042E0B00 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Store Locator/Pods-Store Locator-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		EA2E93DE1F8663B20057A745 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EA2E93E61F8663B20057A745 /* AppDelegate.swift in Sources */,
+				EA2E940E1F8665360057A745 /* StoreCollectionViewCell.swift in Sources */,
+				EAE90A221F87C7B0008FF64B /* Image+CoreDataProperties.swift in Sources */,
+				EAE90A161F87B2ED008FF64B /* StoreViewController.swift in Sources */,
+				EA1CE6891F8BD46400B03C7B /* NetworkModule.swift in Sources */,
+				EAE90A1F1F87C7B0008FF64B /* Store+CoreDataClass.swift in Sources */,
+				EAC229DF1F8E5BC700895AAB /* MiscellaneousFunctions.swift in Sources */,
+				EAE90A211F87C7B0008FF64B /* Image+CoreDataClass.swift in Sources */,
+				EAE90A201F87C7B0008FF64B /* Store+CoreDataProperties.swift in Sources */,
+				EA822E901F8D0AFE00D8BB16 /* LocationModule.swift in Sources */,
+				EA2E93EE1F8663B20057A745 /* Store_Locator.xcdatamodeld in Sources */,
+				EA2E940D1F8665360057A745 /* PinAnnotation.swift in Sources */,
+				EA189DAA1F90BF1C00C788A5 /* ReachabillityModule.swift in Sources */,
+				EA2E94101F8665A30057A745 /* CollectionViewController.swift in Sources */,
+				EA2E941A1F867F330057A745 /* StoreModule.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		EA2E93E91F8663B20057A745 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EA2E93EA1F8663B20057A745 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		EA2E93F11F8663B20057A745 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EA2E93F21F8663B20057A745 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		EA2E93F51F8663B20057A745 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		EA2E93F61F8663B20057A745 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		EA2E93F81F8663B20057A745 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 84B1918D4D20841516F9CACE /* Pods-Store Locator.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = SJXJJQNG35;
+				INFOPLIST_FILE = "Store Locator/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "edu.lotusflare.ilija.Store-Locator";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		EA2E93F91F8663B20057A745 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4F730E56012AD6251C1AEE1E /* Pods-Store Locator.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = SJXJJQNG35;
+				INFOPLIST_FILE = "Store Locator/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "edu.lotusflare.ilija.Store-Locator";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		EA2E93DD1F8663B20057A745 /* Build configuration list for PBXProject "Store Locator" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EA2E93F51F8663B20057A745 /* Debug */,
+				EA2E93F61F8663B20057A745 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EA2E93F71F8663B20057A745 /* Build configuration list for PBXNativeTarget "Store Locator" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EA2E93F81F8663B20057A745 /* Debug */,
+				EA2E93F91F8663B20057A745 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		EA2E93EC1F8663B20057A745 /* Store_Locator.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				EA2E93ED1F8663B20057A745 /* Store_Locator.xcdatamodel */,
+			);
+			currentVersion = EA2E93ED1F8663B20057A745 /* Store_Locator.xcdatamodel */;
+			path = Store_Locator.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = EA2E93DA1F8663B20057A745 /* Project object */;
+}

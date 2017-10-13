@@ -1,0 +1,6 @@
+framework module Pods_Store_Locator {
+  umbrella header "Pods-Store Locator-umbrella.h"
+
+  export *
+  module * { export * }
+}
