@@ -39,7 +39,7 @@ public class StoreModel
             catch
             {
                 storeModelDelegate?.showError(withMessage: "Could not fetch information about the store")
-                storeInfoModelDelegate?.showError(withMessage: "Could not fetch information about the store")
+                storeInfoModelDelegate?.showError(withMessage: "Could not fetch information about the store.")
                 return []
             }
         }
