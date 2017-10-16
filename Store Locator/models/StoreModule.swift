@@ -22,6 +22,7 @@ public class StoreModel
      // false -> real data; true -> mock data;
     
     var storeModelDelegate:storeModelDelegate?
+    var netModel = NetworkModel()
     var misc = Misc()
 
     //------------------------------------------------------------------------------------------------
@@ -69,65 +70,33 @@ public class StoreModel
     }
   //------------------------------------------------------------------------------------------------
    
-    @objc public func storeCoreDataInit(_ jsonFile:Data)
+    @objc public func storeCoreDataInit()
+    {
+        
+        if (mockDataMode == false)
         {
-            do
+            netModel.fetchJsonStoreData(completion: { (jsonFile) in
+                self.writeToCoreData(dataForWrite: jsonFile)
+            })
+        }
+        else
+        {
+            let delayedTime = DispatchTime.now() + .seconds(1)
+            DispatchQueue.main.asyncAfter(deadline: delayedTime)
             {
-                let json = try? JSONSerialization.jsonObject(with: jsonFile, options: [])
-                guard let arrayStore = json as? [AnyObject]  else { return }
-                for store in arrayStore
-            {
-                
-                guard let storeDict = store as? [String:Any]    else {return}
-
-                guard let storeId = storeDict["storeID"] as? String else {return}
-                guard let storeName =  storeDict["storeName"] as? String  else {return}
-                guard let storeLongitude = storeDict["storeLongitude"] as? String else {return}
-                guard let storeLatitude = storeDict["storeLatitude"] as? String else {return}
-                guard let storeImage = storeDict["storeImageUrl"] as? String else {return}
-                guard let storeImageSize = storeDict["storeImageSize"] as? Int else {return}
-               
-                let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext  //Fetching the current context
-                let fetchRequest:NSFetchRequest<Store> = Store.fetchRequest()
-                fetchRequest.predicate = NSPredicate(format: "storeID == %@", storeId )
-                let fetchedResults = try context.fetch(fetchRequest)
-                //--------is this store in the database?
-                if (fetchedResults.count == 0)
+                do
                 {
-                    storeModelDelegate?.disableUserInteraction()
-                    let newStore = NSEntityDescription.insertNewObject(forEntityName: "Store", into: context) as NSManagedObject
-                    newStore.setValue(Int(storeId),  forKey: "storeID")
-                    newStore.setValue(storeName, forKey: "storeName")
-                    newStore.setValue(Double(storeLongitude), forKey: "storeLongitude")
-                    newStore.setValue(Double(storeLatitude), forKey: "storeLatitude")
-
-
-                    let newImage = NSEntityDescription.insertNewObject(forEntityName: "Image", into: context) as NSManagedObject
-                    newImage.setValue(Int(storeImageSize), forKey: "imageSize")
-                    newImage.setValue(Int(storeId), forKey:"storeID")
-                    let imageURL = URL(string: storeImage)!
-                    let imageData = try Data(contentsOf: imageURL)
-                    newImage.setValue(imageData, forKey: "imageFile")
-
-                    try context.save()
+                    let pathToStore = Bundle.main.path(forResource: "Store", ofType: "txt")
+                    let urlToStore = URL(fileURLWithPath: pathToStore!)
+                    let dataForReturn = try Data(contentsOf: urlToStore)
+                    self.writeToCoreData(dataForWrite: dataForReturn)
                 }
-
-                if (fetchedResults.count == 1)
-                {
-                    //TO INSERT: WHEN SOMETHING CHANGES -> UPDATE IT IN THE CORE DATA
-                }
-               
-             }
-                
-                storeModelDelegate?.reloadData()
-                storeModelDelegate?.enableUserInteraction()
+                catch {print(error)}
             }
             
-            catch
-            {
-                storeModelDelegate?.showError(withMessage: String(describing: error))
-            }
         }
+        
+    }
     //------------------------------------------------------------------------------------------------
     public func printDatabaseContents() //Prints the contents of the core data in the console -> for testing purposes
     {
@@ -170,6 +139,66 @@ public class StoreModel
         }
           return nil
     }
+    //------------------------------------------------------------------------------------------------
+    func writeToCoreData(dataForWrite:Data?)
+    {
+        do
+        {
+            let json = try? JSONSerialization.jsonObject(with: dataForWrite!, options: [])
+            guard let arrayStore = json as? [AnyObject]  else { return }
+            for store in arrayStore
+            {
+                
+                guard let storeDict = store as? [String:Any]    else {return}
+                
+                guard let storeId = storeDict["storeID"] as? String else {return}
+                guard let storeName =  storeDict["storeName"] as? String  else {return}
+                guard let storeLongitude = storeDict["storeLongitude"] as? String else {return}
+                guard let storeLatitude = storeDict["storeLatitude"] as? String else {return}
+                guard let storeImage = storeDict["storeImageUrl"] as? String else {return}
+                guard let storeImageSize = storeDict["storeImageSize"] as? Int else {return}
+                
+                let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext  //Fetching the current context
+                let fetchRequest:NSFetchRequest<Store> = Store.fetchRequest()
+                fetchRequest.predicate = NSPredicate(format: "storeID == %@", storeId )
+                let fetchedResults = try context.fetch(fetchRequest)
+                //--------is this store in the database?
+                if (fetchedResults.count == 0)
+                {
+                    self.storeModelDelegate?.dataFetchingStarted()
+                    let newStore = NSEntityDescription.insertNewObject(forEntityName: "Store", into: context) as NSManagedObject
+                    newStore.setValue(Int(storeId),  forKey: "storeID")
+                    newStore.setValue(storeName, forKey: "storeName")
+                    newStore.setValue(Double(storeLongitude), forKey: "storeLongitude")
+                    newStore.setValue(Double(storeLatitude), forKey: "storeLatitude")
+                    
+                    
+                    let newImage = NSEntityDescription.insertNewObject(forEntityName: "Image", into: context) as NSManagedObject
+                    newImage.setValue(Int(storeImageSize), forKey: "imageSize")
+                    newImage.setValue(Int(storeId), forKey:"storeID")
+                    let imageURL = URL(string: storeImage)!
+                    let imageData = try Data(contentsOf: imageURL)
+                    newImage.setValue(imageData, forKey: "imageFile")
+                    
+                    try context.save()
+                }
+                
+                if (fetchedResults.count == 1)
+                {
+                    //TO INSERT: WHEN SOMETHING CHANGES -> UPDATE IT IN THE CORE DATA
+                }
+                
+            }
+            self.storeModelDelegate?.didLoadData()
+            self.storeModelDelegate?.dataFetchingended()
+        }
+            
+        catch
+        {
+            self.storeModelDelegate?.showError(withMessage: String(describing: error))
+        }
+    }
+
     //------------------------------------------------------------------------------------------------
     func deleteAllData() //Drops all the contents from the core data
     {

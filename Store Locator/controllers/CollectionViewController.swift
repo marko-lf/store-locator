@@ -12,15 +12,15 @@ import CoreLocation
 import NVActivityIndicatorView
 
 protocol storeModelDelegate {
-    func reloadData()
-    func disableUserInteraction()
-    func enableUserInteraction()
+    func didLoadData()
+    func dataFetchingStarted()
+    func dataFetchingended()
     func showError(withMessage:String)
 }
 
 protocol locationModelDelegate
 {
-    func reloadData()
+    func didLoadData()
 }
 
 protocol networkModelDelegate {
@@ -34,7 +34,6 @@ class CollectionViewController: UICollectionViewController, storeModelDelegate, 
 {
    
 
-    public var netModule =  NetworkModel()
     public var storeModule = StoreModel()
     public var locationModule = LocationModel()
     public var miscFuncionalities = Misc()
@@ -85,10 +84,10 @@ class CollectionViewController: UICollectionViewController, storeModelDelegate, 
         refreshControl.beginRefreshing()
  
         storeModule.deleteAllData()
-        netModule.fetchJsonStoreData(usingMockData: storeModule.mockDataMode)
-        locationModule.initLoc = 0  //refresh will be provided using the delegate called from locationModel
-        refreshControl.endRefreshing()
         
+        storeModule.storeCoreDataInit()
+        
+        refreshControl.endRefreshing()
         
     }
     //-------------------------------------------------------------------------------------------------
@@ -104,16 +103,20 @@ class CollectionViewController: UICollectionViewController, storeModelDelegate, 
     
         storeModule.storeModelDelegate = self
         locationModule.locModuleDelegate = self
-        netModule.networkModelDelegate = self
+        
         
         locationModule.locationManager.delegate = self.locationModule
         locationModule.locationManager.requestWhenInUseAuthorization()
         locationModule.locationManager.startUpdatingLocation()
         locationModule.locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
         
-        locationModule.storeModel = self.storeModule
-        netModule.storeModel = self.storeModule
-        netModule.fetchJsonStoreData(usingMockData: storeModule.mockDataMode)
+        //storeModule.deleteAllData()
+        
+        storeModule.storeCoreDataInit()
+        
+        refreshControl.endRefreshing()
+        
+
         self.colView.addSubview(self.refreshControl)
         if (!Reachability.isConnectedToNetwork() && self.storeModule.mockDataMode == false)
         {
@@ -141,48 +144,50 @@ class CollectionViewController: UICollectionViewController, storeModelDelegate, 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
     {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! StoreCollectionViewCell
-            cell.storeName.text=""
-       
+        
         if (storeModule.stores.count != 0)
         {
-        cell.storeName.text = storeModule.stores[indexPath.row].storeName
-        cell.storeImage.image = UIImage(data: storeModule.images![(storeModule.stores[indexPath.row].storeID)]! as Data)
-        
+            cell.storeName.text = storeModule.stores[indexPath.row].storeName
+            cell.storeImage.image = UIImage(data: storeModule.images![(storeModule.stores[indexPath.row].storeID)]! as Data)
+            //cell.segueButton.tag = Int(storeModule.stores[indexPath.row].storeID)
+            
             if (locationModule.location != nil)
             {
-            cell.storeDistance.isHidden = false
-            cell.storeDistance.text = locationModule.distanceDict[(storeModule.stores[indexPath.row].storeID)]
-            cell.distanceActivityIndicator.isHidden = true
+                let userLoc = locationModule.locationManager.location!
+                let storeLoc = CLLocation(latitude: storeModule.stores[indexPath.row].storeLongitude, longitude: storeModule.stores[indexPath.row].storeLatitude)
+                cell.storeDistance.isHidden = false
+                cell.storeDistance.text = miscFuncionalities.calculateDistance(location1: userLoc, location2: storeLoc)
+                
+                cell.distanceActivityIndicator.isHidden = true
             }
         }
         else
         {
-           cell.storeDistance.isHidden = true
-           cell.distanceActivityIndicator.isHidden = false
-           cell.distanceActivityIndicator.startAnimating()
+            cell.storeDistance.isHidden = true
+            cell.distanceActivityIndicator.isHidden = false
+            cell.distanceActivityIndicator.startAnimating()
         }
+        
         cell.layer.borderWidth = 1
         cell.layer.borderColor = UIColor.white.cgColor
         return cell
-        }
-    
+    }
 
    //------------------------------------------------------------------------------------------------
-    func reloadData()
+    func didLoadData()
     {
         colView.reloadData()
     }
    //------------------------------------------------------------------------------------------------
-    func enableUserInteraction()
+    func dataFetchingended()
     {
       
         self.view.isUserInteractionEnabled = true
         fidgetSpinner?.stopAnimating()
     }
     //------------------------------------------------------------------------------------------------
-    func disableUserInteraction()
-    {
-        
+    func dataFetchingStarted()
+    {        
         self.view.isUserInteractionEnabled = false
         fidgetSpinner?.startAnimating()
         
