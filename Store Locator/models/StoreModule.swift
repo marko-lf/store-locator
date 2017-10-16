@@ -18,7 +18,8 @@ import Alamofire
 public class StoreModel
 {
   
-    public var mockDataMode:Bool = false  // false -> real data; true -> mock data;
+    public var mockDataMode:Bool = false
+     // false -> real data; true -> mock data;
     
     var storeModelDelegate:storeModelDelegate?
     var misc = Misc()
