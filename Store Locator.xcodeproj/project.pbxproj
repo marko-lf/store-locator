@@ -15,8 +15,6 @@
 		EA2E93EE1F8663B20057A745 /* Store_Locator.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = EA2E93EC1F8663B20057A745 /* Store_Locator.xcdatamodeld */; };
 		EA2E93F01F8663B20057A745 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EA2E93EF1F8663B20057A745 /* Assets.xcassets */; };
 		EA2E93F31F8663B20057A745 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA2E93F11F8663B20057A745 /* LaunchScreen.storyboard */; };
-		EA2E940C1F8665360057A745 /* phone.jpg in Resources */ = {isa = PBXBuildFile; fileRef = EA2E94091F8665360057A745 /* phone.jpg */; };
-		EA2E940D1F8665360057A745 /* PinAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2E940A1F8665360057A745 /* PinAnnotation.swift */; };
 		EA2E940E1F8665360057A745 /* StoreCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2E940B1F8665360057A745 /* StoreCollectionViewCell.swift */; };
 		EA2E94101F8665A30057A745 /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2E940F1F8665A30057A745 /* CollectionViewController.swift */; };
 		EA2E94161F8666770057A745 /* Store.txt in Resources */ = {isa = PBXBuildFile; fileRef = EA2E94141F8666770057A745 /* Store.txt */; };
@@ -25,8 +23,6 @@
 		EA822E901F8D0AFE00D8BB16 /* LocationModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA822E8F1F8D0AFE00D8BB16 /* LocationModule.swift */; };
 		EAC229DF1F8E5BC700895AAB /* MiscellaneousFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAC229DE1F8E5BC700895AAB /* MiscellaneousFunctions.swift */; };
 		EAC229E21F8E722900895AAB /* NVActivityIndicatorView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAC229E31F8E722900895AAB /* NVActivityIndicatorView.framework */; };
-		EAE90A161F87B2ED008FF64B /* StoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAE90A151F87B2ED008FF64B /* StoreViewController.swift */; };
-		EAE90A1A1F87B7D0008FF64B /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = EAE90A181F87B7D0008FF64B /* back.png */; };
 		EAE90A1F1F87C7B0008FF64B /* Store+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAE90A1B1F87C7B0008FF64B /* Store+CoreDataClass.swift */; };
 		EAE90A201F87C7B0008FF64B /* Store+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAE90A1C1F87C7B0008FF64B /* Store+CoreDataProperties.swift */; };
 		EAE90A211F87C7B0008FF64B /* Image+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAE90A1D1F87C7B0008FF64B /* Image+CoreDataClass.swift */; };
@@ -46,8 +42,6 @@
 		EA2E93EF1F8663B20057A745 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EA2E93F21F8663B20057A745 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EA2E93F41F8663B20057A745 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		EA2E94091F8665360057A745 /* phone.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = phone.jpg; sourceTree = "<group>"; };
-		EA2E940A1F8665360057A745 /* PinAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinAnnotation.swift; sourceTree = "<group>"; };
 		EA2E940B1F8665360057A745 /* StoreCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreCollectionViewCell.swift; sourceTree = "<group>"; };
 		EA2E940F1F8665A30057A745 /* CollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
 		EA2E94141F8666770057A745 /* Store.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Store.txt; sourceTree = "<group>"; };
@@ -56,8 +50,6 @@
 		EA822E8F1F8D0AFE00D8BB16 /* LocationModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationModule.swift; sourceTree = "<group>"; };
 		EAC229DE1F8E5BC700895AAB /* MiscellaneousFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiscellaneousFunctions.swift; sourceTree = "<group>"; };
 		EAC229E31F8E722900895AAB /* NVActivityIndicatorView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = NVActivityIndicatorView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		EAE90A151F87B2ED008FF64B /* StoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreViewController.swift; sourceTree = "<group>"; };
-		EAE90A181F87B7D0008FF64B /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back.png; sourceTree = "<group>"; };
 		EAE90A1B1F87C7B0008FF64B /* Store+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Store+CoreDataClass.swift"; sourceTree = "<group>"; };
 		EAE90A1C1F87C7B0008FF64B /* Store+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Store+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		EAE90A1D1F87C7B0008FF64B /* Image+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -121,9 +113,6 @@
 		EA2E93FA1F8663E90057A745 /* supporting files */ = {
 			isa = PBXGroup;
 			children = (
-				EA2E94091F8665360057A745 /* phone.jpg */,
-				EAE90A181F87B7D0008FF64B /* back.png */,
-				EA2E940A1F8665360057A745 /* PinAnnotation.swift */,
 				EA2E940B1F8665360057A745 /* StoreCollectionViewCell.swift */,
 				EA2E93EC1F8663B20057A745 /* Store_Locator.xcdatamodeld */,
 				EA2E93F11F8663B20057A745 /* LaunchScreen.storyboard */,
@@ -136,7 +125,6 @@
 		EA2E93FB1F8663F10057A745 /* controllers */ = {
 			isa = PBXGroup;
 			children = (
-				EAE90A151F87B2ED008FF64B /* StoreViewController.swift */,
 				EA2E940F1F8665A30057A745 /* CollectionViewController.swift */,
 			);
 			path = controllers;
@@ -248,10 +236,8 @@
 				EA2E93F31F8663B20057A745 /* LaunchScreen.storyboard in Resources */,
 				EA2E94161F8666770057A745 /* Store.txt in Resources */,
 				EA2E93F01F8663B20057A745 /* Assets.xcassets in Resources */,
-				EA2E940C1F8665360057A745 /* phone.jpg in Resources */,
 				EA2E94171F8666770057A745 /* StoreInfo.txt in Resources */,
 				EA2E93EB1F8663B20057A745 /* Main.storyboard in Resources */,
-				EAE90A1A1F87B7D0008FF64B /* back.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -321,7 +307,6 @@
 				EA2E93E61F8663B20057A745 /* AppDelegate.swift in Sources */,
 				EA2E940E1F8665360057A745 /* StoreCollectionViewCell.swift in Sources */,
 				EAE90A221F87C7B0008FF64B /* Image+CoreDataProperties.swift in Sources */,
-				EAE90A161F87B2ED008FF64B /* StoreViewController.swift in Sources */,
 				EA1CE6891F8BD46400B03C7B /* NetworkModule.swift in Sources */,
 				EAE90A1F1F87C7B0008FF64B /* Store+CoreDataClass.swift in Sources */,
 				EAC229DF1F8E5BC700895AAB /* MiscellaneousFunctions.swift in Sources */,
@@ -329,7 +314,6 @@
 				EAE90A201F87C7B0008FF64B /* Store+CoreDataProperties.swift in Sources */,
 				EA822E901F8D0AFE00D8BB16 /* LocationModule.swift in Sources */,
 				EA2E93EE1F8663B20057A745 /* Store_Locator.xcdatamodeld in Sources */,
-				EA2E940D1F8665360057A745 /* PinAnnotation.swift in Sources */,
 				EA189DAA1F90BF1C00C788A5 /* ReachabillityModule.swift in Sources */,
 				EA2E94101F8665A30057A745 /* CollectionViewController.swift in Sources */,
 				EA2E941A1F867F330057A745 /* StoreModule.swift in Sources */,
