@@ -10,6 +10,10 @@ import Foundation
 import Alamofire
 
 
+protocol NetworkModelDelegate {
+    func showError(withMessage:String)
+}
+
 public class NetworkModel
 {
     

@@ -12,7 +12,6 @@ class StoreCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var storeImage: UIImageView!
     @IBOutlet weak var storeName: UILabel! 
     @IBOutlet weak var storeDistance: UILabel!
-    @IBOutlet weak var segueButton: UIButton!
     @IBOutlet weak var distanceActivityIndicator: UIActivityIndicatorView!
     
     override func prepareForReuse() {

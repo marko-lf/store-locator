@@ -13,15 +13,19 @@ import CoreData
 import UIKit
 import Alamofire
 
-
+protocol StoreModelDelegate {
+    func didLoadData()
+    func dataFetchingended()
+    func showError(withMessage:String)
+}
 
 public class StoreModel
 {
   
-    public var mockDataMode:Bool = true
+    public var mockDataMode:Bool = false
     
     
-    var storeModelDelegate:storeModelDelegate?
+    var storeModelDelegate:StoreModelDelegate?
     var netModel = NetworkModel()
     var misc = Misc()
     

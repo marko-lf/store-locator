@@ -11,28 +11,19 @@ import CoreData
 import CoreLocation
 import NVActivityIndicatorView
 
-protocol storeModelDelegate {
-    func didLoadData()
-    func dataFetchingended()
-    func showError(withMessage:String)
-}
 
-protocol locationModelDelegate
-{
-    func didLoadData()
-}
 
-protocol networkModelDelegate {
-     func showError(withMessage:String)
-}
+
+
+
 
 
 private let reuseIdentifier = "Cell"
 
-class CollectionViewController: UICollectionViewController, storeModelDelegate, locationModelDelegate, networkModelDelegate, NVActivityIndicatorViewable
+class CollectionViewController: UICollectionViewController, NVActivityIndicatorViewable
 {
-   
-
+    
+    
     public var storeModule = StoreModel()
     public var locationModule = LocationModel()
     public var miscFuncionalities = Misc()
@@ -47,26 +38,26 @@ class CollectionViewController: UICollectionViewController, storeModelDelegate, 
             if (newValue == false) {self.view.isUserInteractionEnabled = false}
         }
     }
-        
+    
     var fidgetSpinner:NVActivityIndicatorView?
     
     //--------------------------------------------------------------------------------------------------
     lazy var refreshControl: UIRefreshControl =
-    {
-        
-        let refreshControl = UIRefreshControl()
-       
-        refreshControl.addTarget(self, action:
-            #selector(CollectionViewController.handleRefresh(_:)),
-                                 for: UIControlEvents.valueChanged)
-        
-        
-        refreshControl.isHidden = true
-        refreshControl.tintColor = UIColor.black
-        refreshControl.layer.zPosition = -1;
-     
-        
-        return refreshControl
+        {
+            
+            let refreshControl = UIRefreshControl()
+            
+            refreshControl.addTarget(self, action:
+                #selector(CollectionViewController.handleRefresh(_:)),
+                                     for: UIControlEvents.valueChanged)
+            
+            
+            refreshControl.isHidden = true
+            refreshControl.tintColor = UIColor.black
+            refreshControl.layer.zPosition = -1;
+            
+            
+            return refreshControl
     }()
     
     @objc func handleRefresh(_ refreshControl: UIRefreshControl)
@@ -86,7 +77,7 @@ class CollectionViewController: UICollectionViewController, storeModelDelegate, 
         storeModule.storeCoreDataInit()
         
         refreshControl.endRefreshing()
-       
+        
         
     }
     //-------------------------------------------------------------------------------------------------
@@ -96,7 +87,7 @@ class CollectionViewController: UICollectionViewController, storeModelDelegate, 
         
         let fidgetSpinnerHolder = CGRect(x: colView.center.x - 25, y: colView.center.y, width: CGFloat(50), height: CGFloat(50))
         fidgetSpinner = NVActivityIndicatorView(frame: fidgetSpinnerHolder, type:NVActivityIndicatorType.ballClipRotatePulse, color: UIColor.white,  padding: CGFloat(0))
-       
+        
         self.view.addSubview(fidgetSpinner!)
         
         fidgetSpinner?.startAnimating()
@@ -109,7 +100,7 @@ class CollectionViewController: UICollectionViewController, storeModelDelegate, 
         locationModule.locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
         
         storeModule.storeCoreDataInit()
-    
+        
         self.colView.addSubview(self.refreshControl)
         if (!Reachability.isConnectedToNetwork() && self.storeModule.mockDataMode == false)
         {
@@ -117,8 +108,8 @@ class CollectionViewController: UICollectionViewController, storeModelDelegate, 
         }
         enableUserInteraction = true
     }
-     //------------------------------------------------------------------------------------------------
-  
+    //------------------------------------------------------------------------------------------------
+    
     override func didReceiveMemoryWarning()
     {
         super.didReceiveMemoryWarning()
@@ -141,6 +132,7 @@ class CollectionViewController: UICollectionViewController, storeModelDelegate, 
         if (storeModule.stores.count != 0)
         {
             cell.storeName.text = storeModule.stores[indexPath.row].storeName
+            
             cell.storeImage.image = UIImage(data: storeModule.images![(storeModule.stores[indexPath.row].storeID)]! as Data)
             //cell.segueButton.tag = Int(storeModule.stores[indexPath.row].storeID)
             
@@ -163,26 +155,39 @@ class CollectionViewController: UICollectionViewController, storeModelDelegate, 
         
         cell.layer.borderWidth = 1
         cell.layer.borderColor = UIColor.white.cgColor
+        cell.bringSubview(toFront: cell.storeName)
         return cell
     }
-
-   //------------------------------------------------------------------------------------------------
-    func didLoadData()
-    {
-        colView.reloadData()
-    }
-   //------------------------------------------------------------------------------------------------
-    func dataFetchingended()
-    {
-      colView.reloadData()
-      enableUserInteraction = true
-      fidgetSpinner?.stopAnimating()
-    }
-    //------------------------------------------------------------------------------------------------
+}
+//------------------------------------------------------------------------------------------------
+extension CollectionViewController: NetworkModelDelegate {
     func showError(withMessage:String) {
         let alert = UIAlertController(title: "Error!", message: withMessage, preferredStyle: UIAlertControllerStyle.alert)
         alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
-
 }
+
+
+extension CollectionViewController: LocationModelDelegate {
+    func didLoadData()
+    {
+        colView.reloadData()
+    }
+}
+
+extension CollectionViewController: StoreModelDelegate {
+    func dataFetchingended()
+    {
+        colView.reloadData()
+        enableUserInteraction = true
+        fidgetSpinner?.stopAnimating()
+    }
+    
+}
+
+
+
+
+
+

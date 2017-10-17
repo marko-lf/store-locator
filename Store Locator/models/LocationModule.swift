@@ -9,6 +9,12 @@
 import Foundation
 import CoreLocation
 
+
+protocol LocationModelDelegate
+{
+    func didLoadData()
+}
+
 public class LocationModel: CLLocationManager, CLLocationManagerDelegate
 {
     
