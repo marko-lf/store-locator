@@ -12,21 +12,16 @@ import Alamofire
 
 public class NetworkModel
 {
-    var networkModelDelegate:networkModelDelegate?
-    
-    public var miscFunctions = Misc()
     
     func fetchJsonStoreData(completion: @escaping (Data?) -> ()) // ->
     {
-        
         Alamofire.request("https://acko.lotusflare.com/storeList").responseJSON //store list API courtesy of Acko
-            {
+        {
                 response in
                 completion(response.data)
         }
-        
     }
-    //------------------------------------------------------------------------------------------------    
+    
 }
 
 

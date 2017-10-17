@@ -13,7 +13,6 @@ import NVActivityIndicatorView
 
 protocol storeModelDelegate {
     func didLoadData()
-    func dataFetchingStarted()
     func dataFetchingended()
     func showError(withMessage:String)
 }
@@ -39,11 +38,17 @@ class CollectionViewController: UICollectionViewController, storeModelDelegate, 
     public var miscFuncionalities = Misc()
     @IBOutlet var colView: UICollectionView!
     public var reachability = Reachability()
+    
+    var enableUserInteraction:Bool = true
+    {
+        didSet(newValue)
+        {
+            if (newValue == true) {self.view.isUserInteractionEnabled = true }
+            if (newValue == false) {self.view.isUserInteractionEnabled = false}
+        }
+    }
         
     var fidgetSpinner:NVActivityIndicatorView?
-    
-   
-  
     
     //--------------------------------------------------------------------------------------------------
     lazy var refreshControl: UIRefreshControl =
@@ -55,19 +60,11 @@ class CollectionViewController: UICollectionViewController, storeModelDelegate, 
             #selector(CollectionViewController.handleRefresh(_:)),
                                  for: UIControlEvents.valueChanged)
         
-        if (self.storeModule.mockDataMode == true)
-        {
-        refreshControl.isHidden = false
-        refreshControl.tintColor = UIColor.white
-        refreshControl.layer.zPosition = -1;
-        }
         
-        else
-        {
-            refreshControl.isHidden = true
-            refreshControl.tintColor = UIColor.black
-            refreshControl.layer.zPosition = 1;
-        }
+        refreshControl.isHidden = true
+        refreshControl.tintColor = UIColor.black
+        refreshControl.layer.zPosition = -1;
+     
         
         return refreshControl
     }()
@@ -82,12 +79,14 @@ class CollectionViewController: UICollectionViewController, storeModelDelegate, 
         }
         self.fidgetSpinner?.startAnimating()
         refreshControl.beginRefreshing()
- 
+        
+        self.view.isUserInteractionEnabled = false
         storeModule.deleteAllData()
         
         storeModule.storeCoreDataInit()
         
         refreshControl.endRefreshing()
+       
         
     }
     //-------------------------------------------------------------------------------------------------
@@ -99,30 +98,24 @@ class CollectionViewController: UICollectionViewController, storeModelDelegate, 
         fidgetSpinner = NVActivityIndicatorView(frame: fidgetSpinnerHolder, type:NVActivityIndicatorType.ballClipRotatePulse, color: UIColor.white,  padding: CGFloat(0))
        
         self.view.addSubview(fidgetSpinner!)
-       
-    
+        
+        fidgetSpinner?.startAnimating()
+        enableUserInteraction = false
+        
         storeModule.storeModelDelegate = self
-        locationModule.locModuleDelegate = self
-        
-        
         locationModule.locationManager.delegate = self.locationModule
         locationModule.locationManager.requestWhenInUseAuthorization()
         locationModule.locationManager.startUpdatingLocation()
         locationModule.locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
         
-        //storeModule.deleteAllData()
-        
         storeModule.storeCoreDataInit()
-        
-        refreshControl.endRefreshing()
-        
-
+    
         self.colView.addSubview(self.refreshControl)
         if (!Reachability.isConnectedToNetwork() && self.storeModule.mockDataMode == false)
         {
             miscFuncionalities.noDataAvailable(sender: self)
         }
-        
+        enableUserInteraction = true
     }
      //------------------------------------------------------------------------------------------------
   
@@ -181,16 +174,9 @@ class CollectionViewController: UICollectionViewController, storeModelDelegate, 
    //------------------------------------------------------------------------------------------------
     func dataFetchingended()
     {
-      
-        self.view.isUserInteractionEnabled = true
-        fidgetSpinner?.stopAnimating()
-    }
-    //------------------------------------------------------------------------------------------------
-    func dataFetchingStarted()
-    {        
-        self.view.isUserInteractionEnabled = false
-        fidgetSpinner?.startAnimating()
-        
+      colView.reloadData()
+      enableUserInteraction = true
+      fidgetSpinner?.stopAnimating()
     }
     //------------------------------------------------------------------------------------------------
     func showError(withMessage:String) {

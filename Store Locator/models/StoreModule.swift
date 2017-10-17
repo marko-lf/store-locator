@@ -18,12 +18,14 @@ import Alamofire
 public class StoreModel
 {
   
-    public var mockDataMode:Bool = false
-     // false -> real data; true -> mock data;
+    public var mockDataMode:Bool = true
+    
     
     var storeModelDelegate:storeModelDelegate?
     var netModel = NetworkModel()
     var misc = Misc()
+    
+ 
 
     //------------------------------------------------------------------------------------------------
     var stores:[Store]    // contains: all the information about the store cached in core data
@@ -39,7 +41,7 @@ public class StoreModel
             }
             catch
             {
-                storeModelDelegate?.showError(withMessage: "Could not fetch information about the stores.")
+                storeModelDelegate?.showError(withMessage: error.localizedDescription)
                 return []
             }
         }
@@ -50,7 +52,7 @@ public class StoreModel
         get
         {
             var imageDict:[Int16:NSData] = [:]
-            let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext  //Fetching the current context
+            let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
             let fetchRequest:NSFetchRequest<Image> = Image.fetchRequest()
             do
             {
@@ -63,7 +65,7 @@ public class StoreModel
             }
             catch
             {
-                storeModelDelegate?.showError(withMessage: "Could not fetch the store image.")
+                storeModelDelegate?.showError(withMessage: error.localizedDescription)
                 return [:]
             }
         }
@@ -81,7 +83,8 @@ public class StoreModel
         }
         else
         {
-            let delayedTime = DispatchTime.now() + .seconds(1)
+            let delayedTime = DispatchTime.now() + misc.RNG()
+            print(delayedTime)
             DispatchQueue.main.asyncAfter(deadline: delayedTime)
             {
                 do
@@ -165,7 +168,7 @@ public class StoreModel
                 //--------is this store in the database?
                 if (fetchedResults.count == 0)
                 {
-                    self.storeModelDelegate?.dataFetchingStarted()
+                    
                     let newStore = NSEntityDescription.insertNewObject(forEntityName: "Store", into: context) as NSManagedObject
                     newStore.setValue(Int(storeId),  forKey: "storeID")
                     newStore.setValue(storeName, forKey: "storeName")
@@ -189,10 +192,10 @@ public class StoreModel
                 }
                 
             }
-            self.storeModelDelegate?.didLoadData()
-            self.storeModelDelegate?.dataFetchingended()
+           
+            storeModelDelegate?.dataFetchingended()
         }
-            
+       
         catch
         {
             self.storeModelDelegate?.showError(withMessage: String(describing: error))
@@ -211,7 +214,7 @@ public class StoreModel
         {
          try context.execute(DelAllReqVar)
          try context.execute(DelAllReqVar2)
-        
+         try context.save()
         }
         catch
         {

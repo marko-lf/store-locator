@@ -12,11 +12,7 @@ import CoreLocation
 public class LocationModel: CLLocationManager, CLLocationManagerDelegate
 {
     
-    
-    
     var locationManager = CLLocationManager()
-    var locModuleDelegate: locationModelDelegate?
-    
     
     //------------------------------------------------------------------------------------------------
     public func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation])
