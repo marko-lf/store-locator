@@ -8,17 +8,26 @@
 
 import UIKit
 import MapKit
+import NVActivityIndicatorView
+
 
 protocol storeInfoModelDelegate {
     func reloadData()
     func showError(withMessage:String)
 }
 
-class StoreViewController: UIViewController,storeInfoModelDelegate,networkModelDelegate {
+class StoreViewController: UIViewController,storeInfoModelDelegate, NVActivityIndicatorViewable {
     
     func reloadData()
     {
        updateUI()
+        storeNameLabel.isHidden = false
+        storeHoursLabel.isHidden = false
+        distanceLabel.isHidden = false
+        storeAddressLabel.isHidden = false
+        phoneButton.isHidden = false
+        activityIndicatorHolder.isHidden = true
+        fidgetSpinner?.stopAnimating()
     }
     
     func showError(withMessage:String) 
@@ -30,33 +39,39 @@ class StoreViewController: UIViewController,storeInfoModelDelegate,networkModelD
     
     public var storeModule:StoreModel?
     public var locationModule:LocationModel?
-    public var netModule:NetworkModel?
     public var storeID:Int?
-    var storePhone:String?
-    var  storeAddressIfNotProvided:String?
-    var storeLoc:CLLocationCoordinate2D?
-    
+    public var fidgetSpinner:NVActivityIndicatorView?
+    var misc = Misc()
     
     @IBOutlet weak var storeNameLabel: UILabel!
     @IBOutlet weak var storeAddressLabel: UILabel!
     @IBOutlet weak var storeHoursLabel: UILabel!
-    @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var phoneButton: UIButton!
-    @IBOutlet weak var noPhoneNumberAvail: UILabel!
-    @IBOutlet weak var zoomOnMapButton: UIButton!
     @IBOutlet weak var distanceLabel: UILabel!
-    @IBOutlet weak var mapNavBar: UINavigationBar!
-    
-    @IBOutlet weak var mapNavBarTItle: UINavigationItem!
+    @IBOutlet weak var activityIndicatorHolder: UIView!
     
     //------------------------------------------------------------------------------------------------
     override func viewDidLoad()
     {
-        storeModule?.storeInfoModelDelegate = self
-        netModule?.networkModelDelegate = self
         super.viewDidLoad()
-        updateUI()
-        // Do any additional setup after loading the view.
+        storeNameLabel.isHidden = true
+        storeHoursLabel.isHidden = true
+        distanceLabel.isHidden = true
+        storeAddressLabel.isHidden = true
+        phoneButton.isHidden = true
+        
+        let fidgetSpinnerHolder = CGRect(x: activityIndicatorHolder.center.x - 25, y: activityIndicatorHolder.center.y, width: CGFloat(50), height: CGFloat(50))
+         fidgetSpinner = NVActivityIndicatorView(frame: fidgetSpinnerHolder, type:NVActivityIndicatorType.ballClipRotatePulse, color: UIColor.white,  padding: CGFloat(0))
+        
+        self.view.addSubview(fidgetSpinner!)
+        
+        fidgetSpinner?.startAnimating()
+        
+        self.view.addSubview(fidgetSpinner!)
+        
+        fidgetSpinner?.startAnimating()
+        
+        //updateUI()
     }
     //------------------------------------------------------------------------------------------------
     override func didReceiveMemoryWarning()
@@ -67,56 +82,16 @@ class StoreViewController: UIViewController,storeInfoModelDelegate,networkModelD
     //------------------------------------------------------------------------------------------------
     @IBAction func callTheStore(_ sender: Any)
     {
-        if storePhone == nil
-        {
-            noPhoneNumberAvail.isHidden = false
-        }
-        else
-        {
-          storeModule?.misc.callTheStore(storePhone!)
-        }
+        misc.callTheStore((storeModule?.storeForID(storeID!).storePhone)!)
     }
     //------------------------------------------------------------------------------------------------
-    @IBAction func zoomOnMap(_ sender: UIButton)
-    {
-        self.mapView.frame.size.height = UIScreen.main.bounds.height
-        self.view.bringSubview(toFront: mapView)
-        self.navigationController!.navigationBar.isHidden = true
-        mapNavBarTItle.title = self.storeNameLabel.text!
-       
-        mapView.showsUserLocation = true
-        let mapSpan:MKCoordinateSpan = MKCoordinateSpanMake(0.1, 0.1)
-        let region = MKCoordinateRegionMake(storeLoc!, mapSpan)
-            
-        self.mapView.setRegion(region, animated: true)
-        
-        
-       // self.view.bringSubview(toFront: backFromMap)
-    }
-    //------------------------------------------------------------------------------------------------
-    @IBAction func zoomOutMap(_ sender: UIBarButtonItem)
-    {
-         updateUI()
-    }
-    //------------------------------------------------------------------------------------------------
+
     func updateUI()
     {
     self.navigationController?.navigationBar.isHidden = false
-    self.mapView.frame.size.height = UIScreen.main.bounds.height/3
-    self.view.bringSubview(toFront: zoomOnMapButton)
     let store = storeModule?.storeForID(storeID!)
-        storeNameLabel.text = store?.storeName
-                distanceLabel.text = locationModule?.distanceDict[Int16(storeID!)]
-            let storeAnnotation = MKPointAnnotation()
-                storeAnnotation.title = store?.storeName
-        storeAnnotation.coordinate =  CLLocationCoordinate2D(latitude: (store?.storeLongitude)!, longitude: (store?.storeLatitude)!)
-        storeLoc = CLLocationCoordinate2D(latitude: (store?.storeLongitude)!, longitude: (store?.storeLatitude)!)
-                self.mapView.addAnnotation(storeAnnotation)
-            
-                let mapSpan:MKCoordinateSpan = MKCoordinateSpanMake(0.1, 0.1)
-        let region = MKCoordinateRegionMake(CLLocationCoordinate2D(latitude: (store?.storeLongitude)!, longitude: (store?.storeLatitude)!), mapSpan)
-                self.mapView.setRegion(region, animated: true)
-            
+    storeNameLabel.text = store?.storeName
+  
         if store?.storeHours == nil || store?.storeHours == ""
                 {
                     storeHoursLabel.text = "No working hours info available"
@@ -137,17 +112,20 @@ class StoreViewController: UIViewController,storeInfoModelDelegate,networkModelD
             
         if store?.storePhone == nil || store?.storePhone == ""
                 {
-                   storePhone = nil
                    self.phoneButton.isHidden = true
                 }
                 else
                 {
-                    storePhone = store?.storePhone
                   self.phoneButton.isHidden = false
                 }
-            }
-
-
+        
+        if (locationModule?.locationManager.location != nil) || (store != nil)
+        {
+            let userLoc = locationModule?.locationManager.location!
+            let storeLoc = CLLocation(latitude: (store?.storeLongitude)!, longitude: (store?.storeLatitude)!)
+            distanceLabel.text = misc.calculateDistance(location1: userLoc!, location2: storeLoc)
+        }
+    }
    //------------------------------------------------------------------------------------------------
 
  }
