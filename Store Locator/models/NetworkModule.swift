@@ -25,6 +25,16 @@ public class NetworkModel
                 completion(response.data)
         }
     }
+    //------------------------------------------------------------------------------------------------
+    func fetchJsonStoreInfoData(idOfTheStore:Int, completion: @escaping (Data?) -> ()) // ->
+    {
+        let urlToApi:String = "https://acko.lotusflare.com/storeInfo?storeID=" + String(idOfTheStore)
+        Alamofire.request(urlToApi).responseJSON //store list API courtesy of Acko
+        {
+                response in
+                completion(response.data)
+        }
+    }
     
 }
 
