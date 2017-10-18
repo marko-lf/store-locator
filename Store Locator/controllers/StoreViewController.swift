@@ -11,31 +11,11 @@ import MapKit
 import NVActivityIndicatorView
 
 
-protocol storeInfoModelDelegate {
-    func reloadData()
-    func showError(withMessage:String)
-}
 
-class StoreViewController: UIViewController,storeInfoModelDelegate, NVActivityIndicatorViewable {
+
+class StoreViewController: UIViewController, NVActivityIndicatorViewable {
     
-    func reloadData()
-    {
-       updateUI()
-        storeNameLabel.isHidden = false
-        storeHoursLabel.isHidden = false
-        distanceLabel.isHidden = false
-        storeAddressLabel.isHidden = false
-        phoneButton.isHidden = false
-        activityIndicatorHolder.isHidden = true
-        fidgetSpinner?.stopAnimating()
-    }
-    
-    func showError(withMessage:String) 
-    {
-        let alert = UIAlertController(title: "Error!", message: withMessage, preferredStyle: UIAlertControllerStyle.alert)
-        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil))
-        self.present(alert, animated: true, completion: nil)
-    }
+
     
     public var storeModule:StoreModel?
     public var locationModule:LocationModel?
@@ -71,13 +51,11 @@ class StoreViewController: UIViewController,storeInfoModelDelegate, NVActivityIn
         
         fidgetSpinner?.startAnimating()
         
-        //updateUI()
     }
     //------------------------------------------------------------------------------------------------
     override func didReceiveMemoryWarning()
     {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     //------------------------------------------------------------------------------------------------
     @IBAction func callTheStore(_ sender: Any)
@@ -129,3 +107,27 @@ class StoreViewController: UIViewController,storeInfoModelDelegate, NVActivityIn
    //------------------------------------------------------------------------------------------------
 
  }
+
+extension StoreViewController: storeInfoModelDelegate {
+    
+    func dataIsReady()
+    {
+        updateUI()
+        storeNameLabel.isHidden = false
+        storeHoursLabel.isHidden = false
+        distanceLabel.isHidden = false
+        storeAddressLabel.isHidden = false
+        phoneButton.isHidden = false
+        activityIndicatorHolder.isHidden = true
+        fidgetSpinner?.stopAnimating()
+    }
+    
+    func showError(withMessage:String)
+    {
+        let alert = UIAlertController(title: "Error!", message: withMessage, preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+}
+

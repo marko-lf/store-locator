@@ -30,7 +30,7 @@ public class NetworkModel
     {
         let urlToApi:String = "https://acko.lotusflare.com/storeInfo?storeID=" + String(idOfTheStore)
         Alamofire.request(urlToApi).responseJSON //store list API courtesy of Acko
-            {
+        {
                 response in
                 completion(response.data)
         }

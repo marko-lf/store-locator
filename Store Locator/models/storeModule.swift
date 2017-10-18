@@ -19,10 +19,15 @@ protocol StoreModelDelegate {
     func showError(withMessage:String)
 }
 
+protocol storeInfoModelDelegate {
+    func dataIsReady()
+    func showError(withMessage:String)
+}
+
 public class StoreModel
 {
   
-    public var mockDataMode:Bool = true
+    public var mockDataMode:Bool = false
     
     
     var storeModelDelegate:StoreModelDelegate?
@@ -86,7 +91,7 @@ public class StoreModel
         let json = try? JSONSerialization.jsonObject(with: dataForWrite, options: [])
         
         if (mockDataMode == false)
-        {
+        { //real data
             guard let arrayStoreInfo = json as? [String:Any]  else { return }
             storeAddress = (arrayStoreInfo["storeAddress"]! as? String)!
             storePhone = (arrayStoreInfo["storePhone"]! as? String)!
@@ -101,7 +106,7 @@ public class StoreModel
         }
             
         else
-        {
+        { //mock data
             guard let arrayStoreInfo = json as? [AnyObject]  else { return }
             for storeInfo in arrayStoreInfo
             {
@@ -157,7 +162,7 @@ public class StoreModel
                 {
                     try context.save()
                 }
-                storeInfoModelDelegate?.reloadData()
+                storeInfoModelDelegate?.dataIsReady()
             }
         }
         catch { print(error) }

@@ -66,6 +66,7 @@ class CollectionViewController: UICollectionViewController, NVActivityIndicatorV
         {
             miscFuncionalities.noDataAvailable(sender: self)
             refreshControl.endRefreshing()
+            colView.contentOffset = .init()
             return
         }
         self.fidgetSpinner?.startAnimating()
@@ -105,6 +106,8 @@ class CollectionViewController: UICollectionViewController, NVActivityIndicatorV
         if (!Reachability.isConnectedToNetwork() && self.storeModule.mockDataMode == false)
         {
             miscFuncionalities.noDataAvailable(sender: self)
+            fidgetSpinner?.stopAnimating()
+            enableUserInteraction = true
         }
         enableUserInteraction = true
     }
@@ -161,8 +164,14 @@ class CollectionViewController: UICollectionViewController, NVActivityIndicatorV
     //------------------------------------------------------------------------------------------------
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
     {
+        if (!Reachability.isConnectedToNetwork() && self.storeModule.mockDataMode == false)
+        {
+            miscFuncionalities.noDataAvailable(sender: self)
+        }
+        
         if segue.identifier == "toStoreInfo"
         {
+            
             let storeVC = segue.destination as? StoreViewController
             storeModule.storeInfoFetch(forStore:  ((sender as? UIButton)?.tag)!)
             storeVC?.storeID = (sender as? UIButton)?.tag
