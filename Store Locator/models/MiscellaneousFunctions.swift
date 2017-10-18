@@ -73,5 +73,23 @@ public struct Misc {
         }
         return distanceString
     }
+    //------------------------------------------------------------------------------------------------
+    func callTheStore(_ phoneNumber:String)
+    {
+        var formatedNumber:String = phoneNumber
+        formatedNumber = formatedNumber.replacingOccurrences(of: "(", with: "")
+        formatedNumber =   formatedNumber.replacingOccurrences(of: ")", with: "")
+        formatedNumber =  formatedNumber.replacingOccurrences(of: " ", with: "")
+        formatedNumber =   formatedNumber.replacingOccurrences(of: "-", with: "")
+        if let phoneCallURL = URL(string: "tel://\(formatedNumber)")
+        {
+            let application:UIApplication = UIApplication.shared
+            if (application.canOpenURL(phoneCallURL))
+            {
+                application.open(phoneCallURL, options: [:], completionHandler: nil)
+            }
+        }
+    }
+
 }
 

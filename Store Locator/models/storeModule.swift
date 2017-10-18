@@ -19,6 +19,11 @@ protocol StoreModelDelegate {
     func showError(withMessage:String)
 }
 
+protocol storeInfoModelDelegate {
+    func dataIsReady()
+    func showError(withMessage:String)
+}
+
 public class StoreModel
 {
   
@@ -26,6 +31,7 @@ public class StoreModel
     
     
     var storeModelDelegate:StoreModelDelegate?
+    var storeInfoModelDelegate:storeInfoModelDelegate?
     var netModel = NetworkModel()
     var misc = Misc()
     
@@ -75,7 +81,123 @@ public class StoreModel
         }
     }
   //------------------------------------------------------------------------------------------------
-   
+    
+    public func parseAndUpdateStoreInfo(forStorebyID:Int, dataForWrite: Data)
+    {
+        var workHrs:String = ""
+        var storeAddress:String=""
+        var storePhone:String=""
+        
+        let json = try? JSONSerialization.jsonObject(with: dataForWrite, options: [])
+        
+        if (mockDataMode == false)
+        { //real data
+            guard let arrayStoreInfo = json as? [String:Any]  else { return }
+            storeAddress = (arrayStoreInfo["storeAddress"]! as? String)!
+            storePhone = (arrayStoreInfo["storePhone"]! as? String)!
+            let storeHours = arrayStoreInfo["storeHours"]! as? [String:String]
+            workHrs=""
+            for hours in storeHours!
+            {
+                workHrs.append(hours.key + "-" + hours.value)
+                workHrs.append("\n")
+            }
+            workHrs = String(workHrs.dropLast())
+        }
+            
+        else
+        { //mock data
+            guard let arrayStoreInfo = json as? [AnyObject]  else { return }
+            for storeInfo in arrayStoreInfo
+            {
+                guard let storeInfoDict = storeInfo as? [String:Any] else {return}
+                guard let storeInfoID = storeInfoDict["storeID"] as? String else {return}
+                
+                if Int(storeInfoID) == forStorebyID
+                {
+                    guard let storeInfoHours = storeInfoDict["storeHours"] as? [String:String] else {return}
+                    storePhone = (storeInfoDict["storePhone"]! as? String)!
+                    storeAddress = (storeInfoDict["storeAddress"]! as? String)!
+                    
+                    for hours in storeInfoHours
+                    {
+                        workHrs.append(hours.key + "-" + hours.value)
+                        workHrs.append("\n")
+                    }
+                    workHrs = String(workHrs.dropLast())
+                    break
+                    
+                }
+                
+            }
+        }
+        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        let fetchRequest:NSFetchRequest<Store> = Store.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "storeID == %@", String(forStorebyID))
+        
+        do
+        {
+            let fetchedResults = try context.fetch(fetchRequest)
+            var updateNeeded:Bool = false
+            if (fetchedResults.count == 1)
+            {
+                if workHrs != fetchedResults[0].storeHours
+                {
+                    fetchedResults[0].setValue(workHrs,  forKey: "storeHours")
+                    updateNeeded = true
+                }
+                if storePhone != fetchedResults[0].storePhone
+                {
+                    fetchedResults[0].setValue(storePhone, forKey: "storePhone")
+                    updateNeeded = true
+                }
+                if storeAddress != fetchedResults[0].storeAddress
+                {
+                    fetchedResults[0].setValue(storeAddress,  forKey: "storeAddress")
+                    updateNeeded = true
+                }
+                
+                
+                if (updateNeeded == true)
+                {
+                    try context.save()
+                }
+                storeInfoModelDelegate?.dataIsReady()
+            }
+        }
+        catch { print(error) }
+    }
+   //------------------------------------------------------------------------------------------------
+    @objc public func storeInfoFetch(forStore:Int)
+    {
+        
+        if (mockDataMode == false)
+        {
+            netModel.fetchJsonStoreInfoData(idOfTheStore: forStore, completion: { (jsonFile) in
+                self.parseAndUpdateStoreInfo(forStorebyID:forStore, dataForWrite: jsonFile!)
+            })
+        }
+        else
+        {
+            let delayedTime = DispatchTime.now() + misc.RNG()
+            print(delayedTime)
+            DispatchQueue.main.asyncAfter(deadline: delayedTime)
+            {
+                do
+                {
+                    let pathToStore = Bundle.main.path(forResource: "StoreInfo", ofType: "txt")
+                    let urlToStore = URL(fileURLWithPath: pathToStore!)
+                    let dataForReturn = try Data(contentsOf: urlToStore)
+                    self.parseAndUpdateStoreInfo(forStorebyID:forStore, dataForWrite: dataForReturn)
+                }
+                catch {print(error)}
+            }
+            
+        }
+        
+    }
+
+     //------------------------------------------------------------------------------------------------
     @objc public func storeCoreDataInit()
     {
         

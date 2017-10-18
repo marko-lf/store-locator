@@ -21,6 +21,8 @@
 		EA2E94171F8666770057A745 /* StoreInfo.txt in Resources */ = {isa = PBXBuildFile; fileRef = EA2E94151F8666770057A745 /* StoreInfo.txt */; };
 		EA2E941A1F867F330057A745 /* StoreModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2E94191F867F330057A745 /* StoreModule.swift */; };
 		EA822E901F8D0AFE00D8BB16 /* LocationModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA822E8F1F8D0AFE00D8BB16 /* LocationModule.swift */; };
+		EA86C0D81F96508700C258B7 /* StoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA86C0D71F96508700C258B7 /* StoreViewController.swift */; };
+		EA86C0DA1F96510D00C258B7 /* phone.jpg in Resources */ = {isa = PBXBuildFile; fileRef = EA86C0D91F96510D00C258B7 /* phone.jpg */; };
 		EAC229DF1F8E5BC700895AAB /* MiscellaneousFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAC229DE1F8E5BC700895AAB /* MiscellaneousFunctions.swift */; };
 		EAC229E21F8E722900895AAB /* NVActivityIndicatorView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAC229E31F8E722900895AAB /* NVActivityIndicatorView.framework */; };
 		EAE90A1F1F87C7B0008FF64B /* Store+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAE90A1B1F87C7B0008FF64B /* Store+CoreDataClass.swift */; };
@@ -48,6 +50,8 @@
 		EA2E94151F8666770057A745 /* StoreInfo.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = StoreInfo.txt; sourceTree = "<group>"; };
 		EA2E94191F867F330057A745 /* StoreModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreModule.swift; sourceTree = "<group>"; };
 		EA822E8F1F8D0AFE00D8BB16 /* LocationModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationModule.swift; sourceTree = "<group>"; };
+		EA86C0D71F96508700C258B7 /* StoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreViewController.swift; sourceTree = "<group>"; };
+		EA86C0D91F96510D00C258B7 /* phone.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = phone.jpg; sourceTree = "<group>"; };
 		EAC229DE1F8E5BC700895AAB /* MiscellaneousFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiscellaneousFunctions.swift; sourceTree = "<group>"; };
 		EAC229E31F8E722900895AAB /* NVActivityIndicatorView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = NVActivityIndicatorView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EAE90A1B1F87C7B0008FF64B /* Store+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Store+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -113,6 +117,7 @@
 		EA2E93FA1F8663E90057A745 /* supporting files */ = {
 			isa = PBXGroup;
 			children = (
+				EA86C0D91F96510D00C258B7 /* phone.jpg */,
 				EA2E940B1F8665360057A745 /* StoreCollectionViewCell.swift */,
 				EA2E93EC1F8663B20057A745 /* Store_Locator.xcdatamodeld */,
 				EA2E93F11F8663B20057A745 /* LaunchScreen.storyboard */,
@@ -125,6 +130,7 @@
 		EA2E93FB1F8663F10057A745 /* controllers */ = {
 			isa = PBXGroup;
 			children = (
+				EA86C0D71F96508700C258B7 /* StoreViewController.swift */,
 				EA2E940F1F8665A30057A745 /* CollectionViewController.swift */,
 			);
 			path = controllers;
@@ -235,6 +241,7 @@
 			files = (
 				EA2E93F31F8663B20057A745 /* LaunchScreen.storyboard in Resources */,
 				EA2E94161F8666770057A745 /* Store.txt in Resources */,
+				EA86C0DA1F96510D00C258B7 /* phone.jpg in Resources */,
 				EA2E93F01F8663B20057A745 /* Assets.xcassets in Resources */,
 				EA2E94171F8666770057A745 /* StoreInfo.txt in Resources */,
 				EA2E93EB1F8663B20057A745 /* Main.storyboard in Resources */,
@@ -310,6 +317,7 @@
 				EA1CE6891F8BD46400B03C7B /* NetworkModule.swift in Sources */,
 				EAE90A1F1F87C7B0008FF64B /* Store+CoreDataClass.swift in Sources */,
 				EAC229DF1F8E5BC700895AAB /* MiscellaneousFunctions.swift in Sources */,
+				EA86C0D81F96508700C258B7 /* StoreViewController.swift in Sources */,
 				EAE90A211F87C7B0008FF64B /* Image+CoreDataClass.swift in Sources */,
 				EAE90A201F87C7B0008FF64B /* Store+CoreDataProperties.swift in Sources */,
 				EA822E901F8D0AFE00D8BB16 /* LocationModule.swift in Sources */,

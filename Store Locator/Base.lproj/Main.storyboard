@@ -5,12 +5,15 @@
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
         <array key="HelveticaNeue.ttc">
+            <string>HelveticaNeue</string>
             <string>HelveticaNeue-Bold</string>
         </array>
         <array key="HelveticaNeueLights.ttc">
@@ -18,7 +21,7 @@
         </array>
     </customFonts>
     <scenes>
-        <!--Store Locator-->
+        <!--STORES-->
         <scene sceneID="Tv5-R6-Xex">
             <objects>
                 <collectionViewController storyboardIdentifier="colView2" id="8u0-V6-n7d" customClass="CollectionViewController" customModule="Store_Locator" sceneMemberID="viewController">
@@ -48,10 +51,24 @@
                                         </activityIndicatorView>
                                         <view alpha="0.64999997615814209" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UqZ-PH-NAZ">
                                             <rect key="frame" x="0.0" y="0.0" width="187" height="150"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nn3-Ur-i6v">
+                                                    <rect key="frame" x="0.0" y="0.0" width="187" height="150"/>
+                                                    <connections>
+                                                        <segue destination="hji-9K-7wq" kind="show" identifier="toStoreInfo" id="NAh-jp-txh"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
                                             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <constraints>
+                                                <constraint firstItem="nn3-Ur-i6v" firstAttribute="leading" secondItem="UqZ-PH-NAZ" secondAttribute="leading" id="DK7-Fr-TbX"/>
+                                                <constraint firstAttribute="trailing" secondItem="nn3-Ur-i6v" secondAttribute="trailing" id="JFe-gg-D1I"/>
+                                                <constraint firstAttribute="bottom" secondItem="nn3-Ur-i6v" secondAttribute="bottom" id="oFu-aN-Tzl"/>
+                                                <constraint firstItem="nn3-Ur-i6v" firstAttribute="top" secondItem="UqZ-PH-NAZ" secondAttribute="top" id="rRT-Ja-Wzf"/>
+                                            </constraints>
                                         </view>
                                         <label clearsContextBeforeDrawing="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Store Name" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="9" preferredMaxLayoutWidth="200" translatesAutoresizingMaskIntoConstraints="NO" id="sDy-M9-2VO">
-                                            <rect key="frame" x="8" y="64.5" width="171" height="21.5"/>
+                                            <rect key="frame" x="24" y="64.5" width="139" height="21.5"/>
                                             <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <accessibility key="accessibilityConfiguration">
                                                 <accessibilityTraits key="traits" staticText="YES" updatesFrequently="YES"/>
@@ -61,7 +78,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="distance" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" preferredMaxLayoutWidth="72" translatesAutoresizingMaskIntoConstraints="NO" id="7i2-4m-7VM">
-                                            <rect key="frame" x="8" y="93" width="171" height="17"/>
+                                            <rect key="frame" x="24" y="93" width="139" height="17"/>
                                             <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
                                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -90,6 +107,7 @@
                                 </constraints>
                                 <connections>
                                     <outlet property="distanceActivityIndicator" destination="aaz-oi-t8D" id="MZt-S8-mNz"/>
+                                    <outlet property="segueButton" destination="nn3-Ur-i6v" id="Wap-Td-cgQ"/>
                                     <outlet property="storeDistance" destination="7i2-4m-7VM" id="NNh-9W-j9i"/>
                                     <outlet property="storeImage" destination="pHq-KL-17f" id="IGM-l4-cEG"/>
                                     <outlet property="storeName" destination="sDy-M9-2VO" id="SEm-at-axe"/>
@@ -101,14 +119,14 @@
                             <outlet property="delegate" destination="8u0-V6-n7d" id="J17-9l-4c4"/>
                         </connections>
                     </collectionView>
-                    <navigationItem key="navigationItem" title="Store Locator" id="6ri-O1-9mm"/>
+                    <navigationItem key="navigationItem" title="STORES" id="6ri-O1-9mm"/>
                     <connections>
                         <outlet property="colView" destination="hia-EX-aFp" id="ObJ-5w-4Mu"/>
                     </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="N9H-yX-haC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-524" y="-1352.473763118441"/>
+            <point key="canvasLocation" x="-628" y="-1352.473763118441"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="QLK-Rr-cZW">
@@ -128,5 +146,99 @@
             </objects>
             <point key="canvasLocation" x="-1580" y="-1352"/>
         </scene>
+        <!--Store View Controller-->
+        <scene sceneID="lEs-oY-sgM">
+            <objects>
+                <viewController id="hji-9K-7wq" customClass="StoreViewController" customModule="Store_Locator" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="rEf-Tg-mis">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Store Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="1" translatesAutoresizingMaskIntoConstraints="NO" id="prD-TP-j7E">
+                                <rect key="frame" x="16" y="313" width="101.5" height="22.5"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="19"/>
+                                <color key="textColor" red="0.95904562410000005" green="1" blue="0.94966787600000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Oe-w3-pQK">
+                                <rect key="frame" x="16" y="591" width="60" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="AHQ-Jp-LSw"/>
+                                    <constraint firstAttribute="width" constant="60" id="LRC-i9-5Id"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <inset key="contentEdgeInsets" minX="16" minY="16" maxX="16" maxY="16"/>
+                                <state key="normal" title="Button" image="phone.jpg"/>
+                                <connections>
+                                    <action selector="callTheStore:" destination="hji-9K-7wq" eventType="touchUpInside" id="thc-f0-ok9"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Store Address" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="5X7-YW-Gfj">
+                                <rect key="frame" x="16" y="383" width="95.5" height="18"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
+                                <color key="textColor" red="0.95904562410000005" green="1" blue="0.94966787600000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Distance" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Doh-Il-BAp">
+                                <rect key="frame" x="16" y="351.5" width="49" height="15.5"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="13"/>
+                                <color key="textColor" red="0.95904562410000005" green="1" blue="0.94966787600000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="topRight" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Store hours" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="aVQ-bR-QWo">
+                                <rect key="frame" x="293.5" y="313" width="65.5" height="15.5"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="13"/>
+                                <color key="textColor" red="0.95904562410000005" green="1" blue="0.94966787600000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="xvH-d0-JcH">
+                                <rect key="frame" x="0.0" y="64" width="375" height="233"/>
+                            </mapView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VkK-J7-r1T">
+                                <rect key="frame" x="0.0" y="297" width="375" height="370"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="prD-TP-j7E" firstAttribute="top" secondItem="xvH-d0-JcH" secondAttribute="bottom" constant="16" id="0Os-ku-FgB"/>
+                            <constraint firstItem="nBx-gz-wNP" firstAttribute="bottom" secondItem="5Oe-w3-pQK" secondAttribute="bottom" constant="16" id="0zY-Bg-tdy"/>
+                            <constraint firstItem="xvH-d0-JcH" firstAttribute="trailing" secondItem="rEf-Tg-mis" secondAttribute="trailing" id="4OS-QJ-DvP"/>
+                            <constraint firstItem="nBx-gz-wNP" firstAttribute="trailing" secondItem="aVQ-bR-QWo" secondAttribute="trailing" constant="16" id="5kq-UN-HUe"/>
+                            <constraint firstItem="prD-TP-j7E" firstAttribute="leading" secondItem="nBx-gz-wNP" secondAttribute="leading" constant="16" id="7Bf-CX-oqD"/>
+                            <constraint firstItem="VkK-J7-r1T" firstAttribute="bottom" secondItem="nBx-gz-wNP" secondAttribute="bottom" id="8wX-Es-q9G"/>
+                            <constraint firstItem="VkK-J7-r1T" firstAttribute="trailing" secondItem="nBx-gz-wNP" secondAttribute="trailing" id="Dfc-Mq-dWk"/>
+                            <constraint firstItem="Doh-Il-BAp" firstAttribute="leading" secondItem="nBx-gz-wNP" secondAttribute="leading" constant="16" id="LEw-PK-U4n"/>
+                            <constraint firstItem="xvH-d0-JcH" firstAttribute="leading" secondItem="rEf-Tg-mis" secondAttribute="leading" id="Myl-Xn-Qjd"/>
+                            <constraint firstItem="5Oe-w3-pQK" firstAttribute="top" relation="greaterThanOrEqual" secondItem="5X7-YW-Gfj" secondAttribute="bottom" constant="8" id="Oft-HS-3iI"/>
+                            <constraint firstItem="VkK-J7-r1T" firstAttribute="leading" secondItem="nBx-gz-wNP" secondAttribute="leading" id="RpT-qN-tey"/>
+                            <constraint firstItem="5X7-YW-Gfj" firstAttribute="top" secondItem="Doh-Il-BAp" secondAttribute="bottom" constant="16" id="W9t-vs-M7u"/>
+                            <constraint firstItem="Doh-Il-BAp" firstAttribute="top" secondItem="prD-TP-j7E" secondAttribute="bottom" constant="16" id="WNv-81-oqa"/>
+                            <constraint firstItem="aVQ-bR-QWo" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="prD-TP-j7E" secondAttribute="trailing" constant="8" id="Yzd-tT-N4n"/>
+                            <constraint firstItem="aVQ-bR-QWo" firstAttribute="top" secondItem="xvH-d0-JcH" secondAttribute="bottom" constant="16" id="bj3-c5-HZu"/>
+                            <constraint firstItem="xvH-d0-JcH" firstAttribute="top" secondItem="nBx-gz-wNP" secondAttribute="top" id="oP9-DV-P5Y"/>
+                            <constraint firstItem="xvH-d0-JcH" firstAttribute="height" secondItem="rEf-Tg-mis" secondAttribute="height" multiplier="0.35" id="tmq-Jq-k6t"/>
+                            <constraint firstItem="5X7-YW-Gfj" firstAttribute="leading" secondItem="nBx-gz-wNP" secondAttribute="leading" constant="16" id="vub-Ee-duO"/>
+                            <constraint firstItem="VkK-J7-r1T" firstAttribute="top" secondItem="xvH-d0-JcH" secondAttribute="bottom" id="xeX-Aj-PU6"/>
+                            <constraint firstItem="5Oe-w3-pQK" firstAttribute="leading" secondItem="nBx-gz-wNP" secondAttribute="leading" constant="16" id="zLT-Rn-IPi"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="nBx-gz-wNP"/>
+                    </view>
+                    <connections>
+                        <outlet property="activityIndicatorHolder" destination="VkK-J7-r1T" id="esf-cn-uPf"/>
+                        <outlet property="distanceLabel" destination="Doh-Il-BAp" id="6pD-Ed-8qD"/>
+                        <outlet property="phoneButton" destination="5Oe-w3-pQK" id="bOF-FC-al2"/>
+                        <outlet property="storeAddressLabel" destination="5X7-YW-Gfj" id="IJT-fp-xpW"/>
+                        <outlet property="storeHoursLabel" destination="aVQ-bR-QWo" id="64S-ND-Tb5"/>
+                        <outlet property="storeNameLabel" destination="prD-TP-j7E" id="Lw8-41-uhA"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zjt-O6-srY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="476" y="-1352.473763118441"/>
+        </scene>
     </scenes>
+    <resources>
+        <image name="phone.jpg" width="502" height="508"/>
+    </resources>
 </document>

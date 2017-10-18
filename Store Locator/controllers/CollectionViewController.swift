@@ -66,6 +66,7 @@ class CollectionViewController: UICollectionViewController, NVActivityIndicatorV
         {
             miscFuncionalities.noDataAvailable(sender: self)
             refreshControl.endRefreshing()
+            colView.contentOffset = .init()
             return
         }
         self.fidgetSpinner?.startAnimating()
@@ -105,6 +106,8 @@ class CollectionViewController: UICollectionViewController, NVActivityIndicatorV
         if (!Reachability.isConnectedToNetwork() && self.storeModule.mockDataMode == false)
         {
             miscFuncionalities.noDataAvailable(sender: self)
+            fidgetSpinner?.stopAnimating()
+            enableUserInteraction = true
         }
         enableUserInteraction = true
     }
@@ -134,7 +137,7 @@ class CollectionViewController: UICollectionViewController, NVActivityIndicatorV
             cell.storeName.text = storeModule.stores[indexPath.row].storeName
             
             cell.storeImage.image = UIImage(data: storeModule.images![(storeModule.stores[indexPath.row].storeID)]! as Data)
-            //cell.segueButton.tag = Int(storeModule.stores[indexPath.row].storeID)
+            cell.segueButton.tag = Int(storeModule.stores[indexPath.row].storeID)
             
             if (locationModule.location != nil)
             {
@@ -158,6 +161,27 @@ class CollectionViewController: UICollectionViewController, NVActivityIndicatorV
         cell.bringSubview(toFront: cell.storeName)
         return cell
     }
+    //------------------------------------------------------------------------------------------------
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
+    {
+        if (!Reachability.isConnectedToNetwork() && self.storeModule.mockDataMode == false)
+        {
+            miscFuncionalities.noDataAvailable(sender: self)
+        }
+        
+        if segue.identifier == "toStoreInfo"
+        {
+            
+            let storeVC = segue.destination as? StoreViewController
+            storeModule.storeInfoFetch(forStore:  ((sender as? UIButton)?.tag)!)
+            storeVC?.storeID = (sender as? UIButton)?.tag
+            storeModule.storeInfoModelDelegate = storeVC!
+            storeVC?.storeModule = self.storeModule
+            storeVC?.locationModule = self.locationModule
+            
+            
+        }
+    }
 }
 //------------------------------------------------------------------------------------------------
 extension CollectionViewController: NetworkModelDelegate {
@@ -169,12 +193,7 @@ extension CollectionViewController: NetworkModelDelegate {
 }
 
 
-extension CollectionViewController: LocationModelDelegate {
-    func didLoadData()
-    {
-        colView.reloadData()
-    }
-}
+
 
 extension CollectionViewController: StoreModelDelegate {
     func dataFetchingended()
@@ -182,6 +201,11 @@ extension CollectionViewController: StoreModelDelegate {
         colView.reloadData()
         enableUserInteraction = true
         fidgetSpinner?.stopAnimating()
+    }
+    
+    func didLoadData()
+    {
+        colView.reloadData()
     }
     
 }
