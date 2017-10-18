@@ -198,6 +198,20 @@
                                 <rect key="frame" x="0.0" y="297" width="375" height="370"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mkv-kX-hch">
+                                <rect key="frame" x="0.0" y="64" width="375" height="233"/>
+                                <connections>
+                                    <action selector="openTheMapClicked:" destination="hji-9K-7wq" eventType="touchUpInside" id="rLK-gI-88u"/>
+                                </connections>
+                            </button>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y8t-zl-XvG">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
+                                <items>
+                                    <navigationItem title="Title" id="q9E-o2-Nai">
+                                        <barButtonItem key="rightBarButtonItem" title="Back" id="176-c4-4As"/>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -206,14 +220,21 @@
                             <constraint firstItem="xvH-d0-JcH" firstAttribute="trailing" secondItem="rEf-Tg-mis" secondAttribute="trailing" id="4OS-QJ-DvP"/>
                             <constraint firstItem="nBx-gz-wNP" firstAttribute="trailing" secondItem="aVQ-bR-QWo" secondAttribute="trailing" constant="16" id="5kq-UN-HUe"/>
                             <constraint firstItem="prD-TP-j7E" firstAttribute="leading" secondItem="nBx-gz-wNP" secondAttribute="leading" constant="16" id="7Bf-CX-oqD"/>
+                            <constraint firstItem="y8t-zl-XvG" firstAttribute="leading" secondItem="rEf-Tg-mis" secondAttribute="leading" id="8JA-VH-7qR"/>
                             <constraint firstItem="VkK-J7-r1T" firstAttribute="bottom" secondItem="nBx-gz-wNP" secondAttribute="bottom" id="8wX-Es-q9G"/>
+                            <constraint firstItem="nBx-gz-wNP" firstAttribute="trailing" secondItem="Mkv-kX-hch" secondAttribute="trailing" id="9bc-hd-KJ1"/>
                             <constraint firstItem="VkK-J7-r1T" firstAttribute="trailing" secondItem="nBx-gz-wNP" secondAttribute="trailing" id="Dfc-Mq-dWk"/>
                             <constraint firstItem="Doh-Il-BAp" firstAttribute="leading" secondItem="nBx-gz-wNP" secondAttribute="leading" constant="16" id="LEw-PK-U4n"/>
                             <constraint firstItem="xvH-d0-JcH" firstAttribute="leading" secondItem="rEf-Tg-mis" secondAttribute="leading" id="Myl-Xn-Qjd"/>
+                            <constraint firstItem="y8t-zl-XvG" firstAttribute="top" secondItem="rEf-Tg-mis" secondAttribute="top" id="NkP-tV-cte"/>
+                            <constraint firstItem="VkK-J7-r1T" firstAttribute="top" secondItem="Mkv-kX-hch" secondAttribute="bottom" id="O5D-un-uT6"/>
                             <constraint firstItem="5Oe-w3-pQK" firstAttribute="top" relation="greaterThanOrEqual" secondItem="5X7-YW-Gfj" secondAttribute="bottom" constant="8" id="Oft-HS-3iI"/>
                             <constraint firstItem="VkK-J7-r1T" firstAttribute="leading" secondItem="nBx-gz-wNP" secondAttribute="leading" id="RpT-qN-tey"/>
+                            <constraint firstAttribute="trailing" secondItem="y8t-zl-XvG" secondAttribute="trailing" id="TsW-6c-kDO"/>
+                            <constraint firstItem="Mkv-kX-hch" firstAttribute="leading" secondItem="nBx-gz-wNP" secondAttribute="leading" id="VHd-1z-1Mx"/>
                             <constraint firstItem="5X7-YW-Gfj" firstAttribute="top" secondItem="Doh-Il-BAp" secondAttribute="bottom" constant="16" id="W9t-vs-M7u"/>
                             <constraint firstItem="Doh-Il-BAp" firstAttribute="top" secondItem="prD-TP-j7E" secondAttribute="bottom" constant="16" id="WNv-81-oqa"/>
+                            <constraint firstItem="Mkv-kX-hch" firstAttribute="top" secondItem="nBx-gz-wNP" secondAttribute="top" id="YwQ-Co-8i5"/>
                             <constraint firstItem="aVQ-bR-QWo" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="prD-TP-j7E" secondAttribute="trailing" constant="8" id="Yzd-tT-N4n"/>
                             <constraint firstItem="aVQ-bR-QWo" firstAttribute="top" secondItem="xvH-d0-JcH" secondAttribute="bottom" constant="16" id="bj3-c5-HZu"/>
                             <constraint firstItem="xvH-d0-JcH" firstAttribute="top" secondItem="nBx-gz-wNP" secondAttribute="top" id="oP9-DV-P5Y"/>
@@ -221,15 +242,19 @@
                             <constraint firstItem="5X7-YW-Gfj" firstAttribute="leading" secondItem="nBx-gz-wNP" secondAttribute="leading" constant="16" id="vub-Ee-duO"/>
                             <constraint firstItem="VkK-J7-r1T" firstAttribute="top" secondItem="xvH-d0-JcH" secondAttribute="bottom" id="xeX-Aj-PU6"/>
                             <constraint firstItem="5Oe-w3-pQK" firstAttribute="leading" secondItem="nBx-gz-wNP" secondAttribute="leading" constant="16" id="zLT-Rn-IPi"/>
+                            <constraint firstItem="xvH-d0-JcH" firstAttribute="top" secondItem="y8t-zl-XvG" secondAttribute="bottom" id="zyC-wz-cD4"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="nBx-gz-wNP"/>
                     </view>
                     <connections>
                         <outlet property="activityIndicatorHolder" destination="VkK-J7-r1T" id="esf-cn-uPf"/>
                         <outlet property="distanceLabel" destination="Doh-Il-BAp" id="6pD-Ed-8qD"/>
+                        <outlet property="mapNavBar" destination="y8t-zl-XvG" id="TXe-Rb-c0Y"/>
+                        <outlet property="openTheMap" destination="Mkv-kX-hch" id="owB-H7-BIN"/>
                         <outlet property="phoneButton" destination="5Oe-w3-pQK" id="bOF-FC-al2"/>
                         <outlet property="storeAddressLabel" destination="5X7-YW-Gfj" id="IJT-fp-xpW"/>
                         <outlet property="storeHoursLabel" destination="aVQ-bR-QWo" id="64S-ND-Tb5"/>
+                        <outlet property="storeMapView" destination="xvH-d0-JcH" id="0Ny-tD-orz"/>
                         <outlet property="storeNameLabel" destination="prD-TP-j7E" id="Lw8-41-uhA"/>
                     </connections>
                 </viewController>
