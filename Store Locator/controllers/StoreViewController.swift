@@ -40,18 +40,14 @@ class StoreViewController: UIViewController, NVActivityIndicatorViewable {
         storeAddressLabel.isHidden = true
         phoneButton.isHidden = true
         
-        let fidgetSpinnerHolder = CGRect(x: activityIndicatorHolder.center.x - 25, y: activityIndicatorHolder.center.y, width: CGFloat(50), height: CGFloat(50))
-         fidgetSpinner = NVActivityIndicatorView(frame: fidgetSpinnerHolder, type:NVActivityIndicatorType.ballClipRotatePulse, color: UIColor.white,  padding: CGFloat(0))
+        let fidgetSpinnerHolder = CGRect(x: activityIndicatorHolder.center.x - 25, y: activityIndicatorHolder.center.y - 25, width: CGFloat(50), height: CGFloat(50))
+        fidgetSpinner = NVActivityIndicatorView(frame: fidgetSpinnerHolder, type:NVActivityIndicatorType.ballClipRotatePulse, color: UIColor.white,  padding: CGFloat(0))
         
         self.view.addSubview(fidgetSpinner!)
         
         fidgetSpinner?.startAnimating()
-        
-        self.view.addSubview(fidgetSpinner!)
-        
-        fidgetSpinner?.startAnimating()
-        
     }
+
     //------------------------------------------------------------------------------------------------
     override func didReceiveMemoryWarning()
     {
@@ -118,7 +114,6 @@ extension StoreViewController: storeInfoModelDelegate {
         distanceLabel.isHidden = false
         storeAddressLabel.isHidden = false
         //phoneButton.isHidden = false
-        activityIndicatorHolder.isHidden = true
         fidgetSpinner?.stopAnimating()
     }
     
