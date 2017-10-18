@@ -193,12 +193,7 @@ extension CollectionViewController: NetworkModelDelegate {
 }
 
 
-extension CollectionViewController: LocationModelDelegate {
-    func didLoadData()
-    {
-        colView.reloadData()
-    }
-}
+
 
 extension CollectionViewController: StoreModelDelegate {
     func dataFetchingended()
@@ -206,6 +201,11 @@ extension CollectionViewController: StoreModelDelegate {
         colView.reloadData()
         enableUserInteraction = true
         fidgetSpinner?.stopAnimating()
+    }
+    
+    func didLoadData()
+    {
+        colView.reloadData()
     }
     
 }
