@@ -117,7 +117,7 @@ extension StoreViewController: storeInfoModelDelegate {
         storeHoursLabel.isHidden = false
         distanceLabel.isHidden = false
         storeAddressLabel.isHidden = false
-        phoneButton.isHidden = false
+        //phoneButton.isHidden = false
         activityIndicatorHolder.isHidden = true
         fidgetSpinner?.stopAnimating()
     }
