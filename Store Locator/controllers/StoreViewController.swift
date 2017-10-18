@@ -31,42 +31,50 @@ class StoreViewController: UIViewController, NVActivityIndicatorViewable {
     @IBOutlet weak var distanceLabel: UILabel!
     @IBOutlet weak var activityIndicatorHolder: UIView!
     @IBOutlet weak var openTheMap: UIButton!
-    @IBOutlet weak var mapNavBar: UINavigationBar!
+    
+    @IBOutlet weak var navBarTitle: UINavigationItem!
+    @IBOutlet weak var navBar: UINavigationBar!
+    @IBOutlet weak var backFromMap: UIBarButtonItem!
     
     //------------------------------------------------------------------------------------------------
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        mapNavBar.isHidden = true
         storeNameLabel.isHidden = true
         storeHoursLabel.isHidden = true
         distanceLabel.isHidden = true
         storeAddressLabel.isHidden = true
         phoneButton.isHidden = true
-        
+        navBar.isHidden = true
         let fidgetSpinnerHolder = CGRect(x: activityIndicatorHolder.center.x - 25, y: activityIndicatorHolder.center.y - 25, width: CGFloat(50), height: CGFloat(50))
         fidgetSpinner = NVActivityIndicatorView(frame: fidgetSpinnerHolder, type:NVActivityIndicatorType.ballClipRotatePulse, color: UIColor.white,  padding: CGFloat(0))
         
         self.view.addSubview(fidgetSpinner!)
         
         fidgetSpinner?.startAnimating()
-    }
-    //------------------------------------------------------------------------------------------------
-    @IBAction func openTheMapClicked(_ sender: Any) {
+        //map related stuff
         
-        self.storeMapView.frame.size.height = UIScreen.main.bounds.height
-        self.view.bringSubview(toFront: storeMapView)
-        self.navigationController!.navigationBar.isHidden = true
-    
+        let storeAnnotation = MKPointAnnotation()
+        storeAnnotation.title = storeModule?.storeForID(storeID!).storeName
+        storeAnnotation.coordinate =  CLLocationCoordinate2D(latitude: (storeModule?.storeForID(storeID!).storeLongitude)!, longitude: (storeModule?.storeForID(storeID!).storeLatitude)!)
+        self.storeMapView.addAnnotation(storeAnnotation)
         
-        storeMapView.showsUserLocation = true
+        
         let mapSpan:MKCoordinateSpan = MKCoordinateSpanMake(0.1, 0.1)
-        let region = MKCoordinateRegionMake(CLLocationCoordinate2D(latitude: (storeLoc?.coordinate.latitude)!, longitude: (storeLoc?.coordinate.longitude)!), mapSpan)
-        
+        let region = MKCoordinateRegionMake(CLLocationCoordinate2D(latitude: (storeModule?.storeForID(storeID!).storeLongitude)!, longitude: (storeModule?.storeForID(storeID!).storeLatitude)!), mapSpan)
         self.storeMapView.setRegion(region, animated: true)
 
     }
-    
+    //------------------------------------------------------------------------------------------------
+    @IBAction func mapButtonClicked(_ sender: Any) {
+        
+        print("ok")
+  
+    }
+    //------------------------------------------------------------------------------------------------
+    @IBAction func backFromMap(_ sender: Any) {
+        updateUI()
+    }
     //------------------------------------------------------------------------------------------------
     override func didReceiveMemoryWarning()
     {
