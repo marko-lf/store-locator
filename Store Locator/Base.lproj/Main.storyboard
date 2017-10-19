@@ -261,7 +261,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </mapView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uM8-aD-fvz">
-                                <rect key="frame" x="258" y="36" width="101" height="84"/>
+                                <rect key="frame" x="313" y="28" width="54" height="72"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="50"/>
                                 <state key="normal" title="✖️"/>
                                 <connections>
@@ -272,15 +272,13 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="QVL-UJ-d7O" firstAttribute="bottom" secondItem="Tgf-Vv-5ip" secondAttribute="bottom" id="04i-Hr-pdI"/>
-                            <constraint firstItem="uM8-aD-fvz" firstAttribute="leading" secondItem="Tgf-Vv-5ip" secondAttribute="leading" constant="258" id="2db-tU-Hm8"/>
                             <constraint firstItem="QVL-UJ-d7O" firstAttribute="top" secondItem="nEn-4A-1G8" secondAttribute="top" id="99S-NH-SNh"/>
-                            <constraint firstItem="Tgf-Vv-5ip" firstAttribute="trailing" secondItem="uM8-aD-fvz" secondAttribute="trailing" constant="16" id="DTJ-6R-bR6"/>
-                            <constraint firstItem="uM8-aD-fvz" firstAttribute="top" secondItem="Tgf-Vv-5ip" secondAttribute="top" constant="16" id="Obx-yX-aUT"/>
+                            <constraint firstItem="Tgf-Vv-5ip" firstAttribute="trailing" secondItem="uM8-aD-fvz" secondAttribute="trailing" constant="8" id="RP2-qY-EZU"/>
                             <constraint firstItem="QVL-UJ-d7O" firstAttribute="trailing" secondItem="Tgf-Vv-5ip" secondAttribute="trailing" id="SGt-Ev-Fuh"/>
-                            <constraint firstItem="Tgf-Vv-5ip" firstAttribute="bottom" secondItem="uM8-aD-fvz" secondAttribute="bottom" constant="547" id="dm4-3r-QE0"/>
                             <constraint firstItem="QVL-UJ-d7O" firstAttribute="top" secondItem="nEn-4A-1G8" secondAttribute="top" id="ecM-5a-yXG"/>
                             <constraint firstItem="QVL-UJ-d7O" firstAttribute="leading" secondItem="Tgf-Vv-5ip" secondAttribute="leading" id="lYH-nB-j6j"/>
                             <constraint firstItem="QVL-UJ-d7O" firstAttribute="leading" secondItem="Tgf-Vv-5ip" secondAttribute="leading" id="nOb-ll-7d7"/>
+                            <constraint firstItem="uM8-aD-fvz" firstAttribute="top" secondItem="Tgf-Vv-5ip" secondAttribute="top" constant="8" id="olA-0i-zR7"/>
                             <constraint firstItem="QVL-UJ-d7O" firstAttribute="bottom" secondItem="Tgf-Vv-5ip" secondAttribute="bottom" id="qmf-Re-AmZ"/>
                             <constraint firstItem="QVL-UJ-d7O" firstAttribute="trailing" secondItem="Tgf-Vv-5ip" secondAttribute="trailing" id="wsl-2i-ezI"/>
                         </constraints>
