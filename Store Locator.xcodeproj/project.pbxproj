@@ -25,6 +25,7 @@
 		EA86C0DA1F96510D00C258B7 /* phone.jpg in Resources */ = {isa = PBXBuildFile; fileRef = EA86C0D91F96510D00C258B7 /* phone.jpg */; };
 		EAC229DF1F8E5BC700895AAB /* MiscellaneousFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAC229DE1F8E5BC700895AAB /* MiscellaneousFunctions.swift */; };
 		EAC229E21F8E722900895AAB /* NVActivityIndicatorView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAC229E31F8E722900895AAB /* NVActivityIndicatorView.framework */; };
+		EAD233311F97B24D007222DF /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD233301F97B24D007222DF /* MapViewController.swift */; };
 		EAE90A1F1F87C7B0008FF64B /* Store+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAE90A1B1F87C7B0008FF64B /* Store+CoreDataClass.swift */; };
 		EAE90A201F87C7B0008FF64B /* Store+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAE90A1C1F87C7B0008FF64B /* Store+CoreDataProperties.swift */; };
 		EAE90A211F87C7B0008FF64B /* Image+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAE90A1D1F87C7B0008FF64B /* Image+CoreDataClass.swift */; };
@@ -54,6 +55,7 @@
 		EA86C0D91F96510D00C258B7 /* phone.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = phone.jpg; sourceTree = "<group>"; };
 		EAC229DE1F8E5BC700895AAB /* MiscellaneousFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiscellaneousFunctions.swift; sourceTree = "<group>"; };
 		EAC229E31F8E722900895AAB /* NVActivityIndicatorView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = NVActivityIndicatorView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EAD233301F97B24D007222DF /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		EAE90A1B1F87C7B0008FF64B /* Store+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Store+CoreDataClass.swift"; sourceTree = "<group>"; };
 		EAE90A1C1F87C7B0008FF64B /* Store+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Store+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		EAE90A1D1F87C7B0008FF64B /* Image+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -132,6 +134,7 @@
 			children = (
 				EA86C0D71F96508700C258B7 /* StoreViewController.swift */,
 				EA2E940F1F8665A30057A745 /* CollectionViewController.swift */,
+				EAD233301F97B24D007222DF /* MapViewController.swift */,
 			);
 			path = controllers;
 			sourceTree = "<group>";
@@ -324,6 +327,7 @@
 				EA2E93EE1F8663B20057A745 /* Store_Locator.xcdatamodeld in Sources */,
 				EA189DAA1F90BF1C00C788A5 /* ReachabillityModule.swift in Sources */,
 				EA2E94101F8665A30057A745 /* CollectionViewController.swift in Sources */,
+				EAD233311F97B24D007222DF /* MapViewController.swift in Sources */,
 				EA2E941A1F867F330057A745 /* StoreModule.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

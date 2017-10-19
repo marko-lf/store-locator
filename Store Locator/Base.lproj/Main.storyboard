@@ -160,19 +160,6 @@
                                 <color key="textColor" red="0.95904562410000005" green="1" blue="0.94966787600000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Oe-w3-pQK">
-                                <rect key="frame" x="16" y="591" width="60" height="60"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="AHQ-Jp-LSw"/>
-                                    <constraint firstAttribute="width" constant="60" id="LRC-i9-5Id"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                <inset key="contentEdgeInsets" minX="16" minY="16" maxX="16" maxY="16"/>
-                                <state key="normal" title="Button" image="phone.jpg"/>
-                                <connections>
-                                    <action selector="callTheStore:" destination="hji-9K-7wq" eventType="touchUpInside" id="thc-f0-ok9"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Store Address" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="5X7-YW-Gfj">
                                 <rect key="frame" x="16" y="383" width="95.5" height="18"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
@@ -198,16 +185,37 @@
                                 <rect key="frame" x="0.0" y="297" width="375" height="370"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Oe-w3-pQK">
+                                <rect key="frame" x="16" y="591" width="60" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="AHQ-Jp-LSw"/>
+                                    <constraint firstAttribute="width" constant="60" id="LRC-i9-5Id"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <inset key="contentEdgeInsets" minX="16" minY="16" maxX="16" maxY="16"/>
+                                <state key="normal" title="Button" image="phone.jpg"/>
+                                <connections>
+                                    <action selector="callTheStore:" destination="hji-9K-7wq" eventType="touchUpInside" id="thc-f0-ok9"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mkv-kX-hch">
+                                <rect key="frame" x="0.0" y="64" width="375" height="233"/>
+                                <connections>
+                                    <segue destination="jaB-Ue-VlO" kind="presentation" identifier="toMapView" id="UBF-B1-WXQ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="prD-TP-j7E" firstAttribute="top" secondItem="xvH-d0-JcH" secondAttribute="bottom" constant="16" id="0Os-ku-FgB"/>
                             <constraint firstItem="nBx-gz-wNP" firstAttribute="bottom" secondItem="5Oe-w3-pQK" secondAttribute="bottom" constant="16" id="0zY-Bg-tdy"/>
                             <constraint firstItem="xvH-d0-JcH" firstAttribute="trailing" secondItem="rEf-Tg-mis" secondAttribute="trailing" id="4OS-QJ-DvP"/>
+                            <constraint firstItem="VkK-J7-r1T" firstAttribute="top" secondItem="Mkv-kX-hch" secondAttribute="bottom" id="4jp-wa-Tb3"/>
                             <constraint firstItem="nBx-gz-wNP" firstAttribute="trailing" secondItem="aVQ-bR-QWo" secondAttribute="trailing" constant="16" id="5kq-UN-HUe"/>
                             <constraint firstItem="prD-TP-j7E" firstAttribute="leading" secondItem="nBx-gz-wNP" secondAttribute="leading" constant="16" id="7Bf-CX-oqD"/>
                             <constraint firstItem="VkK-J7-r1T" firstAttribute="bottom" secondItem="nBx-gz-wNP" secondAttribute="bottom" id="8wX-Es-q9G"/>
                             <constraint firstItem="VkK-J7-r1T" firstAttribute="trailing" secondItem="nBx-gz-wNP" secondAttribute="trailing" id="Dfc-Mq-dWk"/>
+                            <constraint firstItem="Mkv-kX-hch" firstAttribute="trailing" secondItem="nBx-gz-wNP" secondAttribute="trailing" id="HXw-tG-EFc"/>
                             <constraint firstItem="Doh-Il-BAp" firstAttribute="leading" secondItem="nBx-gz-wNP" secondAttribute="leading" constant="16" id="LEw-PK-U4n"/>
                             <constraint firstItem="xvH-d0-JcH" firstAttribute="leading" secondItem="rEf-Tg-mis" secondAttribute="leading" id="Myl-Xn-Qjd"/>
                             <constraint firstItem="5Oe-w3-pQK" firstAttribute="top" relation="greaterThanOrEqual" secondItem="5X7-YW-Gfj" secondAttribute="bottom" constant="8" id="Oft-HS-3iI"/>
@@ -216,7 +224,9 @@
                             <constraint firstItem="Doh-Il-BAp" firstAttribute="top" secondItem="prD-TP-j7E" secondAttribute="bottom" constant="16" id="WNv-81-oqa"/>
                             <constraint firstItem="aVQ-bR-QWo" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="prD-TP-j7E" secondAttribute="trailing" constant="8" id="Yzd-tT-N4n"/>
                             <constraint firstItem="aVQ-bR-QWo" firstAttribute="top" secondItem="xvH-d0-JcH" secondAttribute="bottom" constant="16" id="bj3-c5-HZu"/>
+                            <constraint firstItem="Mkv-kX-hch" firstAttribute="top" secondItem="nBx-gz-wNP" secondAttribute="top" id="hfa-pf-FIf"/>
                             <constraint firstItem="xvH-d0-JcH" firstAttribute="top" secondItem="nBx-gz-wNP" secondAttribute="top" id="oP9-DV-P5Y"/>
+                            <constraint firstItem="Mkv-kX-hch" firstAttribute="leading" secondItem="nBx-gz-wNP" secondAttribute="leading" id="q8P-ca-o23"/>
                             <constraint firstItem="xvH-d0-JcH" firstAttribute="height" secondItem="rEf-Tg-mis" secondAttribute="height" multiplier="0.35" id="tmq-Jq-k6t"/>
                             <constraint firstItem="5X7-YW-Gfj" firstAttribute="leading" secondItem="nBx-gz-wNP" secondAttribute="leading" constant="16" id="vub-Ee-duO"/>
                             <constraint firstItem="VkK-J7-r1T" firstAttribute="top" secondItem="xvH-d0-JcH" secondAttribute="bottom" id="xeX-Aj-PU6"/>
@@ -227,15 +237,61 @@
                     <connections>
                         <outlet property="activityIndicatorHolder" destination="VkK-J7-r1T" id="esf-cn-uPf"/>
                         <outlet property="distanceLabel" destination="Doh-Il-BAp" id="6pD-Ed-8qD"/>
+                        <outlet property="openTheMap" destination="Mkv-kX-hch" id="owB-H7-BIN"/>
                         <outlet property="phoneButton" destination="5Oe-w3-pQK" id="bOF-FC-al2"/>
                         <outlet property="storeAddressLabel" destination="5X7-YW-Gfj" id="IJT-fp-xpW"/>
                         <outlet property="storeHoursLabel" destination="aVQ-bR-QWo" id="64S-ND-Tb5"/>
+                        <outlet property="storeMapView" destination="xvH-d0-JcH" id="0Ny-tD-orz"/>
                         <outlet property="storeNameLabel" destination="prD-TP-j7E" id="Lw8-41-uhA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zjt-O6-srY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="476" y="-1352.473763118441"/>
+        </scene>
+        <!--Map View Controller-->
+        <scene sceneID="5ep-rL-5Yq">
+            <objects>
+                <viewController id="jaB-Ue-VlO" customClass="MapViewController" customModule="Store_Locator" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="nEn-4A-1G8">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="QVL-UJ-d7O">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </mapView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uM8-aD-fvz">
+                                <rect key="frame" x="313" y="28" width="54" height="72"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="50"/>
+                                <state key="normal" title="✖️"/>
+                                <connections>
+                                    <action selector="closeMapView:" destination="jaB-Ue-VlO" eventType="touchUpInside" id="s2w-qw-m5E"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="QVL-UJ-d7O" firstAttribute="bottom" secondItem="Tgf-Vv-5ip" secondAttribute="bottom" id="04i-Hr-pdI"/>
+                            <constraint firstItem="QVL-UJ-d7O" firstAttribute="top" secondItem="nEn-4A-1G8" secondAttribute="top" id="99S-NH-SNh"/>
+                            <constraint firstItem="Tgf-Vv-5ip" firstAttribute="trailing" secondItem="uM8-aD-fvz" secondAttribute="trailing" constant="8" id="RP2-qY-EZU"/>
+                            <constraint firstItem="QVL-UJ-d7O" firstAttribute="trailing" secondItem="Tgf-Vv-5ip" secondAttribute="trailing" id="SGt-Ev-Fuh"/>
+                            <constraint firstItem="QVL-UJ-d7O" firstAttribute="top" secondItem="nEn-4A-1G8" secondAttribute="top" id="ecM-5a-yXG"/>
+                            <constraint firstItem="QVL-UJ-d7O" firstAttribute="leading" secondItem="Tgf-Vv-5ip" secondAttribute="leading" id="lYH-nB-j6j"/>
+                            <constraint firstItem="QVL-UJ-d7O" firstAttribute="leading" secondItem="Tgf-Vv-5ip" secondAttribute="leading" id="nOb-ll-7d7"/>
+                            <constraint firstItem="uM8-aD-fvz" firstAttribute="top" secondItem="Tgf-Vv-5ip" secondAttribute="top" constant="8" id="olA-0i-zR7"/>
+                            <constraint firstItem="QVL-UJ-d7O" firstAttribute="bottom" secondItem="Tgf-Vv-5ip" secondAttribute="bottom" id="qmf-Re-AmZ"/>
+                            <constraint firstItem="QVL-UJ-d7O" firstAttribute="trailing" secondItem="Tgf-Vv-5ip" secondAttribute="trailing" id="wsl-2i-ezI"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Tgf-Vv-5ip"/>
+                    </view>
+                    <connections>
+                        <outlet property="closeTheMap" destination="uM8-aD-fvz" id="3Pc-Hf-OLx"/>
+                        <outlet property="mapView" destination="QVL-UJ-d7O" id="ES4-3E-26Y"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Liv-gG-yu4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1325.5999999999999" y="-1352.473763118441"/>
         </scene>
     </scenes>
     <resources>

@@ -9,26 +9,29 @@
 import UIKit
 import MapKit
 import NVActivityIndicatorView
-
+import CoreLocation
 
 
 
 class StoreViewController: UIViewController, NVActivityIndicatorViewable {
     
 
-    
+    var storeLoc: CLLocation?
     public var storeModule:StoreModel?
     public var locationModule:LocationModel?
     public var storeID:Int?
     public var fidgetSpinner:NVActivityIndicatorView?
     var misc = Misc()
     
+    @IBOutlet weak var storeMapView: MKMapView!
     @IBOutlet weak var storeNameLabel: UILabel!
     @IBOutlet weak var storeAddressLabel: UILabel!
     @IBOutlet weak var storeHoursLabel: UILabel!
     @IBOutlet weak var phoneButton: UIButton!
     @IBOutlet weak var distanceLabel: UILabel!
     @IBOutlet weak var activityIndicatorHolder: UIView!
+    @IBOutlet weak var openTheMap: UIButton!
+    
     
     //------------------------------------------------------------------------------------------------
     override func viewDidLoad()
@@ -39,15 +42,25 @@ class StoreViewController: UIViewController, NVActivityIndicatorViewable {
         distanceLabel.isHidden = true
         storeAddressLabel.isHidden = true
         phoneButton.isHidden = true
-        
         let fidgetSpinnerHolder = CGRect(x: activityIndicatorHolder.center.x - 25, y: activityIndicatorHolder.center.y - 25, width: CGFloat(50), height: CGFloat(50))
         fidgetSpinner = NVActivityIndicatorView(frame: fidgetSpinnerHolder, type:NVActivityIndicatorType.ballClipRotatePulse, color: UIColor.white,  padding: CGFloat(0))
         
         self.view.addSubview(fidgetSpinner!)
         
         fidgetSpinner?.startAnimating()
-    }
+        //map related stuff
+        
+        let storeAnnotation = MKPointAnnotation()
+        storeAnnotation.title = storeModule?.storeForID(storeID!).storeName
+        storeAnnotation.coordinate =  CLLocationCoordinate2D(latitude: (storeModule?.storeForID(storeID!).storeLongitude)!, longitude: (storeModule?.storeForID(storeID!).storeLatitude)!)
+        self.storeMapView.addAnnotation(storeAnnotation)
+        
+        
+        let mapSpan:MKCoordinateSpan = MKCoordinateSpanMake(0.1, 0.1)
+        let region = MKCoordinateRegionMake(CLLocationCoordinate2D(latitude: (storeModule?.storeForID(storeID!).storeLongitude)!, longitude: (storeModule?.storeForID(storeID!).storeLatitude)!), mapSpan)
+        self.storeMapView.setRegion(region, animated: true)
 
+    }
     //------------------------------------------------------------------------------------------------
     override func didReceiveMemoryWarning()
     {
@@ -96,8 +109,8 @@ class StoreViewController: UIViewController, NVActivityIndicatorViewable {
         if (locationModule?.locationManager.location != nil) || (store != nil)
         {
             let userLoc = locationModule?.locationManager.location!
-            let storeLoc = CLLocation(latitude: (store?.storeLongitude)!, longitude: (store?.storeLatitude)!)
-            distanceLabel.text = misc.calculateDistance(location1: userLoc!, location2: storeLoc)
+               storeLoc = CLLocation(latitude: (store?.storeLongitude)!, longitude: (store?.storeLatitude)!)
+            distanceLabel.text = misc.calculateDistance(location1: userLoc!, location2: storeLoc!)
         }
     }
    //------------------------------------------------------------------------------------------------
@@ -113,7 +126,6 @@ extension StoreViewController: storeInfoModelDelegate {
         storeHoursLabel.isHidden = false
         distanceLabel.isHidden = false
         storeAddressLabel.isHidden = false
-        //phoneButton.isHidden = false
         fidgetSpinner?.stopAnimating()
     }
     
@@ -123,6 +135,15 @@ extension StoreViewController: storeInfoModelDelegate {
         alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
-    
+    //------------------------------------------------------------------------------------------------
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toMapView"
+        {
+            let mapVC = segue.destination as? MapViewController
+            mapVC?.storeID = storeID
+            mapVC?.storeModule = self.storeModule
+            mapVC?.locationModule = self.locationModule
+        }
+    }
 }
 

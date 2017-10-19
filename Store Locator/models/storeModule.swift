@@ -13,13 +13,15 @@ import CoreData
 import UIKit
 import Alamofire
 
-protocol StoreModelDelegate {
+protocol StoreModelDelegate
+{
     func didLoadData()
     func dataFetchingended()
     func showError(withMessage:String)
 }
 
-protocol storeInfoModelDelegate {
+protocol storeInfoModelDelegate
+{
     func dataIsReady()
     func showError(withMessage:String)
 }
@@ -131,6 +133,7 @@ public class StoreModel
                 
             }
         }
+        
         let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         let fetchRequest:NSFetchRequest<Store> = Store.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "storeID == %@", String(forStorebyID))
