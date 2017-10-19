@@ -182,10 +182,13 @@ class CollectionViewController: UICollectionViewController, NVActivityIndicatorV
             
         }
     }
+    //------------------------------------------------------------------------------------------------
 }
-//------------------------------------------------------------------------------------------------
-extension CollectionViewController: NetworkModelDelegate {
-    func showError(withMessage:String) {
+
+extension CollectionViewController: NetworkModelDelegate
+{
+    func showError(withMessage:String)
+    {
         let alert = UIAlertController(title: "Error!", message: withMessage, preferredStyle: UIAlertControllerStyle.alert)
         alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil))
         self.present(alert, animated: true, completion: nil)
@@ -195,7 +198,8 @@ extension CollectionViewController: NetworkModelDelegate {
 
 
 
-extension CollectionViewController: StoreModelDelegate {
+extension CollectionViewController: StoreModelDelegate
+{
     func dataFetchingended()
     {
         colView.reloadData()

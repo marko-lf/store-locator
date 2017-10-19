@@ -32,9 +32,6 @@ class StoreViewController: UIViewController, NVActivityIndicatorViewable {
     @IBOutlet weak var activityIndicatorHolder: UIView!
     @IBOutlet weak var openTheMap: UIButton!
     
-    @IBOutlet weak var navBarTitle: UINavigationItem!
-    @IBOutlet weak var navBar: UINavigationBar!
-    @IBOutlet weak var backFromMap: UIBarButtonItem!
     
     //------------------------------------------------------------------------------------------------
     override func viewDidLoad()
@@ -45,7 +42,6 @@ class StoreViewController: UIViewController, NVActivityIndicatorViewable {
         distanceLabel.isHidden = true
         storeAddressLabel.isHidden = true
         phoneButton.isHidden = true
-        navBar.isHidden = true
         let fidgetSpinnerHolder = CGRect(x: activityIndicatorHolder.center.x - 25, y: activityIndicatorHolder.center.y - 25, width: CGFloat(50), height: CGFloat(50))
         fidgetSpinner = NVActivityIndicatorView(frame: fidgetSpinnerHolder, type:NVActivityIndicatorType.ballClipRotatePulse, color: UIColor.white,  padding: CGFloat(0))
         
@@ -64,16 +60,6 @@ class StoreViewController: UIViewController, NVActivityIndicatorViewable {
         let region = MKCoordinateRegionMake(CLLocationCoordinate2D(latitude: (storeModule?.storeForID(storeID!).storeLongitude)!, longitude: (storeModule?.storeForID(storeID!).storeLatitude)!), mapSpan)
         self.storeMapView.setRegion(region, animated: true)
 
-    }
-    //------------------------------------------------------------------------------------------------
-    @IBAction func mapButtonClicked(_ sender: Any) {
-        
-        print("ok")
-  
-    }
-    //------------------------------------------------------------------------------------------------
-    @IBAction func backFromMap(_ sender: Any) {
-        updateUI()
     }
     //------------------------------------------------------------------------------------------------
     override func didReceiveMemoryWarning()
@@ -140,7 +126,6 @@ extension StoreViewController: storeInfoModelDelegate {
         storeHoursLabel.isHidden = false
         distanceLabel.isHidden = false
         storeAddressLabel.isHidden = false
-        //phoneButton.isHidden = false
         fidgetSpinner?.stopAnimating()
     }
     
@@ -150,6 +135,15 @@ extension StoreViewController: storeInfoModelDelegate {
         alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
-    
+    //------------------------------------------------------------------------------------------------
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toMapView"
+        {
+            let mapVC = segue.destination as? MapViewController
+            mapVC?.storeID = storeID
+            mapVC?.storeModule = self.storeModule
+            mapVC?.locationModule = self.locationModule
+        }
+    }
 }
 

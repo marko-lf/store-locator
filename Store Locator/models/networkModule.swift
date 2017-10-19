@@ -10,14 +10,15 @@ import Foundation
 import Alamofire
 
 
-protocol NetworkModelDelegate {
+protocol NetworkModelDelegate
+{
     func showError(withMessage:String)
 }
 
 public class NetworkModel
 {
     
-    func fetchJsonStoreData(completion: @escaping (Data?) -> ()) // ->
+    func fetchJsonStoreData(completion: @escaping (Data?) -> ())
     {
         Alamofire.request("https://acko.lotusflare.com/storeList").responseJSON //store list API courtesy of Acko
         {
@@ -26,7 +27,7 @@ public class NetworkModel
         }
     }
     //------------------------------------------------------------------------------------------------
-    func fetchJsonStoreInfoData(idOfTheStore:Int, completion: @escaping (Data?) -> ()) // ->
+    func fetchJsonStoreInfoData(idOfTheStore:Int, completion: @escaping (Data?) -> ()) 
     {
         let urlToApi:String = "https://acko.lotusflare.com/storeInfo?storeID=" + String(idOfTheStore)
         Alamofire.request(urlToApi).responseJSON //store list API courtesy of Acko
