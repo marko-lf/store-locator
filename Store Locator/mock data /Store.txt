@@ -1,0 +1,91 @@
+
+[
+{
+"storeID": "0",
+"storeName": "Lincoln Parkyyy",
+"storeImageUrl": "https://images.apple.com/retail/lincolnpark/images/hero_large_2x.jpg",
+"storeImageSize": 582714,
+"storeLongitude": "41.910620",
+"storeLatitude": "-87.648560"
+},
+{
+"storeID": "1",
+"storeName": "Crocker Park",
+"storeImageUrl": "https://images.apple.com/retail/crockerpark/images/hero_large_2x.jpg",
+"storeImageSize": 689128,
+"storeLongitude": "41.459090",
+"storeLatitude": "-81.953010"
+},
+{
+"storeID": "2",
+"storeName": "Valley Plaza",
+"storeImageUrl": "https://images.apple.com/retail/valleyplaza/images/hero_large_2x.jpg",
+"storeImageSize": 627823,
+"storeLongitude": "35.337950",
+"storeLatitude": "-119.032710"
+},
+{
+"storeID": "7",
+"storeName": "Annapolis",
+"storeImageUrl": "https://images.apple.com/retail/annapolis/images/hero_large_2x.jpg",
+"storeImageSize": 764852,
+"storeLongitude": "38.990536",
+"storeLatitude": "-76.544140"
+},
+{
+"storeID": "8",
+"storeName": "Century City",
+"storeImageUrl": "https://images.apple.com/retail/centurycity/images/hero_large_2x.jpg",
+"storeImageSize": 656753,
+"storeLongitude": "34.058450",
+"storeLatitude": "-118.419770"
+},
+{
+"storeID": "9",
+"storeName": "Infinite Loop",
+"storeImageUrl": "https://images.apple.com/retail/infiniteloop/images/hero_large_2x.jpg",
+"storeImageSize": 367584,
+"storeLongitude": "37.331423",
+"storeLatitude": "-122.030503"
+},
+{
+"storeID": "10",
+"storeName": "Pasadena",
+"storeImageUrl": "https://images.apple.com/retail/pasadena/images/hero_large_2x.jpg",
+"storeImageSize": 473347,
+"storeLongitude": "34.145766",
+"storeLatitude": "-118.151586"
+},
+{
+"storeID": "11",
+"storeName": "Oakridge",
+"storeImageUrl": "https://images.apple.com/retail/oakridge/images/hero_large_2x.jpg",
+"storeImageSize": 478345,
+"storeLongitude": "37.251599",
+"storeLatitude": "-121.862899"
+},
+{
+"storeID": "12",
+"storeName": "Briarwood",
+"storeImageUrl": "https://images.apple.com/retail/briarwood/images/hero_large_2x.jpg",
+"storeImageSize": 437874,
+"storeLongitude": "42.240455",
+"storeLatitude": "-83.746989"
+},
+{
+"storeID": "13",
+"storeName": "Barton Creek",
+"storeImageUrl": "https://images.apple.com/retail/bartoncreek/images/hero_large_2x.jpg",
+"storeImageSize": 477834,
+"storeLongitude": "30.258060",
+"storeLatitude": "-97.807220"
+},
+{
+"storeID": "17",
+"storeName": "Avalon",
+"storeImageUrl": "https://images.apple.com/retail/avalon/images/hero_large_2x.jpg",
+"storeImageSize": 487534,
+"storeLongitude": "34.070622",
+"storeLatitude": "-84.274814"
+}
+]

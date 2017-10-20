@@ -1,0 +1,17 @@
+[
+{
+"storeID": "9",
+"storeName": "Infinite Loop",
+"storeImageUrl": "https://images.apple.com/retail/infiniteloop/images/hero_large_2x.jpg",
+"storeImageSize": 367584,
+"storeLongitude": "37.331423",
+"storeLatitude": "-122.030503",
+"storeAddress": "One Infinite LoopCupertino, CA 95014",
+"storePhone": "(408) 606-5775",
+"storeHours": {
+"Mon - Fri": "9:00 a.m. - 7:00 p.m.",
+"Sat": "10:00 a.m. - 6:00 p.m.",
+"Sun": "11:00 a.m. - 5:00 p.m."
+}
+}
+]
