@@ -8,7 +8,9 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="Segues with Peek and Pop" minToolsVersion="7.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -119,9 +121,37 @@
                             <outlet property="delegate" destination="8u0-V6-n7d" id="J17-9l-4c4"/>
                         </connections>
                     </collectionView>
-                    <navigationItem key="navigationItem" title="STORES" id="6ri-O1-9mm"/>
+                    <navigationItem key="navigationItem" title="STORES" id="6ri-O1-9mm">
+                        <leftBarButtonItems>
+                            <barButtonItem systemItem="search" id="Hyw-W6-5xe">
+                                <connections>
+                                    <action selector="searchButtonPressed:" destination="8u0-V6-n7d" id="VVu-dH-as3"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem style="plain" id="MrE-Z4-Qil">
+                                <textField key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" id="WTe-zy-xEZ">
+                                    <rect key="frame" x="53" y="7" width="25" height="30"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <nil key="textColor"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                    <connections>
+                                        <action selector="searchTermsChanged:" destination="8u0-V6-n7d" eventType="editingChanged" id="3Qc-4C-hPj"/>
+                                    </connections>
+                                </textField>
+                            </barButtonItem>
+                        </leftBarButtonItems>
+                        <barButtonItem key="rightBarButtonItem" systemItem="stop" id="Naw-6i-3Wg">
+                            <connections>
+                                <action selector="closeSearchButtonPressed:" destination="8u0-V6-n7d" id="6YB-jH-gam"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
+                        <outlet property="closeSearchButton" destination="Naw-6i-3Wg" id="7pd-SE-nqa"/>
                         <outlet property="colView" destination="hia-EX-aFp" id="ObJ-5w-4Mu"/>
+                        <outlet property="searchButton" destination="Hyw-W6-5xe" id="DRk-ON-AzZ"/>
+                        <outlet property="searchTextField" destination="WTe-zy-xEZ" id="PQD-H2-8gK"/>
                     </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="N9H-yX-haC" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -201,7 +231,10 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mkv-kX-hch">
                                 <rect key="frame" x="0.0" y="64" width="375" height="233"/>
                                 <connections>
-                                    <segue destination="jaB-Ue-VlO" kind="presentation" identifier="toMapView" id="UBF-B1-WXQ"/>
+                                    <segue destination="jaB-Ue-VlO" kind="presentation" identifier="toMapView" modalPresentationStyle="fullScreen" id="UBF-B1-WXQ">
+                                        <segue key="commit" inheritsFrom="parent" id="71q-qg-LMh"/>
+                                        <segue key="preview" inheritsFrom="commit" id="s8m-5o-ovY"/>
+                                    </segue>
                                 </connections>
                             </button>
                         </subviews>
@@ -261,8 +294,9 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </mapView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uM8-aD-fvz">
-                                <rect key="frame" x="313" y="28" width="54" height="72"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="50"/>
+                                <rect key="frame" x="325" y="20" width="50" height="52"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <inset key="contentEdgeInsets" minX="8" minY="8" maxX="8" maxY="8"/>
                                 <state key="normal" title="✖️"/>
                                 <connections>
                                     <action selector="closeMapView:" destination="jaB-Ue-VlO" eventType="touchUpInside" id="s2w-qw-m5E"/>
@@ -272,15 +306,11 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="QVL-UJ-d7O" firstAttribute="bottom" secondItem="Tgf-Vv-5ip" secondAttribute="bottom" id="04i-Hr-pdI"/>
-                            <constraint firstItem="QVL-UJ-d7O" firstAttribute="top" secondItem="nEn-4A-1G8" secondAttribute="top" id="99S-NH-SNh"/>
-                            <constraint firstItem="Tgf-Vv-5ip" firstAttribute="trailing" secondItem="uM8-aD-fvz" secondAttribute="trailing" constant="8" id="RP2-qY-EZU"/>
+                            <constraint firstItem="QVL-UJ-d7O" firstAttribute="top" secondItem="Tgf-Vv-5ip" secondAttribute="top" constant="-20" id="99S-NH-SNh"/>
+                            <constraint firstItem="Tgf-Vv-5ip" firstAttribute="trailing" secondItem="uM8-aD-fvz" secondAttribute="trailing" id="RP2-qY-EZU"/>
                             <constraint firstItem="QVL-UJ-d7O" firstAttribute="trailing" secondItem="Tgf-Vv-5ip" secondAttribute="trailing" id="SGt-Ev-Fuh"/>
-                            <constraint firstItem="QVL-UJ-d7O" firstAttribute="top" secondItem="nEn-4A-1G8" secondAttribute="top" id="ecM-5a-yXG"/>
                             <constraint firstItem="QVL-UJ-d7O" firstAttribute="leading" secondItem="Tgf-Vv-5ip" secondAttribute="leading" id="lYH-nB-j6j"/>
-                            <constraint firstItem="QVL-UJ-d7O" firstAttribute="leading" secondItem="Tgf-Vv-5ip" secondAttribute="leading" id="nOb-ll-7d7"/>
-                            <constraint firstItem="uM8-aD-fvz" firstAttribute="top" secondItem="Tgf-Vv-5ip" secondAttribute="top" constant="8" id="olA-0i-zR7"/>
-                            <constraint firstItem="QVL-UJ-d7O" firstAttribute="bottom" secondItem="Tgf-Vv-5ip" secondAttribute="bottom" id="qmf-Re-AmZ"/>
-                            <constraint firstItem="QVL-UJ-d7O" firstAttribute="trailing" secondItem="Tgf-Vv-5ip" secondAttribute="trailing" id="wsl-2i-ezI"/>
+                            <constraint firstItem="uM8-aD-fvz" firstAttribute="top" secondItem="Tgf-Vv-5ip" secondAttribute="top" id="olA-0i-zR7"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Tgf-Vv-5ip"/>
                     </view>
@@ -297,4 +327,7 @@
     <resources>
         <image name="phone.jpg" width="502" height="508"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="UBF-B1-WXQ"/>
+    </inferredMetricsTieBreakers>
 </document>

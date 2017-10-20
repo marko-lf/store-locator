@@ -32,6 +32,11 @@ class StoreViewController: UIViewController, NVActivityIndicatorViewable {
     @IBOutlet weak var activityIndicatorHolder: UIView!
     @IBOutlet weak var openTheMap: UIButton!
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        get {
+            return UIStatusBarStyle.lightContent
+        }
+    }
     
     //------------------------------------------------------------------------------------------------
     override func viewDidLoad()
@@ -60,11 +65,6 @@ class StoreViewController: UIViewController, NVActivityIndicatorViewable {
         let region = MKCoordinateRegionMake(CLLocationCoordinate2D(latitude: (storeModule?.storeForID(storeID!).storeLongitude)!, longitude: (storeModule?.storeForID(storeID!).storeLatitude)!), mapSpan)
         self.storeMapView.setRegion(region, animated: true)
 
-    }
-    //------------------------------------------------------------------------------------------------
-    override func didReceiveMemoryWarning()
-    {
-        super.didReceiveMemoryWarning()
     }
     //------------------------------------------------------------------------------------------------
     @IBAction func callTheStore(_ sender: Any)
