@@ -122,7 +122,11 @@
                     </collectionView>
                     <navigationItem key="navigationItem" title="STORES" id="6ri-O1-9mm">
                         <leftBarButtonItems>
-                            <barButtonItem systemItem="search" id="Hyw-W6-5xe"/>
+                            <barButtonItem systemItem="search" id="Hyw-W6-5xe">
+                                <connections>
+                                    <action selector="searchButtonPressed:" destination="8u0-V6-n7d" id="VVu-dH-as3"/>
+                                </connections>
+                            </barButtonItem>
                             <barButtonItem style="plain" id="MrE-Z4-Qil">
                                 <textField key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" id="WTe-zy-xEZ">
                                     <rect key="frame" x="53" y="7" width="25" height="30"/>
@@ -130,13 +134,23 @@
                                     <nil key="textColor"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <textInputTraits key="textInputTraits"/>
+                                    <connections>
+                                        <action selector="searchTermsChanged:" destination="8u0-V6-n7d" eventType="editingChanged" id="3Qc-4C-hPj"/>
+                                    </connections>
                                 </textField>
                             </barButtonItem>
                         </leftBarButtonItems>
-                        <barButtonItem key="rightBarButtonItem" systemItem="stop" id="Naw-6i-3Wg"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="stop" id="Naw-6i-3Wg">
+                            <connections>
+                                <action selector="closeSearchButtonPressed:" destination="8u0-V6-n7d" id="6YB-jH-gam"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="closeSearchButton" destination="Naw-6i-3Wg" id="7pd-SE-nqa"/>
                         <outlet property="colView" destination="hia-EX-aFp" id="ObJ-5w-4Mu"/>
+                        <outlet property="searchButton" destination="Hyw-W6-5xe" id="DRk-ON-AzZ"/>
+                        <outlet property="searchTextField" destination="WTe-zy-xEZ" id="PQD-H2-8gK"/>
                     </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="N9H-yX-haC" userLabel="First Responder" sceneMemberID="firstResponder"/>

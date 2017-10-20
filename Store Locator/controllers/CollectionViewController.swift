@@ -10,7 +10,7 @@ import UIKit
 import CoreData
 import CoreLocation
 import NVActivityIndicatorView
-
+import Foundation
 
 
 
@@ -20,7 +20,7 @@ import NVActivityIndicatorView
 
 private let reuseIdentifier = "Cell"
 
-class CollectionViewController: UICollectionViewController, NVActivityIndicatorViewable
+class CollectionViewController: UICollectionViewController, NVActivityIndicatorViewable, UITextFieldDelegate
 {
     
     
@@ -29,6 +29,17 @@ class CollectionViewController: UICollectionViewController, NVActivityIndicatorV
     public var miscFuncionalities = Misc()
     @IBOutlet var colView: UICollectionView!
     public var reachability = Reachability()
+    
+    @IBOutlet weak var searchButton: UIBarButtonItem!
+    @IBOutlet weak var closeSearchButton: UIBarButtonItem!
+    @IBOutlet weak var searchTextField: UITextField!
+    
+    
+    var storesForDisplay : [Store]? {
+        didSet {
+            colView.reloadData()
+        }
+    }
     
     var enableUserInteraction:Bool = true
     {
@@ -76,19 +87,90 @@ class CollectionViewController: UICollectionViewController, NVActivityIndicatorV
         storeModule.deleteAllData()
         
         storeModule.storeCoreDataInit()
-        
+       
         refreshControl.endRefreshing()
         
         
     }
     //-------------------------------------------------------------------------------------------------
+    
+    @IBAction func searchTermsChanged(_ sender: Any) {
+        
+        storesForDisplay = storeModule.stores
+        
+        
+        let searchTerms = searchTextField.text
+        if searchTerms != ""
+        {
+            var i = 0
+            while (i < storesForDisplay!.count)
+            {
+                if (storesForDisplay![i].storeName?.containsIgnoringCase(searchTerms!))!
+                {
+                   
+                    i = i + 1
+                }
+                else
+                {
+                
+                    storesForDisplay!.remove(at: i)
+                }
+            }
+        }
+        
+        
+    }
+    
+    @IBAction func searchButtonPressed(_ sender: Any) {
+        storesForDisplay = storeModule.stores
+        searchButton.isEnabled = false
+        searchButton.tintColor = UIColor.black
+        searchTextField.text = nil
+        closeSearchButton.isEnabled = true
+        closeSearchButton.tintColor = UIColor.white
+        searchTextField.isEnabled = true
+        searchTextField.backgroundColor = UIColor.white
+        searchTextField.tintColor = UIColor.black
+        searchTextField.frame.size.width = UIScreen.main.bounds.width * 5/7
+        searchTextField.center.x = self.view.center.x
+        self.navigationItem.title = ""
+        searchTextField.becomeFirstResponder()
+        
+    }
+    
+    @IBAction func closeSearchButtonPressed(_ sender: Any) {
+        searchButton.isEnabled = true
+        self.navigationItem.title = "STORES"
+        closeSearchButton.tintColor = UIColor.black
+        searchTextField.frame.size.width = 0
+        closeSearchButton.isEnabled = false
+        searchButton.tintColor = UIColor.white
+        searchTextField.isEnabled = false
+        searchTextField.backgroundColor = UIColor.black
+        searchTextField.tintColor = UIColor.black
+        searchTextField.resignFirstResponder()
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        if textField == searchTextField
+        {
+            closeSearchButtonPressed(self)
+            print("ok")
+        }
+        return true
+    }
+    
+
+    //-------------------------------------------------------------------------------------------------
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        
+        self.searchTextField.delegate = self
+        closeSearchButtonPressed(self)
         let fidgetSpinnerHolder = CGRect(x: colView.center.x - 25, y: colView.center.y, width: CGFloat(50), height: CGFloat(50))
         fidgetSpinner = NVActivityIndicatorView(frame: fidgetSpinnerHolder, type:NVActivityIndicatorType.ballClipRotatePulse, color: UIColor.white,  padding: CGFloat(0))
-        
+        storesForDisplay = storeModule.stores
         self.view.addSubview(fidgetSpinner!)
         
         fidgetSpinner?.startAnimating()
@@ -125,24 +207,27 @@ class CollectionViewController: UICollectionViewController, NVActivityIndicatorV
     //------------------------------------------------------------------------------------------------
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
     {
-        return storeModule.stores.count
+        return (storesForDisplay?.count)!
     }
     //------------------------------------------------------------------------------------------------
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
     {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! StoreCollectionViewCell
         
-        if (storeModule.stores.count != 0)
+        if (storesForDisplay?.count != 0)
         {
-            cell.storeName.text = storeModule.stores[indexPath.row].storeName
+            cell.storeName.text = storesForDisplay?[indexPath.row].storeName
             
-            cell.storeImage.image = UIImage(data: storeModule.images![(storeModule.stores[indexPath.row].storeID)]! as Data)
-            cell.segueButton.tag = Int(storeModule.stores[indexPath.row].storeID)
+            if storeModule.images?.count != 0
+            {
+                cell.storeImage.image = UIImage(data: storeModule.images![(storesForDisplay?[indexPath.row].storeID)!]! as Data)
+            }
+            cell.segueButton.tag = Int((storesForDisplay?[indexPath.row].storeID)!)
             
             if (locationModule.location != nil)
             {
                 let userLoc = locationModule.locationManager.location!
-                let storeLoc = CLLocation(latitude: storeModule.stores[indexPath.row].storeLongitude, longitude: storeModule.stores[indexPath.row].storeLatitude)
+                let storeLoc = CLLocation(latitude: (storesForDisplay?[indexPath.row].storeLongitude)!, longitude: (storesForDisplay?[indexPath.row].storeLatitude)!)
                 cell.storeDistance.isHidden = false
                 cell.storeDistance.text = miscFuncionalities.calculateDistance(location1: userLoc, location2: storeLoc)
                 
@@ -202,6 +287,7 @@ extension CollectionViewController: StoreModelDelegate
 {
     func dataFetchingended()
     {
+        storesForDisplay = storeModule.stores
         colView.reloadData()
         enableUserInteraction = true
         fidgetSpinner?.stopAnimating()
@@ -212,6 +298,17 @@ extension CollectionViewController: StoreModelDelegate
         colView.reloadData()
     }
     
+}
+
+extension String {
+    
+    func contains(_ find: String) -> Bool{
+        return self.range(of: find) != nil
+    }
+    
+    func containsIgnoringCase(_ find: String) -> Bool{
+        return self.range(of: find, options: .caseInsensitive) != nil
+    }
 }
 
 
