@@ -12,18 +12,10 @@ import CoreLocation
 import NVActivityIndicatorView
 import Foundation
 
-
-
-
-
-
-
 private let reuseIdentifier = "Cell"
 
 class CollectionViewController: UICollectionViewController, NVActivityIndicatorViewable, UITextFieldDelegate
 {
-    
-    
     public var storeModule = StoreModel()
     public var locationModule = LocationModel()
     public var miscFuncionalities = Misc()
@@ -34,6 +26,9 @@ class CollectionViewController: UICollectionViewController, NVActivityIndicatorV
     @IBOutlet weak var closeSearchButton: UIBarButtonItem!
     @IBOutlet weak var searchTextField: UITextField!
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
     
     var storesForDisplay : [Store]? {
         didSet {
@@ -70,99 +65,7 @@ class CollectionViewController: UICollectionViewController, NVActivityIndicatorV
             
             return refreshControl
     }()
-    
-    @objc func handleRefresh(_ refreshControl: UIRefreshControl)
-    {
-        if (!Reachability.isConnectedToNetwork() && self.storeModule.mockDataMode == false)
-        {
-            miscFuncionalities.noDataAvailable(sender: self)
-            refreshControl.endRefreshing()
-            colView.contentOffset = .init()
-            return
-        }
-        self.fidgetSpinner?.startAnimating()
-        refreshControl.beginRefreshing()
-        
-        self.view.isUserInteractionEnabled = false
-        storeModule.deleteAllData()
-        
-        storeModule.storeCoreDataInit()
-       
-        refreshControl.endRefreshing()
-        
-        
-    }
-    //-------------------------------------------------------------------------------------------------
-    
-    @IBAction func searchTermsChanged(_ sender: Any) {
-        
-        storesForDisplay = storeModule.stores
-        
-        
-        let searchTerms = searchTextField.text
-        if searchTerms != ""
-        {
-            var i = 0
-            while (i < storesForDisplay!.count)
-            {
-                if (storesForDisplay![i].storeName?.containsIgnoringCase(searchTerms!))!
-                {
-                   
-                    i = i + 1
-                }
-                else
-                {
-                
-                    storesForDisplay!.remove(at: i)
-                }
-            }
-        }
-        
-        
-    }
-    
-    @IBAction func searchButtonPressed(_ sender: Any) {
-        storesForDisplay = storeModule.stores
-        searchButton.isEnabled = false
-        searchButton.tintColor = UIColor.black
-        searchTextField.text = nil
-        closeSearchButton.isEnabled = true
-        closeSearchButton.tintColor = UIColor.white
-        searchTextField.isEnabled = true
-        searchTextField.backgroundColor = UIColor.white
-        searchTextField.tintColor = UIColor.black
-        searchTextField.frame.size.width = UIScreen.main.bounds.width * 5/7
-        searchTextField.center.x = self.view.center.x
-        self.navigationItem.title = ""
-        searchTextField.becomeFirstResponder()
-        
-    }
-    
-    @IBAction func closeSearchButtonPressed(_ sender: Any) {
-        searchButton.isEnabled = true
-        self.navigationItem.title = "STORES"
-        closeSearchButton.tintColor = UIColor.black
-        searchTextField.frame.size.width = 0
-        closeSearchButton.isEnabled = false
-        searchButton.tintColor = UIColor.white
-        searchTextField.isEnabled = false
-        searchTextField.backgroundColor = UIColor.black
-        searchTextField.tintColor = UIColor.black
-        searchTextField.resignFirstResponder()
-    }
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        
-        if textField == searchTextField
-        {
-            closeSearchButtonPressed(self)
-            print("ok")
-        }
-        return true
-    }
-    
-
-    //-------------------------------------------------------------------------------------------------
+    //------------------------------------------------------------------------------------------------
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -184,6 +87,11 @@ class CollectionViewController: UICollectionViewController, NVActivityIndicatorV
         
         storeModule.storeCoreDataInit()
         
+        searchTextField.backgroundColor = UIColor.white
+        searchTextField.tintColor = UIColor.black
+        searchTextField.center.x = self.view.center.x
+        searchTextField.isHidden = true
+        
         self.colView.addSubview(self.refreshControl)
         if (!Reachability.isConnectedToNetwork() && self.storeModule.mockDataMode == false)
         {
@@ -192,13 +100,107 @@ class CollectionViewController: UICollectionViewController, NVActivityIndicatorV
             enableUserInteraction = true
         }
         enableUserInteraction = true
+        setNeedsStatusBarAppearanceUpdate()
     }
+
     //------------------------------------------------------------------------------------------------
-    
-    override func didReceiveMemoryWarning()
+    @objc func handleRefresh(_ refreshControl: UIRefreshControl)
     {
-        super.didReceiveMemoryWarning()
+        if (!Reachability.isConnectedToNetwork() && self.storeModule.mockDataMode == false)
+        {
+            miscFuncionalities.noDataAvailable(sender: self)
+            refreshControl.endRefreshing()
+            colView.contentOffset = .init()
+            return
+        }
+        self.fidgetSpinner?.startAnimating()
+        refreshControl.beginRefreshing()
+        
+        self.view.isUserInteractionEnabled = false
+        storeModule.deleteAllData()
+        
+        storeModule.storeCoreDataInit()
+       
+        refreshControl.endRefreshing()
+
     }
+    //-------------------------------------------------------------------------------------------------
+    
+    @IBAction func searchTermsChanged(_ sender: Any) {
+        
+        storesForDisplay = storeModule.stores
+        
+        let searchTerms = searchTextField.text
+        if searchTerms != ""
+        {
+            var i = 0
+            while (i < storesForDisplay!.count)
+            {
+                if (storesForDisplay![i].storeName?.containsIgnoringCase(searchTerms!))!
+                {
+                   
+                    i = i + 1
+                }
+                else
+                {
+                    storesForDisplay!.remove(at: i)
+                }
+            }
+        }
+    }
+    
+    @IBAction func searchButtonPressed(_ sender: Any) {
+        searchButton.isEnabled = false
+        searchButton.tintColor = UIColor.clear
+        
+        searchTextField.text = nil
+        
+        closeSearchButton.isEnabled = true
+        closeSearchButton.tintColor = UIColor.white
+        
+        self.navigationItem.title = ""
+        
+        searchTextField.isHidden = false
+        UIView .animate(withDuration: 0.2, animations: {
+            self.searchTextField.frame.size.width = UIScreen.main.bounds.width * 5/7
+        }) { (completion) in
+            self.searchTextField.isEnabled = true
+            self.searchTextField.becomeFirstResponder()
+        }
+    }
+    
+    @IBAction func closeSearchButtonPressed(_ sender: Any?) {
+        storesForDisplay = storeModule.stores
+        
+        searchButton.isEnabled = true
+        searchButton.tintColor = UIColor.white
+        
+        self.navigationItem.title = "STORES"
+        
+        closeSearchButton.tintColor = UIColor.clear
+        closeSearchButton.isEnabled = false
+        
+        searchTextField.resignFirstResponder()
+        
+        UIView .animate(withDuration: 0.2, animations: {
+            self.searchTextField.frame.size.width = 0
+        }) { (completion) in
+            self.searchTextField.isEnabled = false
+            self.searchTextField.isHidden = true
+        }
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        if textField == searchTextField
+        {
+            closeSearchButtonPressed(self)
+            print("ok")
+        }
+        return true
+    }
+    
+
     //------------------------------------------------------------------------------------------------
     override func numberOfSections(in collectionView: UICollectionView) -> Int
     {
@@ -256,18 +258,15 @@ class CollectionViewController: UICollectionViewController, NVActivityIndicatorV
         
         if segue.identifier == "toStoreInfo"
         {
-            
+            closeSearchButtonPressed(nil)
             let storeVC = segue.destination as? StoreViewController
             storeModule.storeInfoFetch(forStore:  ((sender as? UIButton)?.tag)!)
             storeVC?.storeID = (sender as? UIButton)?.tag
             storeModule.storeInfoModelDelegate = storeVC!
             storeVC?.storeModule = self.storeModule
             storeVC?.locationModule = self.locationModule
-            
-            
         }
     }
-    //------------------------------------------------------------------------------------------------
 }
 
 extension CollectionViewController: NetworkModelDelegate
@@ -279,9 +278,6 @@ extension CollectionViewController: NetworkModelDelegate
         self.present(alert, animated: true, completion: nil)
     }
 }
-
-
-
 
 extension CollectionViewController: StoreModelDelegate
 {
@@ -297,7 +293,6 @@ extension CollectionViewController: StoreModelDelegate
     {
         colView.reloadData()
     }
-    
 }
 
 extension String {
@@ -310,9 +305,4 @@ extension String {
         return self.range(of: find, options: .caseInsensitive) != nil
     }
 }
-
-
-
-
-
 
